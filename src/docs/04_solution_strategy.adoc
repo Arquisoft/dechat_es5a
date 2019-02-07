@@ -4,21 +4,15 @@
 
 [role="arc42help"]
 ****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+.Technology and IDE
+The team had to choose between betweet new technologies for us and technologies already kown but that dd no have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose JavaScript, more specifically, the Angular Framework.
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+About the IDE, we choose WebStorm due to its power and the fact that, as students, we have a free payment license. In addition, some of the members of the group have used it in previous subjects.
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
+.Architectural pattern
+We decided to use the architectural pattern model-view-controller (MVC) because it is a pattern that gives us more extensibility and maintainability. Also, its implementation supports rapid and parallel development.
 
-.Form
-Keep the explanation of these key decisions short.
+.Methodology of work
+We will use Scrum to develope this project. Scrum can provide us an early software development, and more independence when programming. Our project will start implementing the basic functions of a chat and it will grow in complexity.
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
 ****
