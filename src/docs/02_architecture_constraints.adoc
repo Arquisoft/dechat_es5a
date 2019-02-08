@@ -1,19 +1,18 @@
-[[section-architecture-constraints]]
-== Architecture Constraints
+= 2. Architecture Constraints
+Doc Writer <UO244741@uniovi.es>
+v1.0, 2019-08-02
 
+== 2.1 Technical Constraints
 
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+[width="40%",frame="topbot",options="header,footer"]
+|======================
+|Code |Restricction |Motive
+|TC001  |Program language: JavaScrip or TypeScript |Internet has a lot of code examples
+|TC002  |Frameworks: Angular    |The software developers which develop Solid applications are  familiar with this frameworks
+|TC003  |Item 3   |Item 3
+|TC004  |Three items |Item 4
+|======================
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+== 2.2 Organizational Constraints
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+== 2.3 Political Contraints
