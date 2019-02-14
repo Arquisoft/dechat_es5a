@@ -1,0 +1,11 @@
+[[section-design-decisions]]
+== Design Decisions
+
+* Using javascript family language to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.
+* Social linked data(SOLID) based application. A must decision we have to follow if we want to make a decentralized application. This means following several important constraints to build the application.
+* Following MVC architecture as much as we can. It is the main architecture model we know something about, so we are going to try to follow it as much as we can.
+*To be continued.
+
+
+===== TODO Mind-Map?
+===== TODO Full decisions table?
