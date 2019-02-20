@@ -3,46 +3,36 @@
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+The development will consist of a WebApp whose objective is to be a decentralized chat, using SOLID technologies. This chat will allow users to exchange messages in different formats (audio, text, video), as well as other functions such as: share screen or video call; It will also allow you to save friends lists, show notifications, among other functions. It will be a web application developed at Angular, and an RDF library will be used to communicate and obtain information on the different PODs
 ****
 
 === Requirements Overview
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+The application will mainly comply with the following:
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+•	The system will be based on a decentralized architecture where data storage is separated from the app
+•	Users can store their chat data in their own pods
+•	The app will allow a user to share pictures, videos or other kinds of files with other friends through the chat
+•	A user can get notifications when some friend wants to chat with him
+•	Users can have groups of friends with whom they may want to chat
+•	It will be possible to have group chats where all members receive the messages 
+•	Users can have live calls and videos
+•	Users can share their screens in the chat
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
 
 [role="arc42help"]
 ****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+The main Stakeholders of this application are Inrupt and users, I will list the most important quality goals for them:
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
-
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
+• Usability : Ease of use by non-technical people.
+• Responsiveness : The application must send messages in real time.
+• Privacy: The application must keep the data private (this is what solid is based on, each one owns their data).
+• Security: The application must be secure, users must know who they are talking to and who has access to the chat.
 ****
 
 === Stakeholders
