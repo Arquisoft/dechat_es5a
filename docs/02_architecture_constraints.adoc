@@ -10,7 +10,8 @@ v1.0, 2019-08-02
 |TC001  |Program language: JavaScrip or TypeScript |Internet has a lot of code examples
 |TC002  |Frameworks: Angular    |The software developers which develop Solid applications are  familiar with this frameworks
 |TC003  |Online independence: no central control of data |Linked-data  are completely decentralized and fully under users' control rather than controlled by other entities.
-|TC004  |Three items |Item 4
+|TC004  |Live calls |Users can have live calls.
+|TC005  |Video calls |Users can have video calls.
 |======================
 
 == 2.2 Organizational Constraints
@@ -18,17 +19,15 @@ v1.0, 2019-08-02
 |======================
 |Code |Restricction |Motive
 |OC001  |About Version Control: Git, Tool: Github| Keep a version of the project after making changes
-|OC002  |Item 2 |Item 2
-|OC003  |Item 3   |Item 3
-|OC004  |Three items |Item 4
 |======================
 
 == 2.3 Political Contraints
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
-|PC001  |Item 1| Item 1
-|PC002  |Item 2 |Item 2
-|PC003  |Item 3   |Item 3
-|PC004  |Three items |Item 4
+|PC001  |Security| Data must not be in touch by external devices
+|PC002  |Privacy|Only own users can manage their own data
+|PC003  |Originality |The app must be different from other apps and be recognize
+|PC004  |Usability |The documentation of the app must be easy to understand by users
+|PC004  |Friendliness |The app must have inviting interfaz
 |======================

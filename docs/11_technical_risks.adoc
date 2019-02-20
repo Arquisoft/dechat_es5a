@@ -14,4 +14,13 @@ This should be your motto for systematic detection and evaluation of risks and t
 
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
+
+| Risks                                             	| Solutions                                                    	|
+|---------------------------------------------------	|--------------------------------------------------------------	|
+| Lack of knowledge and use of angularjs            	| Consult forums; Look at the documentation; Take courses       |
+| Lack of knowledge of solid                        	| Look at the solid forums; Ask other classmates               	|
+| Abandonment / lack of work of a member            	| Know the status of the entire project; Hold periodic meetings	|
+| Lack of time to complete the project              	| Do it stepwise and continue                                  	|
+| Misunderstood the requirements of the application 	| Consult with the professor about the requirements            	|
+| Problems with git                                 	| Use a specific methodology to do merges and commits          	|
 ****
