@@ -5,27 +5,24 @@
 
 [role="arc42help"]
 ****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
+Definition of most important terms every stakeholder should know to understand the documentation.
 
-You can also see the glossary as source for translations if you work in multi-language teams.
+Order by rarety.
 
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
+Only in english at the moment.
 ****
 
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Term              | Definition
+| Decentralized     | User is the owner of their data and not the application
+| Git               | Version control system
+| Inrupt            | SOLID enterprise
+| MVC               | Model-View-Controler, software architecture
+| PODS              | Personal Online Data Stores, used to save data
+| RDF               | Resource Description Framework, standard model for data interchange in the web
+| Scrum             | Agile methodology for working in group
+| SOLID             | Social Linked Data
+| Stakeholders      | People interested in a proyect
 |===
+
