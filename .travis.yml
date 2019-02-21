@@ -25,7 +25,7 @@ jobs:
         - cd output
         - cp -R ../adocs/images/ images
         - cd ..
-        - git clone "https://${GH_TOKEN}@${GH_REF}"
+        - git clone https://github.com/Arquisoft/dechat_es5a.git 
         - cd dechat_es5a
         - rm -R docs
         - mv ../output/ docs/
