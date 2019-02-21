@@ -25,12 +25,12 @@ jobs:
         - cd output
         - cp -R ../adocs/images/ images
         - cd ..
-        - git clone https://github.com/Arquisoft/dechat_es5a.git 
+        - git config user.name "${GH_USER_NAME}"
+        - git config user.email "${GH_USER_EMAIL}"
+        - git clone "https://${GH_TOKEN}@${GH_REF}"
         - cd dechat_es5a
         - rm -R docs
         - mv ../output/ docs/
-        - git config user.name "${GH_USER_NAME}"
-        - git config user.email "${GH_USER_EMAIL}"
         - git add .
         - git commit -m "Deploy documentation to GitHub Pages"
         - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master
