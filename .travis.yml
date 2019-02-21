@@ -10,8 +10,8 @@ jobs:
         - mkdir -p output
       
       script:
-        - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -a toc=left -D /documents/output docs/*.adoc
-        - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output docs/*.adoc
+        - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -a toc=left -D /documents/output adocs/*.adoc
+        - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output adocs/*.adoc
       
       after_error:
         - docker logs asciidoc-to-html
@@ -23,7 +23,7 @@ jobs:
       
       after_success:
         - cd output
-        - cp -R ../docs/images/ images
+        - cp -R ../adocs/images/ images
         - git init
         - git config user.name "${GH_USER_NAME}"
         - git config user.email "${GH_USER_EMAIL}"
