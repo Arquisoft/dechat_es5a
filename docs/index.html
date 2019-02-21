@@ -1,6 +1,1904 @@
-<html>
-<body>
-    <h1>dechat_es5a</h1>
-    <p>Hola</p>
-</body>    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<title>deChat - Decentralized Chat 0</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Uncomment @import statement below to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock pre.nowrap,.literalblock pre.nowrap pre,.listingblock pre.nowrap,.listingblock pre.nowrap pre{white-space:pre;word-wrap:normal}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #dddddf}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd){background:#f8f8f7}
+table.stripes-none tr,table.stripes-odd tr:nth-of-type(even){background:none}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1><span class="image"><img src="LogoASW.png" alt="arc42"></span> deChat - Decentralized Chat 0</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#section-introduction-and-goals">1. Introduction and Goals</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements_overview">1.1. Requirements Overview</a></li>
+<li><a href="#_quality_goals">1.2. Quality Goals</a></li>
+<li><a href="#_stakeholders">1.3. Stakeholders</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<style>
+.arc42help {font-size:small; width: 14px; height: 16px; overflow: hidden; position: absolute; right: 0px; padding: 2px 0px 3px 2px;}
+.arc42help::before {content: "?";}
+.arc42help:hover {width:auto; height: auto; z-index: 100; padding: 10px;}
+.arc42help:hover::before {content: "";}
+@media print {
+	.arc42help {display:hidden;}
+}
+</style>
+<hr>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This version of the template contains some help and explanations.
+It is used for familiarization with arc42 and the understanding of the concepts.
+For documentation of your own system you use better the <em>plain</em> version.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-introduction-and-goals">1. Introduction and Goals</h2>
+<div class="sectionbody">
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The development will consist of a WebApp whose objective is to be a decentralized chat, using SOLID technologies. This chat will allow users to exchange messages in different formats (audio, text, video), as well as other functions such as: share screen or video call; It will also allow you to save friends lists, show notifications, among other functions. It will be a web application developed at Angular, and an RDF library will be used to communicate and obtain information on the different PODs</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requirements_overview">1.1. Requirements Overview</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The application will mainly comply with the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The system will be based on a decentralized architecture where data storage is separated from the app</p>
+</li>
+<li>
+<p>Users can store their chat data in their own pods</p>
+</li>
+<li>
+<p>The app will allow a user to share pictures, videos or other kinds of files with other friends through the chat</p>
+</li>
+<li>
+<p>A user can get notifications when some friend wants to chat with him</p>
+</li>
+<li>
+<p>Users can have groups of friends with whom they may want to chat</p>
+</li>
+<li>
+<p>It will be possible to have group chats where all members receive the messages</p>
+</li>
+<li>
+<p>Users can have live calls and videos</p>
+</li>
+<li>
+<p>Users can share their screens in the chat</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_goals">1.2. Quality Goals</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>The main Stakeholders of this application are Inrupt and users, I will list the most important quality goals for them:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Usability : Ease of use by non-technical people.</p>
+</li>
+<li>
+<p>Responsiveness : The application must send messages in real time.</p>
+</li>
+<li>
+<p>Privacy: The application must keep the data private (this is what solid is based on, each one owns their data).</p>
+</li>
+<li>
+<p>Security: The application must be secure, users must know who they are talking to and who has access to the chat.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stakeholders">1.3. Stakeholders</h3>
+<div class="sidebarblock arc42help">
+<div class="content">
+<div class="paragraph">
+<p>Stakeholders of the system:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Developers</p>
+</li>
+<li>
+<p>Professor</p>
+</li>
+<li>
+<p>Users</p>
+</li>
+<li>
+<p>Inrupt</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Role/Name</th>
+<th class="tableblock halign-left valign-top">Contact</th>
+<th class="tableblock halign-left valign-top">Expectations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Lamasape">Laura Sanchez</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/enriquefdez5">Enrique Fernandez</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/joseluisbugallo">Jose Luis Bugallo</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Naive96">Victor Manuel Chaves</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/golmenero">Carlos Gomez</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/danielferromeral">Daniel Fernandez</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Professor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/labra">Jose Emilio Labra</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Evaluate and guide the project</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can chat,they can have live calls and videos and they can share their screens in the chat</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://inrupt.com/">Inrupt</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">They has been proposed as a challenge</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>= 2. Architecture Constraints
+Doc Writer &lt;<a href="mailto:UO244741@uniovi.es">UO244741@uniovi.es</a>&gt;
+v1.0, 2019-08-02</p>
+</div>
+<div class="paragraph">
+<p>== 2.1 Technical Constraints</p>
+</div>
+<table class="tableblock frame-topbot grid-all" style="width: 40%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Restricction</th>
+<th class="tableblock halign-left valign-top">Motive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Program language: JavaScrip or TypeScript</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internet has a lot of code examples</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frameworks: Angular</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The software developers which develop Solid applications are  familiar with this frameworks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Online independence: no central control of data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linked-data  are completely decentralized and fully under users' control rather than controlled by other entities.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Live calls</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can have live calls.</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TC005</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Video calls</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users can have video calls.</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>== 2.2 Organizational Constraints</p>
+</div>
+<table class="tableblock frame-topbot grid-all" style="width: 40%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Restricction</th>
+<th class="tableblock halign-left valign-top">Motive</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OC001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">About Version Control: Git, Tool: Github</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keep a version of the project after making changes</p></td>
+</tr>
+</tfoot>
+</table>
+<div class="paragraph">
+<p>== 2.3 Political Contraints</p>
+</div>
+<table class="tableblock frame-topbot grid-all" style="width: 40%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Restricction</th>
+<th class="tableblock halign-left valign-top">Motive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC001</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data must not be in touch by external devices</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC002</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only own users can manage their own data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC003</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Originality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The app must be different from other apps and be recognize</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The documentation of the app must be easy to understand by users</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PC004</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Friendliness</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The app must have inviting interfaz</p></td>
+</tr>
+</tfoot>
+</table>
+<div style="page-break-after: always;"></div>
+<div id="section-system-scope-and-context" class="paragraph">
+<p>== System Scope and Context</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The project that we are going to develop aims to communicate two people through different mechanisms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Text messages.</strong></p>
+</li>
+<li>
+<p><strong>Images.</strong></p>
+</li>
+<li>
+<p><strong>Videos.</strong></p>
+</li>
+<li>
+<p><strong>Video calls.</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>However, the approach that the application will take it´s around permits. A user can not send a file of any kind or speak with a person if they do not have explicit permission from the recipient.</p>
+</div>
+<div class="paragraph">
+<p>But the most important point of the chat is not the permissions, but the decentralization. We want only users to have access to the content of those conversations, so that they are the owners of their personal information.</p>
+</div>
+<div class="paragraph">
+<p>To achieve this goal we will use SOLID.
+SOLID is a project that consists of a decentralized website. It deals with establishing a connection between several users, separating data application. To establish this connection, we will use what is known as POD. A POD is a unique profile of each user, which allows to store information on the web about it.</p>
+</div>
+<div class="paragraph">
+<p>We will use these PODs to connect both users, but the data they exchange will be stored in the interlocutors' devices.
+In this way, we will create a private chat that will have the advantage of being isolated, reliable and safe.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Business Context</p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Communication elements:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Users:</strong> Users are the main recipient of the application.</p>
+</li>
+<li>
+<p><strong>Web:</strong> Users will connect to the web through their PODs to establish secure communication.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Communication process:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The partners create a POD.</p>
+</li>
+<li>
+<p>The user adds as friend through the PODs to the second interlocutor.</p>
+</li>
+<li>
+<p>The interlocutors log in with their POD in the chat.</p>
+</li>
+<li>
+<p>Ready!</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>What data are exchanged with the environment?
+Through the website, users will enter some small data on the SOLID website to obtain their POD. Once established the connection between both interlocutors, they will be the only owners and holders of the information they exchange.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Communication Partner</th>
+<th class="tableblock halign-left valign-top">Input</th>
+<th class="tableblock halign-left valign-top">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chat, video, images, POD information</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chat, video, images, POD information</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Web</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POD, Server Connection</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Technical Context</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As we have said before, we will use the so-called PODs provided by SOLID to connect to the server of the same, and through it, communicate with other people.</p>
+</div>
+<div class="paragraph">
+<p>For the design of the connection we will use different mechanisms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>RDF:</strong> This library allows us to establish the connection. Act as a communicator and thanks to it we can obtain the POD information necessary to establish communication.</p>
+</li>
+<li>
+<p><strong>Authenticator:</strong> This tool receives the POD of a user and allows us to know if it is a valid POD.</p>
+</li>
+<li>
+<p><strong>Angular:</strong> It is a JavaScript framework that will allow us to handle the language in a more comfortable way.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/03_System_Scope_and_Context.JPG" alt="03 System Scope and Context">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div style="page-break-after: always;"></div>
+<div id="section-solution-strategy" class="paragraph">
+<p>== Solution Strategy</p>
+</div>
+<div class="paragraph arc42help">
+<p>=== Technology and IDE
+The team had to choose between betweet new technologies for us and technologies already kown but that dd no have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose JavaScript, more specifically, the Angular Framework.</p>
+</div>
+<div class="paragraph">
+<p>About the IDE, we choose WebStorm due to its power and the fact that, as students, we have a free payment license. In addition, some of the members of the group have used it in previous subjects.</p>
+</div>
+<div class="paragraph">
+<p>=== Architectural pattern
+We decided to use the architectural pattern model-view-controller (MVC) because it is a pattern that gives us more extensibility and maintainability. Also, its implementation supports rapid and parallel development.
+For more information visit: <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" class="bare">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a></p>
+</div>
+<div class="paragraph">
+<p>=== Methodology of work
+We will use Scrum to develope this project. Scrum can provide us an early software development, and more independence when programming. Our project will start implementing the basic functions of a chat and it will grow in complexity (<a href="https://en.wikipedia.org/wiki/Scrum_(software_development)" class="bare">https://en.wikipedia.org/wiki/Scrum_(software_development)</a>)</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-building-block-view" class="paragraph">
+<p>== Building Block View</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Content</div>
+<p>The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
+interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
+datas structures, &#8230;&#8203;) as well as their dependencies (relationships, associations, &#8230;&#8203;)</p>
+</div>
+<div class="paragraph">
+<p>This view is mandatory for every architecture documentation.
+In analogy to a house this is the <em>floor plan</em>.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Maintain an overview of your source code by making its structure understandable through
+abstraction.</p>
+</div>
+<div class="paragraph">
+<p>This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>The building block view is a hierarchical collection of black boxes and white boxes
+(see figure below) and their descriptions.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/05_building_blocks-EN.png" alt="Hierarchy of building blocks"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>Level 1</strong> is the white box description of the overall system together with black
+box descriptions of all contained building blocks.</p>
+</div>
+<div class="paragraph">
+<p><strong>Level 2</strong> zooms into some building blocks of level 1.
+Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.</p>
+</div>
+<div class="paragraph">
+<p><strong>Level 3</strong> zooms into selected building blocks of level 2, and so on.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Whitebox Overall System</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here you describe the decomposition of the overall system using the following white box template. It contains</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an overview diagram</p>
+</li>
+<li>
+<p>a motivation for the decomposition</p>
+</li>
+<li>
+<p>black box descriptions of the contained building blocks. For these we offer you alternatives:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>use <em>one</em> table for a short and pragmatic overview of all contained building blocks and their interfaces</p>
+</li>
+<li>
+<p>use a list of black box descriptions of the building blocks according to the black box template (see below).
+Depending on your choice of tool this list could be sub-chapters (in text files), sub-pages (in a Wiki) or nested elements (in a modeling tool).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>(optional:) important interfaces, that are not explained in the black box templates of a building block, but are very important for understanding the white box.
+Since there are so many ways to specify interfaces why do not provide a specific template for them.
+ In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
+ restrictions, versions, qualities, necessary compatibilities and many things more.
+In the best case you will get away with examples or simple signatures.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p><em>&lt;text explanation&gt;</em></p>
+</dd>
+<dt class="hdlist1">Contained Building Blocks</dt>
+<dd>
+<p><em>&lt;Description of contained building block (black boxes)&gt;</em></p>
+</dd>
+<dt class="hdlist1">Important Interfaces</dt>
+<dd>
+<p><em>&lt;Description of important interfaces&gt;</em></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Insert your explanations of black boxes from level 1:</p>
+</div>
+<div class="paragraph">
+<p>If you use tabular form you will only describe your black boxes with name and
+responsibility according to the following schema:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Name</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Responsibility</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 1&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>&lt;black box 2&gt;</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <em>&lt;Text&gt;</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
+Its headline is the name of the black box.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>==== &lt;Name black box 1&gt;</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here you describe &lt;black box 1&gt;
+according the the following black box template:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Purpose/Responsibility</p>
+</li>
+<li>
+<p>Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.</p>
+</li>
+<li>
+<p>(Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, &#8230;&#8203;.</p>
+</li>
+<li>
+<p>(Optional) directory/file location</p>
+</li>
+<li>
+<p>(Optional) Fulfilled requirements (if you need traceability to requirements).</p>
+</li>
+<li>
+<p>(Optional) Open issues/problems/risks</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><em>&lt;Purpose/Responsibility&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;Interface(s)&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;(Optional) Quality/Performance Characteristics&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;(Optional) Directory/File Location&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;(Optional) Fulfilled Requirements&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;(optional) Open Issues/Problems/Risks&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== &lt;Name black box 2&gt;</p>
+</div>
+<div class="paragraph">
+<p><em>&lt;black box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== &lt;Name black box n&gt;</p>
+</div>
+<div class="paragraph">
+<p><em>&lt;black box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== &lt;Name interface 1&gt;</p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>==== &lt;Name interface m&gt;</p>
+</div>
+<div class="paragraph">
+<p>=== Level 2</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can specify the inner structure of (some) building blocks from level 1 as white boxes.</p>
+</div>
+<div class="paragraph">
+<p>You have to decide which building blocks of your system are important enough to justify such a detailed description.
+Please prefer relevance over completeness. Specify important, surprising, risky, complex or volatile building blocks.
+Leave out normal, simple, boring or standardized parts of your system</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>==== White Box <em>&lt;building block 1&gt;</em></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;describes the internal structure of <em>building block 1</em>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== White Box <em>&lt;building block 2&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>==== White Box <em>&lt;building block m&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>=== Level 3</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can specify the inner structure of (some) building blocks from level 2 as white boxes.</p>
+</div>
+<div class="paragraph">
+<p>When you need more detailed levels of your architecture please copy this
+part of arc42 for additional levels.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>==== White Box &lt;_building block x.1_&gt;</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Specifies the internal structure of <em>building block x.1</em>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== White Box &lt;_building block x.2_&gt;</p>
+</div>
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== White Box &lt;_building block y.1_&gt;</p>
+</div>
+<div class="paragraph">
+<p><em>&lt;white box template&gt;</em></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-runtime-view" class="paragraph">
+<p>== Runtime View</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>important use cases or features: how do building blocks execute them?</p>
+</li>
+<li>
+<p>interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?</p>
+</li>
+<li>
+<p>operation and administration: launch, start-up, stop</p>
+</li>
+<li>
+<p>error and exception scenarios</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their <strong>architectural relevance</strong>. It is <strong>not</strong> important to describe a large number of scenarios. You should rather document a representative selection.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
+You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>There are many notations for describing scenarios, e.g.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>numbered list of steps (in natural language)</p>
+</li>
+<li>
+<p>activity diagrams or flow charts</p>
+</li>
+<li>
+<p>sequence diagrams</p>
+</li>
+<li>
+<p>BPMN or EPCs (event process chains)</p>
+</li>
+<li>
+<p>state machines</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== &lt;Runtime Scenario 1&gt;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>&lt;insert runtime diagram or textual description of the scenario&gt;</em></p>
+</li>
+<li>
+<p><em>&lt;insert description of the notable aspects of the interactions between the
+building block instances depicted in this diagram.&gt;</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>=== &lt;Runtime Scenario 2&gt;</p>
+</div>
+<div class="paragraph">
+<p>=== &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>=== &lt;Runtime Scenario n&gt;</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-deployment-view" class="paragraph">
+<p>== Deployment View</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Content</div>
+<p>The deployment view describes:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the technical infrastructure used to execute your system, with infrastructure elements like geographical locations, environments, computers, processors, channels and net topologies as well as other infrastructure elements and</p>
+</li>
+<li>
+<p>the mapping of (software) building blocks to that infrastructure elements.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Often systems are executed in different environments, e.g. development environment, test environment, production environment. In such cases you should document all relevant environments.</p>
+</div>
+<div class="paragraph">
+<p>Especially document the deployment view when your software is executed as distributed system with more then one computer, processor, server or container or when you design and construct your own hardware processors and chips.</p>
+</div>
+<div class="paragraph">
+<p>From a software perspective it is sufficient to capture those elements of the infrastructure that are needed to show the deployment of your building blocks. Hardware architects can go beyond that and describe the infrastructure to any level of detail they need to capture.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Software does not run without hardware.
+This underlying infrastructure can and will influence your system and/or some
+cross-cutting concepts. Therefore, you need to know the infrastructure.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Maybe the highest level deployment diagram is already contained in section 3.2. as
+technical context with your own infrastructure as ONE black box. In this section you will
+zoom into this black box using additional deployment diagrams:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
+when your infrastructure is more complex.</p>
+</li>
+<li>
+<p>When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Infrastructure Level 1</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Describe (usually in a combination of diagrams, tables, and text):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them</p>
+</li>
+<li>
+<p>important justification or motivation for this deployment structure</p>
+</li>
+<li>
+<p>Quality and/or performance features of the infrastructure</p>
+</li>
+<li>
+<p>the mapping of software artifacts to elements of the infrastructure</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><em><strong>&lt;Overview Diagram&gt;</strong></em></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Motivation</dt>
+<dd>
+<p><em>&lt;explanation in text form&gt;</em></p>
+</dd>
+<dt class="hdlist1">Quality and/or Performance Features</dt>
+<dd>
+<p><em>&lt;explanation in text form&gt;</em></p>
+</dd>
+<dt class="hdlist1">Mapping of Building Blocks to Infrastructure</dt>
+<dd>
+<p><em>&lt;description of the mapping&gt;</em></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>=== Infrastructure Level 2</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Here you can include the internal structure of (some) infrastructure elements from level 1.</p>
+</div>
+<div class="paragraph">
+<p>Please copy the structure from level 1 for each selected element.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>==== <em>&lt;Infrastructure Element 1&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;diagram + explanation&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>==== <em>&lt;Infrastructure Element 2&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;diagram + explanation&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>==== <em>&lt;Infrastructure Element n&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;diagram + explanation&gt;</em></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-concepts" class="paragraph">
+<p>== Cross-cutting Concepts</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Content</div>
+<p>This section describes overall, principal regulations and solution ideas that are
+relevant in multiple parts (= cross-cutting) of your system.
+Such concepts are often related to multiple building blocks.
+They can include many different topics, such as</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>domain models</p>
+</li>
+<li>
+<p>architecture patterns or design patterns</p>
+</li>
+<li>
+<p>rules for using specific technology</p>
+</li>
+<li>
+<p>principal, often technical decisions of overall decisions</p>
+</li>
+<li>
+<p>implementation rules</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Concepts form the basis for <em>conceptual integrity</em> (consistency, homogeneity)
+of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.</p>
+</div>
+<div class="paragraph">
+<p>Some of these concepts cannot be assigned to individual building blocks
+(e.g. security or safety). This is the place in the template that we provided for a
+cohesive specification of such concepts.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>The form can be varied:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>concept papers with any kind of structure</p>
+</li>
+<li>
+<p>cross-cutting model excerpts or scenarios using notations of the architecture views</p>
+</li>
+<li>
+<p>sample implementations, especially for technical concepts</p>
+</li>
+<li>
+<p>reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Structure</div>
+<p>A potential (but not mandatory) structure for this section could be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Domain concepts</p>
+</li>
+<li>
+<p>User Experience concepts (UX)</p>
+</li>
+<li>
+<p>Safety and security concepts</p>
+</li>
+<li>
+<p>Architecture and design patterns</p>
+</li>
+<li>
+<p>"Under-the-hood"</p>
+</li>
+<li>
+<p>development concepts</p>
+</li>
+<li>
+<p>operational concepts</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note: it might be difficult to assign individual concepts to one specific topic
+on this list.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts"></span></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== <em>&lt;Concept 1&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;explanation&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>=== <em>&lt;Concept 2&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;explanation&gt;</em></p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>=== <em>&lt;Concept n&gt;</em></p>
+</div>
+<div class="paragraph">
+<p><em>&lt;explanation&gt;</em></p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-design-decisions" class="paragraph">
+<p>== Design Decisions</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>First decision is that we are using Git as version control system instead of using mercurial, vsn, etc. and GitHub as source code management instead of using Bitbucket, this decision was imposed by the teachers of the subject.</p>
+</li>
+<li>
+<p>We are using javascript family language(javascript, typescript, node.js, angular, etc) to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.</p>
+</li>
+<li>
+<p>We are also using basic languages for the web such as html, css, etc.</p>
+</li>
+<li>
+<p>Social linked data(SOLID) based application. A must decision we have to follow if we want to make a decentralized application. This means following several important constraints to build the application. One of them is storing date in PODS, so the user is the owner of their data.</p>
+</li>
+<li>
+<p>Following MVC architecture as much as we can. It is the main architecture model we know something about, so we are going to try to follow it as much as we can.</p>
+</li>
+<li>
+<p>Following Angular components structure, so we can build a high cohesion and low coupling app.</p>
+</li>
+<li>
+<p>To be continued.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>===== TODO Improve Mind-Map
+===== TODO Full decisions table?</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div id="section-quality-scenarios" class="paragraph">
+<p>== Quality Requirements</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Content</div>
+<p>This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)</p>
+</div>
+<div class="paragraph">
+<p>Here you can also capture quality requirements with lesser priority,
+which will not create high risks when they are not fully achieved.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Since quality requirements will have a lot of influence on architectural
+decisions you should know for every stakeholder what is really important to them,
+concrete and measurable.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Quality Tree</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Content</div>
+<p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>The tree structure with priorities provides an overview for a sometimes large number of quality requirements.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>The quality tree is a high-level overview of the quality goals and requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>tree-like refinement of the term "quality". Use "quality" or "usefulness" as a root</p>
+</li>
+<li>
+<p>a mind map with quality categories as main branches</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In any case the tree should include links to the scenarios of the following section.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>=== Quality Scenarios</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>Concretization of (sometimes vague or implicit) quality requirements using (quality) scenarios.</p>
+</div>
+<div class="paragraph">
+<p>These scenarios describe what should happen when a stimulus arrives at the system.</p>
+</div>
+<div class="paragraph">
+<p>For architects, two kinds of scenarios are important:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.</p>
+</li>
+<li>
+<p>Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>Scenarios make quality requirements concrete and allow to
+more easily measure or decide whether they are fulfilled.</p>
+</div>
+<div class="paragraph">
+<p>Especially when you want to assess your architecture using methods like
+ATAM you need to describe your quality goals (from section 1.2)
+more precisely down to a level of scenarios that can be discussed and evaluated.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>Tabular or free form text.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div style="page-break-after: always;"></div>
+<div id="section-technical-risks" class="paragraph">
+<p>== Risks and Technical Debts</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Contents</div>
+<p>A list of identified technical risks or technical debts, ordered by priority</p>
+</div>
+<div class="paragraph">
+<div class="title">Motivation</div>
+<p>“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.)</p>
+</div>
+<div class="paragraph">
+<p>This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.</p>
+</div>
+<div class="paragraph">
+<div class="title">Form</div>
+<p>List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.</p>
+</div>
+<table class="tableblock frame-topbot grid-all stretch">
+<colgroup>
+<col style="width: 71.4285%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Risks</th>
+<th class="tableblock halign-left valign-top">Solutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Lack of knowledge and use of angularjs</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Consult forums</p>
+</li>
+<li>
+<p>Look at the documentation</p>
+</li>
+<li>
+<p>take courses</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Lack of knowledge of solid</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Look at the solid forums</p>
+</li>
+<li>
+<p>Ask other classmates</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Abandonment / lack of work of a member</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Know the status of the entire project</p>
+</li>
+<li>
+<p>Hold periodic meetings</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Lack of time to complete the project</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Do it stepwise and continue</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Misunderstood the requirements of the application</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Consult with the professor about the requirements</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Problems with git</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>Use a specific methodology to do merges and commits</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="sidebarblock">
+<div class="content">
+<div style="page-break-after: always;"></div>
+<div id="section-glossary" class="paragraph">
+<p>== Glossary</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Definition of most important terms every stakeholder should know to understand the documentation.</p>
+</div>
+<div class="paragraph">
+<p>Order by rarety.</p>
+</div>
+<div class="paragraph">
+<p>Only in english at the moment.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Term</th>
+<th class="tableblock halign-left valign-top">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decentralized</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User is the owner of their data and not the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Version control system</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID enterprise</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MVC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Model-View-Controler, software architecture</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Personal Online Data Stores, used to save data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RDF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource Description Framework, standard model for data interchange in the web</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scrum</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Agile methodology for working in group</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Social Linked Data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stakeholders</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">People interested in a proyect</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p><strong>About arc42</strong></p>
+</div>
+<div class="paragraph lead">
+<p>arc42, the Template for documentation of
+software and system architecture.</p>
+</div>
+<div class="paragraph">
+<p>By Dr. Gernot Starke, Dr. Peter Hruschka and contributors.</p>
+</div>
+<div class="paragraph">
+<p>Template Revision: 7.0 EN (based on asciidoc), January 2017</p>
+</div>
+<div class="paragraph">
+<p>&#169;
+We acknowledge that this document uses material from the
+arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
+Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-02-21 13:02:42 UTC
+</div>
+</div>
+</body>
 </html>
