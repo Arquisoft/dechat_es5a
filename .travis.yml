@@ -5,7 +5,7 @@ language: bash
 jobs:
   include:
     - stage: deploy documentation
-      if: branch = master
+      if: branch = master AND sender != "Travis CI User"
       before_script:
         - mkdir -p output
       
