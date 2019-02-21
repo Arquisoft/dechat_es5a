@@ -1,7 +1,7 @@
 sudo: required
 
 language: bash
-
+        
 jobs:
   include:
     - stage: deploy documentation
@@ -24,9 +24,11 @@ jobs:
       after_success:
         - cd output
         - cp -R ../adocs/images/ images
-        - git init
-        - git config user.name "${GH_USER_NAME}"
-        - git config user.email "${GH_USER_EMAIL}"
+        - cd ..
+        - git clone "https://${GH_TOKEN}@${GH_REF}"
+        - cd solid-app
+        - rm -R docs
+        - mv ../output/ docs/
         - git add .
         - git commit -m "Deploy documentation to GitHub Pages"
-        - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+        - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master
