@@ -1,8 +1,8 @@
-= 2. Architecture Constraints
+= Architecture Constraints
 Doc Writer <UO244741@uniovi.es>
 v1.0, 2019-08-02
 
-== 2.1 Technical Constraints
+== Technical Constraints
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -14,14 +14,14 @@ v1.0, 2019-08-02
 |TC005  |Video calls |Users can have video calls.
 |======================
 
-== 2.2 Organizational Constraints
+== Organizational Constraints
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
 |OC001  |About Version Control: Git, Tool: Github| Keep a version of the project after making changes
 |======================
 
-== 2.3 Political Contraints
+==  Political Contraints
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
