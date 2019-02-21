@@ -21,8 +21,6 @@ SOLID is a project that consists of a decentralized website. It deals with estab
 We will use these PODs to connect both users, but the data they exchange will be stored in the interlocutors' devices.
 In this way, we will create a private chat that will have the advantage of being isolated, reliable and safe.
 
-image::images/03 - System Scope and Context.jpg[]
-
 ****
 
 
@@ -45,13 +43,14 @@ image::images/03 - System Scope and Context.jpg[]
 What data are exchanged with the environment?
 Through the website, users will enter some small data on the SOLID website to obtain their POD. Once established the connection between both interlocutors, they will be the only owners and holders of the information they exchange.
 
-image::images/03 - Business Context.JPG[]
+[options="header"]
+|===
+| Communication Partner             | Input									| Output
+| User						        | Chat, video, images, POD information	| Chat, video, images, POD information
+| Web								|										| POD, Server Connection
+|===
 
 ****
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of external domain interfaces>**
 
 === Technical Context
 
@@ -65,6 +64,6 @@ For the design of the connection we will use different mechanisms:
 * *Authenticator:* This tool receives the POD of a user and allows us to know if it is a valid POD.
 * *Angular:* It is a JavaScript framework that will allow us to handle the language in a more comfortable way.
 
-image::images/03 - Technical Context.JPG[]
+image::images/03_System_Scope_and_Context.JPG[]
 
 ****

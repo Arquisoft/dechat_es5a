@@ -54,7 +54,7 @@ Stakeholders of the system:
 | Developer | link:https://github.com/joseluisbugallo[Jose Luis Bugallo] | Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development
 | Developer | link:https://github.com/Naive96[Victor Manuel Chaves] | Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development
 | Developer |link:https://github.com/golmenero[Carlos Gomez]| Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development
-| Developer |link:https://github.com/danielferromeral[Daniel Ferromeral] | Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development
+| Developer |link:https://github.com/danielferromeral[Daniel Fernandez] | Have to work with the architecture or with code, documentation of the architecture,have to come up with decisions about the system or its development
 | Professor | link:https://github.com/labra[Jose Emilio Labra]| Evaluate and guide the project
 | Users | | Users can chat,they can have live calls and videos and they can share their screens in the chat
 | Inrupt |link:https://inrupt.com/[Inrupt]| They has been proposed as a challenge
