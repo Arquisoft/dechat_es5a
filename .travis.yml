@@ -5,7 +5,7 @@ language: bash
 jobs:
   include:
     - stage: deploy documentation
-      if: branch = master AND sender != "Travis CI User"
+      if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
       before_script:
         - mkdir -p output
       
