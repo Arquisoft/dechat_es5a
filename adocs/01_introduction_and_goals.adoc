@@ -59,3 +59,4 @@ Stakeholders of the system:
 | Users | | Users can chat,they can have live calls and videos and they can share their screens in the chat
 | Inrupt |link:https://inrupt.com/[Inrupt]| They has been proposed as a challenge
 |===
+****
