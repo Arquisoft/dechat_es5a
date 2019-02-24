@@ -1,33 +1,35 @@
-= 2. Architecture Constraints
+[[section-architecture_constraints]]
+
+= Architecture Constraints
 Doc Writer <UO244741@uniovi.es>
 v1.0, 2019-08-02
 
 There are a lot of constraints that makes us work harder to make a good application.
 
-== 2.1 Technical Constraints
+== Technical Constraints
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
-|TC001  |Program language: JavaScrip or TypeScript |We don't have enough knowledge about this languages.
+|TC001  |Program language: JavaScrip or TypeScript |We have chosen this language, but we don't have enough knowledge about this languages.
 |TC002  |Frameworks: Angular    |We haven´t worked with this framework before, so we will have to learn how to use it.
 |TC003  |Online independence: no central control of data |Linked-data  are completely decentralized and fully under users' control rather than controlled by other entities.
 |======================
 
-== 2.2 Organizational Constraints
+== Organizational Constraints
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
 |OC001  |About Version Control: Git, Tool: Github| Keep a version of the project after making changes
+|OC002 | 6 person group | We didn't know each other 
+|OC001 |Time schedule | We don't have a lot of time for developing the app. Furthermore, we are developing other proyects at the same time.
 |======================
 
-== 2.3 Political Contraints
+== Conventions Constraints
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
-|PC001  |Security| Data must not be in touch by external devices
-|PC002  |Privacy|Only own users can manage their own data
-|PC003  |Originality |The app must be different from other apps and be recognize
-|PC004  |Usability |The documentation of the app must be easy to understand by users
-|PC004  |Friendliness |The app must have inviting interfaz
+|CC001  |Language| English. The project and the corresponding blog targets an international audience, so English should be used throughout the whole project.
+|OC002 | 6 person group | We didn't know each other 
+|OC001 |Time schedule | We don't have a lot of time for developing the app. Furthermore, we are developing other proyects at the same time.
 |======================
