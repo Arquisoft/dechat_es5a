@@ -2,16 +2,16 @@
 Doc Writer <UO244741@uniovi.es>
 v1.0, 2019-08-02
 
+There are a lot of constraints that makes us work harder to make a good application.
+
 == 2.1 Technical Constraints
 
 [width="40%",frame="topbot",options="header,footer"]
 |======================
 |Code |Restricction |Motive
-|TC001  |Program language: JavaScrip or TypeScript |Internet has a lot of code examples
-|TC002  |Frameworks: Angular    |The software developers which develop Solid applications are  familiar with this frameworks
+|TC001  |Program language: JavaScrip or TypeScript |We don't have enough knowledge about this languages.
+|TC002  |Frameworks: Angular    |We haven´t worked with this framework before, so we will have to learn how to use it.
 |TC003  |Online independence: no central control of data |Linked-data  are completely decentralized and fully under users' control rather than controlled by other entities.
-|TC004  |Live calls |Users can have live calls.
-|TC005  |Video calls |Users can have video calls.
 |======================
 
 == 2.2 Organizational Constraints
