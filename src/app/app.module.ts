@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {Routes, RouterModule} from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Rutas
-import { APP_ROUTING } from './app.routes';
+// import { APP_ROUTING } from './app.routes';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -23,6 +23,35 @@ import { HeaderComponent } from './fragments/header/header.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'login-popup',
+    component: LoginPopupComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'card',
+    component: CardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
+];
 
 
 
@@ -41,14 +70,13 @@ import { AuthGuard } from './services/auth.guard.service';
   imports: [
     BrowserModule,
     FormsModule,
-    APP_ROUTING,
+    RouterModule.forRoot(routes),
     NgSelectModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule // required for toastr
   ],
   providers: [
-    AuthService,
-    AuthGuard],
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

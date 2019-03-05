@@ -1,9 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard.service';
 import { LoginComponent } from './login/login.component';
-import {LoginPopupComponent} from './login-popup/login-popup.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {RegisterComponent} from './register/register.component';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './register/register.component';
 import { CardComponent} from './card/card.component';
 
 const APP_ROUTES: Routes = [
