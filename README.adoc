@@ -38,3 +38,6 @@ Go to tsconfig.app.json into paths add the following data : "paths": {
       "https": ["node_modules/@angular/http"],
       "stream": ["node_modules/jszip/dist/jszip.min.js"]
     }
+
+
+image:https://api.codacy.com/project/badge/Grade/d43383babc344fe58ee7689392af57e0[link="https://app.codacy.com/app/danielferromeral/dechat_es5a?utm_source=github.com&utm_medium=referral&utm_content=Arquisoft/dechat_es5a&utm_campaign=Badge_Grade_Settings"]
