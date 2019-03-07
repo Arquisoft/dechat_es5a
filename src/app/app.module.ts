@@ -23,6 +23,7 @@ import { HeaderComponent } from './fragments/header/header.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
+import { MainPaneComponent } from './main-pane1/main-pane.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,8 @@ const routes: Routes = [
     RegisterComponent,
     NavbarComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainPaneComponent,
   ],
   imports: [
     BrowserModule,
