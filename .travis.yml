@@ -2,11 +2,10 @@ sudo: required
 
 language: bash
 
-
 jobs:
   include:
     - stage: deploy documentation
-      if: branch = master
+      if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
       before_script:
         - mkdir -p output
       
@@ -25,9 +24,20 @@ jobs:
       after_success:
         - cd output
         - cp -R ../adocs/images/ images
-        - git init
+        - cd ..
         - git config user.name "${GH_USER_NAME}"
         - git config user.email "${GH_USER_EMAIL}"
+        - git clone "https://${GH_TOKEN}@${GH_REF}"
+        - cd dechat_es5a
+        - rm -R docs
+        - mv ../output/ docs/
         - git add .
         - git commit -m "Deploy documentation to GitHub Pages"
-        - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+        - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master
+        
+    - stage: tests
+      if: commit_message != "Deploy documentation to GitHub Pages"
+      script: echo "Implementar tests"
+      
+      after_success:
+        - bash <(curl -s https://codecov.io/bash) 
