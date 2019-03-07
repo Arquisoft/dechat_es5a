@@ -13,13 +13,9 @@
 <div class="grid-rows">
     <div class="row">
     <div class="col-sm-4">
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active">Friend 1</a>
-            <a href="#" class="list-group-item list-group-item-action">Friend 2</a>
-            <a href="#" class="list-group-item list-group-item-action">Friend 3</a>
-            <a href="#" class="list-group-item list-group-item-action">Friend 4</a>
-            <a href="#" class="list-group-item list-group-item-action">Friend 5</a>
-        </div>
+        <ul class="list-group" *ngFor="let item of friends">
+            <li>{{ item }}</li>
+        </ul>
     </div>
     <div  class="col-sm-8">
 
