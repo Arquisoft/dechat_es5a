@@ -1,7 +1,7 @@
 sudo: required
 
 language: bash
-        
+
 jobs:
   include:
     - stage: deploy documentation
