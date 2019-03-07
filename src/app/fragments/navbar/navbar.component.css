@@ -1,0 +1,7 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+.navbar-inverse {
+    background-color: #60A713;
+}
