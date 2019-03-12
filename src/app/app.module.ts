@@ -24,6 +24,12 @@ import { HeaderComponent } from './fragments/header/header.component';
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
 import { MainPaneComponent } from './main-pane1/main-pane.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FriendsComponent} from './friends/friends.component';
 
 const routes: Routes = [
   {
@@ -51,6 +57,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'friends',
+    component: FriendsComponent
   }
 ];
 
@@ -68,6 +78,7 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     MainPaneComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,
