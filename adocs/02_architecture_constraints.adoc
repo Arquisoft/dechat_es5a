@@ -1,10 +1,12 @@
 [[section-architecture_constraints]]
 
 = Architecture Constraints
+
 ****
 There are a lot of constraints that makes us work harder to make a good application.
 ****
 == Technical Constraints
+
 ****
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -15,6 +17,7 @@ There are a lot of constraints that makes us work harder to make a good applicat
 |======================
 ****
 == Organizational Constraints
+
 ****
 [width="40%",frame="topbot",options="header,footer"]
 |======================
@@ -25,6 +28,7 @@ There are a lot of constraints that makes us work harder to make a good applicat
 |======================
 ****
 == Conventions Constraints
+
 ****
 [width="40%",frame="topbot",options="header,footer"]
 |======================
