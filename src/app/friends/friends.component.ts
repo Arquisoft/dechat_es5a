@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import {Router} from '@angular/router';
+import {Friend} from '../models/friend.model';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-friends',
@@ -9,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class FriendsComponent implements OnInit {
 
-  friends: any[];
+  friends: Friend[];
 
   constructor(private router: Router, private rdf: RdfService) { }
 
@@ -20,7 +22,7 @@ export class FriendsComponent implements OnInit {
   async loadFriends() {
     try {
       const list_friends = await this.rdf.getFriends();
-      if (list_friends) {
+        if (list_friends) {
         this.friends = list_friends;
       }
     } catch (error) {

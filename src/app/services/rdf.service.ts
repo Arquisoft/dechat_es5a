@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SolidSession } from '../models/solid-session.model';
 declare let solid: any;
 declare let $rdf: any;
+
 //import * as $rdf from 'rdflib'
 
 // TODO: Remove any UI interaction from this service
@@ -9,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {T} from '@angular/core/src/render3';
 import {listener} from '@angular/core/src/render3/instructions';
+import {Friend} from '../models/friend.model';
 
 const VCARD = $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
@@ -24,6 +26,7 @@ export class RdfService {
 
   session: SolidSession;
   store = $rdf.graph();
+
 
   /**
    * A helper object that connects to the web, loads data, and saves it back. More powerful than using a simple
@@ -292,10 +295,13 @@ export class RdfService {
   getFriends = async () => {
     const person = this.session.webId;
     const friends = this.store.each($rdf.sym(person), FOAF('knows'));
-    const list_friends = Array<string>();
+    const list_friends = Array<Friend>();
     try {
       for ( let i = 0; i < friends.length; i++) {
-        list_friends.push(friends[i].value);
+        const f: Friend = {
+          webid: friends[i].value
+        };
+        list_friends.push(f);
       }
       return list_friends;
     } catch (error) {
@@ -309,8 +315,8 @@ export class RdfService {
     const list_friends = Array<string>();
     try {
       for ( let i = 0; i < friends.length; i++) {
-        const fullName = this.store.any(friends[i], FOAF('name'));
-        list_friends.push(fullName);
+        const fullName = this.store.any(friends[i], FOAF('fn'));
+          list_friends.push(fullName);
       }
       return list_friends;
     } catch (error) {
