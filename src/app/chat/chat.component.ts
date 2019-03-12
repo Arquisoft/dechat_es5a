@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
 
     fileClient: any;
     ruta_seleccionada: string;
-    htmlToAdd : string;
+    htmlToAdd: string;
 
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
         this.rutaActiva.params.subscribe(data => {
@@ -39,7 +39,6 @@ export class ChatComponent implements OnInit {
     }
 
     private createNewFolder() {
-
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
         let solidId = this.rdf.session.webId;
@@ -52,7 +51,31 @@ export class ChatComponent implements OnInit {
         //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
         // que se ejecuta correctamente.
 
+        this.buildFolder(solidId);
 
+    }
+
+
+
+    /**
+     * Method to create a file for a message
+     * @param solidId url of the folder
+     */
+    private createNewFile(){
+        let solidId = this.rdf.session.webId;
+        let stringToChange = '/profile/card#me';
+        let user = this.getUserByUrl(this.ruta_seleccionada);
+        let path = '/public/' + user + '/message';
+        solidId = solidId.replace(stringToChange, path);
+
+
+        this.buildFile(solidId, "Esto es un mensaje de prueba");
+    }
+    
+
+
+    //method that creates the folder using the solid-file-client lib
+    private buildFolder(solidId) {
         //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
         this.fileClient.createFolder(solidId).then(success => {
             console.log(`Created folder ${solidId}.`);
@@ -60,5 +83,13 @@ export class ChatComponent implements OnInit {
         }, err => console.log(err));
 
         this.htmlToAdd = '<div>Carpeta Creada! Ve a tu pod para comprobarlo</div>';
+    }
+
+
+    //method that creates a file in a folder using the solid-file-client lib
+    private buildFile(solidIdFolderUrl, content){
+        this.fileClient.createFile(solidIdFolderUrl,content,"text/plain").then( fileCreated => {
+            console.log(`Created file ${fileCreated}.`);
+          }, err => console.log(err) );
     }
 }
