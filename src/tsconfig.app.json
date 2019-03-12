@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": [],
+    "types": [ "node" ],
+    "typeRoots": [ "../node_modules/@types" ],
     "paths": {
       "zlib": ["node_modules/browserify-zlib/lib/index.js"],
       "http": ["node_modules/@angular/http"],
