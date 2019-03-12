@@ -55,8 +55,6 @@ export class ChatComponent implements OnInit {
 
     }
 
-
-
     /**
      * Method to create a file for a message
      * @param solidId url of the folder
@@ -71,6 +69,19 @@ export class ChatComponent implements OnInit {
 
         this.buildFile(solidId, "Esto es un mensaje de prueba");
     }
+
+
+    private readMessage(){
+        let solidId = this.rdf.session.webId;
+        let stringToChange = '/profile/card#me';
+        let user = this.getUserByUrl(this.ruta_seleccionada);
+        let path = '/public/' + user + '/message.txt';
+        solidId = solidId.replace(stringToChange, path);
+
+        var message = this.searchMessage(solidId)
+        console.log(message);
+    }
+
     
 
 
@@ -91,5 +102,14 @@ export class ChatComponent implements OnInit {
         this.fileClient.createFile(solidIdFolderUrl,content,"text/plain").then( fileCreated => {
             console.log(`Created file ${fileCreated}.`);
           }, err => console.log(err) );
+    }
+
+
+    //method that search for a message in a pod
+    private searchMessage(url){
+        this.fileClient.readFile(url).then(  body => {
+          console.log(`File	content is : ${body}.`);
+          return body;
+        }, err => console.log(err) );
     }
 }
