@@ -6,7 +6,7 @@
     <div class="row">
     <div class="col-sm-4">
         <ul class="list-group" *ngFor="let item of friends">
-            <li>{{ item.webid }}    </li>
+            <li><a [routerLink] = "['/chat', item.webid.toString()]"> {{item.webid}}</a> </li>
         </ul>
     </div>
     <div  class="col-sm-8">

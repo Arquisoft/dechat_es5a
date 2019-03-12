@@ -18,13 +18,13 @@ import { HeaderComponent } from './fragments/header/header.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
-import { MainPaneComponent } from './main-pane1/main-pane.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FriendsComponent} from './friends/friends.component';
+import {ChatComponent} from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -56,7 +56,11 @@ const routes: Routes = [
   {
     path: 'friends',
     component: FriendsComponent
-  }
+  },
+    {
+        path: 'chat/:parametro',
+        component: ChatComponent,
+    }
 ];
 
 
@@ -72,8 +76,8 @@ const routes: Routes = [
     NavbarComponent,
     FooterComponent,
     HeaderComponent,
-    MainPaneComponent,
-    FriendsComponent
+    FriendsComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
