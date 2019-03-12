@@ -3,13 +3,13 @@
 == Architecture Constraints
 
 ****
-There are a lot of constraints that makes us work harder to make a good application.
+
 ****
 === Technical Constraints
 
 ****
-[width="50%",frame="topbot",options="header,footer"]
-|======================
+[options="header",cols="1,2,2"]
+|===
 |Code |Restricction |Motive
 |TC001  |Online independence: no central control of data |Linked-data  are completely decentralized and fully under users' control rather than controlled by other entities.
 |TC002  |Frameworks: Angular    |We haven´t worked with this framework before, so we will have to learn how to use it.
@@ -24,8 +24,8 @@ There are a lot of constraints that makes us work harder to make a good applicat
 === Organizational Constraints
 
 ****
-[width="50%",frame="topbot",options="header,footer"]
-|======================
+[options="header",cols="1,2,2"]
+|===
 |Code |Restricction |Motive
 |OC001  |About Version Control: Git, Tool: Github| Keep a version of the project after making changes
 |OC002 | 6 person group | We didn't know each other 
@@ -38,8 +38,8 @@ There are a lot of constraints that makes us work harder to make a good applicat
 === Conventions Constraints
 
 ****
-[width="50%",frame="topbot",options="header,footer"]
-|======================
+[options="header",cols="1,2,2"]
+|===
 |Code |Restricction |Motive
 |CC001  |Language| English. The project and the corresponding blog targets an international audience, so English should be used throughout the whole project.
 |CC002 | 6 person group | We didn't know each other 
