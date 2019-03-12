@@ -1,9 +1,6 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-
-[role="arc42help"]
-
 === Technology and IDE
 The team had to choose between betweet new technologies for us and technologies already kown but that dd no have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose JavaScript, more specifically, the Angular Framework.
 
