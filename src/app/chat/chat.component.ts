@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FriendsComponent } from '../friends/friends.component';
+import { Friend} from '../models/friend.model';
+import { Message} from '../models/message.model';
 
 
 
@@ -59,14 +62,15 @@ export class ChatComponent implements OnInit {
      * Method to create a file for a message
      * @param solidId url of the folder
      */
-    private createNewFile() {
+    private async createNewFile() {
         let solidId = this.rdf.session.webId;
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
         let path = '/public/' + user + '/Prueba.ttl';
         solidId = solidId.replace(stringToChange, path);
 
-        let message = this.readMessage(solidId);
+        let message = await this.readMessage(solidId);
+
         console.log(message);
         
         if (message!= null) {
@@ -79,14 +83,56 @@ export class ChatComponent implements OnInit {
 
     }
 
+    private async createNewMessage() {
+        //Sender WebID
+        let senderId = this.rdf.session.webId;
+        let senderPerson: Friend = {webid:senderId};
 
-    private readMessage(url) {
-        var message = this.searchMessage(url)
+        //Receiver WebId
+        let recipientPerson:Friend = {webid:this.ruta_seleccionada}
+
+        let messageToSend: Message = {content:"Olakase", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
+        let stringToChange = '/profile/card#me';
+        let user = this.getUserByUrl(this.ruta_seleccionada);
+        let path = '/public/' + user + '/PruebaChatSintaxis.ttl';
+
+        senderId = senderId.replace(stringToChange, path);
+
+        let message = await this.readMessage(senderId);
+
+        console.log(message);
+        
+        if (message!= null) {
+            this.updateTTL(senderId, message + "\n\n" + this.getTTLDataFromMessage(messageToSend));
+        }
+        else {
+            this.updateTTL(senderId, "@prefix schem: <http://schema.org/>." + "\n\n" + 
+                this.getTTLDataFromUser() + "\n\n" + this.getTTLDataFromMessage(messageToSend));
+
+        }
+
+    }
+
+
+    private async readMessage(url) {
+        var message = await this.searchMessage(url)
         console.log(message);
         return message;
     }
 
+    public getTTLDataFromMessage(message) {
+        return "<#message-" + message.date + ">\n" + 
+         "\trel: sender <#sender>;\n" +
+         "\trel: recipient <#recipient>;\n" + 
+         "\tdate:" + message.date  + ";\n" + 
+         "\tcontent:" + message.content + ".\n";
+     }
 
+     public getTTLDataFromUser() {
+         return "<#sender>\n\twebid: " + this.rdf.session.webId + ".\n\n" +
+            "<#recipient>\n\twebid: " + this.ruta_seleccionada + "."
+     }
+     
 
 
     //method that creates the folder using the solid-file-client lib
@@ -110,8 +156,8 @@ export class ChatComponent implements OnInit {
 
 
     //method that search for a message in a pod
-    private searchMessage(url) {
-        this.fileClient.readFile(url).then(body => {
+    private async searchMessage(url) {
+        return await this.fileClient.readFile(url).then(body => {
             console.log(`File	content is : ${body}.`);
             return body;
         }, err => console.log(err));
