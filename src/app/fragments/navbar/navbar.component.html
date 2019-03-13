@@ -7,7 +7,7 @@
         <li class="left"><a class="navbar-button" routerLink="/card">My Profile </a></li>
         <li class="left"><a class="navbar-button" routerLink="/friends"> Friends list</a></li>
         <li class="left"><a class="navbar-button" href="https://arquisoft.github.io/dechat_es5a/" > Documentation </a></li>
-        <li class="right"><a class="navbar-logout" routerLink="/login" > Logout</a></li>
+        <li class="right"><a class="navbar-logout" [routerLink]='login' (click)="logout()"> Logout</a></li>
     </ul>
 
 
