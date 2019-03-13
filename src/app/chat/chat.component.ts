@@ -116,7 +116,7 @@ export class ChatComponent implements OnInit {
         let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/dechat5a/' + user + '/Conversation.txt';
+        let path = user + ": " + '/public/dechat5a/' + user + '/Conversation.txt';
 
         senderId = senderId.replace(stringToChange, path);
 
