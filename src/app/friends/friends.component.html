@@ -1,18 +1,11 @@
 <!doctype html>
 <html lang="en">
 <body>
-<div class="container-fluid">
 <div class="grid-rows">
     <div class="row">
-    <div class="col-sm-4">
-        <ul class="list-group" *ngFor="let item of friends">
-            <li><a [routerLink] = "['/chat', item.webid.toString()]"> {{item.webid}}</a> </li>
+        <ul class="fas fa-user" style="font-size: 20px; color: #7C55FB " *ngFor="let item of friends">
+             <a [routerLink] = "['/chat',item.webid.toString()]"> {{ item.webid}} </a>
         </ul>
-    </div>
-    <div  class="col-sm-8">
-
-    </div>
-</div>
 </div>
 </div>
 </body>
