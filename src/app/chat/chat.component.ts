@@ -62,12 +62,10 @@ export class ChatComponent implements OnInit {
     private buildFolder(solidId) {
         this.fileClient.readFolder(solidId).then(folder => {
             console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
-            this.htmlToAdd = '<div>Carpeta ya existe! Ve a tu pod para verla</div>';
         }, err => {
             //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
             this.fileClient.createFolder(solidId).then(success => {
                 console.log(`Created folder ${solidId}.`);
-                this.htmlToAdd = '<div>Carpeta Creada! Ve a tu pod para comprobarlo</div>';
             }, err1 => console.log(err1));
 
         } );
