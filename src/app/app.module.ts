@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Rutas
-// import { APP_ROUTING } from './app.routes';
+import { APP_ROUTING } from './app.routes';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -14,54 +17,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './fragments/navbar/navbar.component';
 import { FooterComponent } from './fragments/footer/footer.component';
 import { HeaderComponent } from './fragments/header/header.component';
+import {FriendsComponent} from './friends/friends.component';
+import {ChatComponent} from './chat/chat.component';
+import { RegisterComponent } from './register/register.component';
 
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FriendsComponent} from './friends/friends.component';
-import {ChatComponent} from './chat/chat.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: LoginComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'login-popup',
-    component: LoginPopupComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'card',
-    component: CardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path: 'friends',
-    component: FriendsComponent
-  },
-    {
-        path: 'chat/:parametro',
-        component: ChatComponent,
-    }
-];
 
 
 
@@ -82,7 +44,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    APP_ROUTING,
     NgSelectModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule // required for toastr
