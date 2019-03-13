@@ -104,7 +104,9 @@ export class ChatComponent implements OnInit {
     private async createNewMessage() {
 
         //getting message from DOM
-        var messageContent = ((document.getElementById("usermsg") as HTMLInputElement).value);
+        let myUser= this.getUserByUrl(this.rdf.session.webId);
+        let user = this.getUserByUrl(this.ruta_seleccionada);
+        var messageContent = myUser + ' :' + ((document.getElementById("usermsg") as HTMLInputElement).value);
         console.log(messageContent);
         //Sender WebID
         let senderId = this.rdf.session.webId;
@@ -115,8 +117,7 @@ export class ChatComponent implements OnInit {
 
         let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
-        let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = user + ": " + '/public/dechat5a/' + user + '/Conversation.txt';
+        let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
         senderId = senderId.replace(stringToChange, path);
 
