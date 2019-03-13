@@ -156,6 +156,29 @@ export class ChatComponent implements OnInit {
         return message;
     }
 
+    private order(mess:message[]){
+          let ordered:message[]=[];
+          let aux= mess;
+          while(aux.length>0){
+              let idx = this.findMinor(aux);
+              ordered.push(aux[idx]);
+              aux.splice(idx,1);
+          }
+          return ordered;
+        }
+
+    private findMinor(aux:message[]){
+          let idx=0
+          let minor:message = aux[idx];
+          for(let i=0; i<aux.length; i++){
+            if(aux[i].date< minor.date){
+              idx=i;
+              minor= aux[idx];
+            }
+          }
+          return idx;
+        }
+
     //method that creates a file in a folder using the solid-file-client lib
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
