@@ -108,10 +108,10 @@ export class ChatComponent implements OnInit {
         //Receiver WebId
         let recipientPerson:Friend = {webid:this.ruta_seleccionada}
 
-        let messageToSend: message = {content:"Olakase", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
+        let messageToSend: message = {content:"Probando 1, 2,3 ", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/PruebaChatSintaxis.ttl';
+        let path = '/public/' + user + '/PruebaChatSintaxis3.ttl';
 
         senderId = senderId.replace(stringToChange, path);
 
@@ -120,42 +120,21 @@ export class ChatComponent implements OnInit {
         console.log(message);
         
         if (message!= null) {
-            this.updateTTL(senderId, message + "\n\n" + this.getTTLDataFromMessage(messageToSend));
+            this.updateTTL(senderId, message + "\n\n" + new TTLPrinter().getTTLDataFromMessage(messageToSend));
         }
         else {
-            this.updateTTL(senderId, "@prefix schem: <http://schema.org/>." + "\n\n" + 
-                this.getTTLDataFromUser() + "\n\n" + this.getTTLDataFromMessage(messageToSend));
+            this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
 
         }
 
     }
-
-
 
     private async readMessage(url) {
         var message = await this.searchMessage(url)
         console.log(message);
         return message;
     }
-
-    public getTTLDataFromMessage(message) {
-        return "<#message-" + message.date + ">\n" + 
-         "\trel: sender <#sender>;\n" +
-         "\trel: recipient <#recipient>;\n" + 
-         "\tdate:" + message.date  + ";\n" + 
-         "\tcontent:" + message.content + ".\n";
-     }
-
-     public getTTLDataFromUser() {
-         return "<#sender>\n\twebid: " + this.rdf.session.webId + ".\n\n" +
-            "<#recipient>\n\twebid: " + this.ruta_seleccionada + "."
-     }
      
-
-
-
-
-
     //method that creates a file in a folder using the solid-file-client lib
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
@@ -188,3 +167,25 @@ export class ChatComponent implements OnInit {
 
     }
 }
+
+class TTLPrinter{
+    public getTTLHeader(messageToSend,sender,recipient){
+        return  "@prefix schem: <http://schema.org/>." + "\n" + 
+            "@prefix mess: <http://schema.org/Message>.\n" +
+            "@prefix mess: <http://schema.org/Person>.\n\n" +
+        this.getTTLDataFromUser(sender,recipient) + "\n\n" + this.getTTLDataFromMessage(messageToSend)
+    }
+
+    public getTTLDataFromMessage(message) {
+        return "<#message-" + message.date + ">\n" + 
+         "\trel: sender <#sender>;\n" +
+         "\trel: recipient <#recipient>;\n" + 
+         "\tdate:" + message.date  + ";\n" + 
+         "\tcontent:" + message.content + ".\n";
+     }
+
+     public getTTLDataFromUser(sender, recipient) {
+         return "<#sender>\n\twebid: " + sender.webId + ".\n\n" +
+            "<#recipient>\n\twebid: " + recipient.webId + "."
+     }
+    }
