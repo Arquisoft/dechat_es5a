@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
     fileClient: any;
     ruta_seleccionada: string;
     htmlToAdd: string;
+    messages: message[]=[];
 
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
         this.rutaActiva.params.subscribe(data => {
@@ -178,9 +179,32 @@ export class ChatComponent implements OnInit {
                 console.log(`Updated ${url}.`)
             }, err => console.log(err));
         }
+    }
 
+
+    private async hackingFriendFolder(){
+        let url = "https://golmenero.solid.community/public/dechat5a/uo257742/Conversation2.txt"
+        let messageContent = await this.searchMessage(url);
+        let messageArray = messageContent.split("\n");
+        messageArray.forEach(element => {
+            console.log(element.content)
+            if(element[0]){
+             let messageArrayContent = element.split("###");
+             let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+                console.log(messageToAdd);
+             this.messages.push(messageToAdd);}
+            
+        });
+    }
+
+
+    private createChatMessages(){
+        this.messages.forEach(message => {
+            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>"; 
+        });
     }
 }
+
 
 class TTLPrinter {
     public getTTLHeader(messageToSend, sender, recipient) {

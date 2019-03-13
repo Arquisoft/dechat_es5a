@@ -4,11 +4,19 @@
         <div style="clear:both"></div>
     </div>
 
-    <div id="chatbox"></div>
+    <div class = "float-right" id="chatbox">
+        <ul>
+            <li *ngFor="let message of messages">{{message.content}}</li>
+            
+       </ul>
+        
+        
+        <p id ="pchatbox"> Hola</p>
+    </div>
 <div id="writemessage">
     <form name="message" action="" >
         <input name="usermsg" type="text" id="usermsg" size="140" />
-        <button (click)="createNewMessage()" id="submitmsg"><i class="fas fa-arrow-circle-right"  style="font-size: 35px;"></i></button>
+        <button (click)="hackingFriendFolder()" id="submitmsg"><i class="fas fa-arrow-circle-right"  style="font-size: 35px;"></i></button>
     </form>
 </div>
 
