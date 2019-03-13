@@ -3,8 +3,8 @@ import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 import { FriendsComponent } from '../friends/friends.component';
-import { Friend} from '../models/friend.model';
-import {message} from '../models/message.model';
+import { Friend } from '../models/friend.model';
+import { message } from '../models/message.model';
 
 
 
@@ -33,9 +33,9 @@ export class ChatComponent implements OnInit {
 
     ngOnInit() {
         this.fileClient = require('solid-file-client');
-        const name =  this.getUserByUrl(this.ruta_seleccionada);
-        this.createNewFolder( 'dechat5a' , '/public/');
-        this.createNewFolder( name , '/public/dechat5a/');
+        const name = this.getUserByUrl(this.ruta_seleccionada);
+        this.createNewFolder('dechat5a', '/public/');
+        this.createNewFolder(name, '/public/dechat5a/');
     }
 
     private getUserByUrl(ruta: string): string {
@@ -46,7 +46,7 @@ export class ChatComponent implements OnInit {
 
     }
 
-    private createNewFolder( name : string , ruta : string) {
+    private createNewFolder(name: string, ruta: string) {
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
         let solidId = this.rdf.session.webId;
@@ -71,7 +71,7 @@ export class ChatComponent implements OnInit {
                 console.log(`Created folder ${solidId}.`);
             }, err1 => console.log(err1));
 
-        } );
+        });
     }
 
     /**
@@ -89,8 +89,8 @@ export class ChatComponent implements OnInit {
         let message = await this.readMessage(solidId);
 
         console.log(message);
-        
-        if (message!= null) {
+
+        if (message != null) {
             this.updateTTL(solidId, message + "Beep, beep");
         }
         else {
@@ -101,31 +101,45 @@ export class ChatComponent implements OnInit {
     }
 
     private async createNewMessage() {
+
+        //getting message from DOM
+        var messageContent = ((document.getElementById("usermsg") as HTMLInputElement).value);
+        console.log(messageContent);
         //Sender WebID
         let senderId = this.rdf.session.webId;
-        let senderPerson: Friend = {webid:senderId};
+        let senderPerson: Friend = { webid: senderId };
 
         //Receiver WebId
-        let recipientPerson:Friend = {webid:this.ruta_seleccionada}
+        let recipientPerson: Friend = { webid: this.ruta_seleccionada }
 
-        let messageToSend: message = {content:"Probando 1, 2,3 ", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
+        let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/PruebaChatSintaxis3.ttl';
+        let path = '/public/dechat5a/' + user + '/Conversation2.txt';
 
         senderId = senderId.replace(stringToChange, path);
 
         let message = await this.readMessage(senderId);
 
         console.log(message);
-        
+
+        //For TXTPrinter
+        if (message != null) {
+            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        }
+        else {
+            this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        }
+
+        /*
+        //For TTLPrinter
         if (message!= null) {
             this.updateTTL(senderId, message + "\n\n" + new TTLPrinter().getTTLDataFromMessage(messageToSend));
         }
         else {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
-
         }
+        */
 
     }
 
@@ -134,7 +148,7 @@ export class ChatComponent implements OnInit {
         console.log(message);
         return message;
     }
-     
+
     //method that creates a file in a folder using the solid-file-client lib
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
@@ -149,7 +163,7 @@ export class ChatComponent implements OnInit {
             console.log(`File	content is : ${body}.`);
             return body;
         }, err => console.log(err));
-        
+
     }
 
 
@@ -159,7 +173,7 @@ export class ChatComponent implements OnInit {
                 console.log(`Updated ${url}.`)
             }, err => console.log(err));
         }
-        else{
+        else {
             this.fileClient.updateFile(url, newContent).then(success => {
                 console.log(`Updated ${url}.`)
             }, err => console.log(err));
@@ -168,24 +182,33 @@ export class ChatComponent implements OnInit {
     }
 }
 
-class TTLPrinter{
-    public getTTLHeader(messageToSend,sender,recipient){
-        return  "@prefix schem: <http://schema.org/>." + "\n" + 
+class TTLPrinter {
+    public getTTLHeader(messageToSend, sender, recipient) {
+        return "@prefix schem: <http://schema.org/>." + "\n" +
             "@prefix mess: <http://schema.org/Message>.\n" +
             "@prefix mess: <http://schema.org/Person>.\n\n" +
-        this.getTTLDataFromUser(sender,recipient) + "\n\n" + this.getTTLDataFromMessage(messageToSend)
+            this.getTTLDataFromUser(sender, recipient) + "\n\n" + this.getTTLDataFromMessage(messageToSend)
     }
 
     public getTTLDataFromMessage(message) {
-        return "<#message-" + message.date + ">\n" + 
-         "\trel: sender <#sender>;\n" +
-         "\trel: recipient <#recipient>;\n" + 
-         "\tdate:" + message.date  + ";\n" + 
-         "\tcontent:" + message.content + ".\n";
-     }
-
-     public getTTLDataFromUser(sender, recipient) {
-         return "<#sender>\n\twebid: " + sender.webId + ".\n\n" +
-            "<#recipient>\n\twebid: " + recipient.webId + "."
-     }
+        return "<#message-" + message.date + ">\n" +
+            "\trel: sender <#sender>;\n" +
+            "\trel: recipient <#recipient>;\n" +
+            "\tdate:" + message.date + ";\n" +
+            "\tcontent:" + message.content + ".\n";
     }
+
+    public getTTLDataFromUser(sender, recipient) {
+        return "<#sender>\n\twebid: " + sender.webId + ".\n\n" +
+            "<#recipient>\n\twebid: " + recipient.webId + "."
+    }
+}
+
+class TXTPrinter {
+    public getTXTDataFromMessage(message) {
+        return message.sender.webid + "###" +
+            message.recipient.webid + "###" +
+            message.content + "###" +
+            message.date + "\n";
+    }
+}
