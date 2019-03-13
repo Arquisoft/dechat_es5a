@@ -110,7 +110,7 @@ export class ChatComponent implements OnInit {
         //getting message from DOM
         let myUser= this.getUserByUrl(this.rdf.session.webId);
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        var messageContent = myUser + ' :' + ((document.getElementById("usermsg") as HTMLInputElement).value);
+        var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
         console.log(messageContent);
         //Sender WebID
         let senderId = this.rdf.session.webId;
@@ -256,6 +256,9 @@ export class ChatComponent implements OnInit {
             }
 
         });
+
+        let ordered = this.order(this.messages);
+        this.messages=ordered;
     }
 
 
