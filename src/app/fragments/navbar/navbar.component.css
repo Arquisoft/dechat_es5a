@@ -1,12 +1,15 @@
 html {
     position: relative;
     min-height: 100%;
+    width: max-content;
 }
+
 .navbar-inverse {
     background-color: #60A713;
 }
 
 .navbar-button {
+
     border-radius: 25px;
     border: 2px solid #7C55FB;
     padding: 5px;
@@ -15,4 +18,27 @@ html {
     background-color: #7C55FB;
 
 
+}
+
+.navbar-logout {
+    border-radius: 8px;
+    border: 2px solid #DF0101;
+    padding: 5px;
+    margin: 5px;
+}
+.barra{
+    width: 100%;
+
+}
+.right{
+    float: right;
+    display: inline;
+    text-align: right;
+
+}
+
+.left{
+    float: left;
+    display: inline;
+    text-align: left;
 }
