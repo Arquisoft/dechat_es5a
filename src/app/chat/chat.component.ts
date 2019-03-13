@@ -110,7 +110,7 @@ export class ChatComponent implements OnInit {
         //getting message from DOM
         let myUser= this.getUserByUrl(this.rdf.session.webId);
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        var messageContent = myUser + ' :' + ((document.getElementById("usermsg") as HTMLInputElement).value);
+        var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
         console.log(messageContent);
         //Sender WebID
         let senderId = this.rdf.session.webId;
@@ -119,7 +119,7 @@ export class ChatComponent implements OnInit {
         //Receiver WebId
         let recipientPerson: Friend = { webid: this.ruta_seleccionada }
 
-        let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
+        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
@@ -155,6 +155,29 @@ export class ChatComponent implements OnInit {
         console.log(message);
         return message;
     }
+
+    private order(mess:message[]){
+          let ordered:message[]=[];
+          let aux= mess;
+          while(aux.length>0){
+              let idx = this.findMinor(aux);
+              ordered.push(aux[idx]);
+              aux.splice(idx,1);
+          }
+          return ordered;
+        }
+
+    private findMinor(aux:message[]){
+          let idx=0
+          let minor:message = aux[idx];
+          for(let i=0; i<aux.length; i++){
+            if(aux[i].date< minor.date){
+              idx=i;
+              minor= aux[idx];
+            }
+          }
+          return idx;
+        }
 
     //method that creates a file in a folder using the solid-file-client lib
     private buildFile(solidIdFolderUrl, content) {
@@ -221,7 +244,7 @@ export class ChatComponent implements OnInit {
                 console.log(messageToAdd);
              this.messages.push(messageToAdd);
             }
-            
+
         });
         messageArrayPropio.forEach(element => {
             console.log(element.content)
@@ -233,12 +256,15 @@ export class ChatComponent implements OnInit {
             }
 
         });
+
+        let ordered = this.order(this.messages);
+        this.messages=ordered;
     }
 
 
     private createChatMessages(){
         this.messages.forEach(message => {
-            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>"; 
+            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
         });
     }
 }
