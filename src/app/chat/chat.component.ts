@@ -184,8 +184,11 @@ export class ChatComponent implements OnInit {
 
 
     private async hackingFriendFolder(){
-        let url = "https://mavic96.inrupt.net/public/dechat5a/golmenero/Conversation.txt"
-        //let url = "https://golmenero.solid.community/public/dechat5a/golmenero/Conversation.txt"
+        var urlArray = this.ruta_seleccionada.split("/");
+        let url= "https://" + urlArray[2] + "/public/dechat5a/" + 
+            this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
+
+        console.log(url);
         let messageContent = await this.searchMessage(url);
         let messageArray = messageContent.split("\n");
         messageArray.forEach(element => {
