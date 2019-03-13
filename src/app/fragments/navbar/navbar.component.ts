@@ -17,4 +17,11 @@ export class NavbarComponent implements OnInit {
     this.auth.solidSignOut();
   }
 
+  isLogged(){
+    if(localStorage.getItem('solid-auth-client')){
+      return true;
+    } else{
+      return false;
+    }
+  }
 }
