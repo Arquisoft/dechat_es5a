@@ -37,6 +37,10 @@ export class ChatComponent implements OnInit {
         const name = this.getUserByUrl(this.ruta_seleccionada);
         this.createNewFolder('dechat5a', '/public/');
         this.createNewFolder(name, '/public/dechat5a/');
+        this.hackingFriendFolder();
+        setInterval(() => {
+            this.hackingFriendFolder();
+        }, 3000);
     }
 
     private getUserByUrl(ruta: string): string {
@@ -142,6 +146,7 @@ export class ChatComponent implements OnInit {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
         }
         */
+        this.hackingFriendFolder();
 
     }
 
@@ -184,21 +189,49 @@ export class ChatComponent implements OnInit {
 
 
     private async hackingFriendFolder(){
-        var urlArray = this.ruta_seleccionada.split("/");
-        let url= "https://" + urlArray[2] + "/public/dechat5a/" + 
-            this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
 
+
+        var urlArray = this.ruta_seleccionada.split("/");
+        let url= "https://" + urlArray[2] + "/public/dechat5a/" +this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
+
+        var urlArrayPropio = this.rdf.session.webId.split("/");
+        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" +this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.txt";
+        console.log("URL PROPIA: "+ urlPropia);
         console.log(url);
         let messageContent = await this.searchMessage(url);
-        let messageArray = messageContent.split("\n");
+        console.log("MessageContent " + messageContent);
+        let messageArray = [] ;
+        if(messageContent != undefined)
+        {
+            messageArray = messageContent.split("\n");
+        }
+        let messageContentPropia = await  this.searchMessage(urlPropia);
+        let messageArrayPropio = [] ;
+        if(messageContentPropia != undefined)
+        {
+            messageArrayPropio = messageContentPropia.split("\n");
+        }
+
+        this.messages = [];
         messageArray.forEach(element => {
             console.log(element.content)
             if(element[0]){
              let messageArrayContent = element.split("###");
              let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
-             this.messages.push(messageToAdd);}
+             this.messages.push(messageToAdd);
+            }
             
+        });
+        messageArrayPropio.forEach(element => {
+            console.log(element.content)
+            if(element[0]){
+                let messageArrayContent = element.split("###");
+                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+                console.log(messageToAdd);
+                this.messages.push(messageToAdd);
+            }
+
         });
     }
 
