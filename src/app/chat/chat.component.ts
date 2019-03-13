@@ -63,12 +63,14 @@ export class ChatComponent implements OnInit {
         let solidId = this.rdf.session.webId;
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/Kike.ttl';
+        let path = '/public/' + user + '/Prueba.ttl';
         solidId = solidId.replace(stringToChange, path);
 
         let message = this.readMessage(solidId);
+        console.log(message);
+        
         if (message!= null) {
-            this.updateTTL(solidId, message + "@prefix schem: <http://schema.org/>.");
+            this.updateTTL(solidId, message + "Beep, beep");
         }
         else {
             this.updateTTL(solidId, "@prefix schem: <http://schema.org/>.");
