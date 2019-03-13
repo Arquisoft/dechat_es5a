@@ -7,3 +7,5 @@ export interface SolidProvider {
     loginUrl: string;
     desc: string;
 }
+
+

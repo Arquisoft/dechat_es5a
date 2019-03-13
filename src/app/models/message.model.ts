@@ -1,10 +1,11 @@
 import { Friend } from "./friend.model";
+import { Content, Variable } from "@angular/compiler/src/render3/r3_ast";
 
 
-export interface message{
+export class message{
 
     content: string;
-    date: Date;
+    date: string;
     sender: Friend;
     recipient: Friend;
 }
