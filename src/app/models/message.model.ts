@@ -7,6 +7,4 @@ export interface message{
     date: Date;
     sender: Friend;
     recipient: Friend;
-
-    
 }

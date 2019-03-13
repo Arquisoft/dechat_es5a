@@ -24,10 +24,14 @@ export class ChatComponent implements OnInit {
             console.log(this.ruta_seleccionada);
             console.log(typeof this.ruta_seleccionada);
         });
+
     }
 
     ngOnInit() {
         this.fileClient = require('solid-file-client');
+        const name =  this.getUserByUrl(this.ruta_seleccionada);
+        this.createNewFolder( 'dechat5a' , '/public/');
+        this.createNewFolder( name , '/public/dechat5a/');
     }
 
     private getUserByUrl(ruta: string): string {
@@ -38,13 +42,12 @@ export class ChatComponent implements OnInit {
 
     }
 
-    private createNewFolder() {
+    private createNewFolder( name : string , ruta : string) {
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
         let solidId = this.rdf.session.webId;
         let stringToChange = '/profile/card#me';
-        let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user;
+        let path = ruta + name;
         solidId = solidId.replace(stringToChange, path);
 
         //Necesito logearme en el cliente para que me de permiso, sino me dara un error al intentar
@@ -53,6 +56,20 @@ export class ChatComponent implements OnInit {
 
         this.buildFolder(solidId);
 
+    }
+    //method that creates the folder using the solid-file-client lib
+    private buildFolder(solidId) {
+        this.fileClient.readFolder(solidId).then(folder => {
+            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
+            this.htmlToAdd = '<div>Carpeta ya existe! Ve a tu pod para verla</div>';
+        }, err => {
+            //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
+            this.fileClient.createFolder(solidId).then(success => {
+                console.log(`Created folder ${solidId}.`);
+                this.htmlToAdd = '<div>Carpeta Creada! Ve a tu pod para comprobarlo</div>';
+            }, err1 => console.log(err1));
+
+        } );
     }
 
     /**
@@ -87,16 +104,7 @@ export class ChatComponent implements OnInit {
 
 
 
-    //method that creates the folder using the solid-file-client lib
-    private buildFolder(solidId) {
-        //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
-        this.fileClient.createFolder(solidId).then(success => {
-            console.log(`Created folder ${solidId}.`);
-            this.htmlToAdd = '<div>Carpeta Creada! Ve a tu pod para comprobarlo</div>';
-        }, err => console.log(err));
 
-        this.htmlToAdd = '<div>Carpeta Creada! Ve a tu pod para comprobarlo</div>';
-    }
 
 
     //method that creates a file in a folder using the solid-file-client lib
