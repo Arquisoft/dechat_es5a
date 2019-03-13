@@ -116,7 +116,7 @@ export class ChatComponent implements OnInit {
         let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/dechat5a/' + user + '/Conversation2.txt';
+        let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
         senderId = senderId.replace(stringToChange, path);
 
@@ -183,7 +183,8 @@ export class ChatComponent implements OnInit {
 
 
     private async hackingFriendFolder(){
-        let url = "https://golmenero.solid.community/public/dechat5a/uo257742/Conversation2.txt"
+        let url = "https://mavic96.inrupt.net/public/dechat5a/golmenero/Conversation.txt"
+        //let url = "https://golmenero.solid.community/public/dechat5a/golmenero/Conversation.txt"
         let messageContent = await this.searchMessage(url);
         let messageArray = messageContent.split("\n");
         messageArray.forEach(element => {
