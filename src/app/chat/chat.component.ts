@@ -55,23 +55,36 @@ export class ChatComponent implements OnInit {
 
     }
 
-
-
     /**
      * Method to create a file for a message
      * @param solidId url of the folder
      */
-    private createNewFile(){
+    private createNewFile() {
         let solidId = this.rdf.session.webId;
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/message';
+        let path = '/public/' + user + '/Kike.ttl';
         solidId = solidId.replace(stringToChange, path);
 
+        let message = this.readMessage(solidId);
+        if (message!= null) {
+            this.updateTTL(solidId, message + "@prefix schem: <http://schema.org/>.");
+        }
+        else {
+            this.updateTTL(solidId, "@prefix schem: <http://schema.org/>.");
 
-        this.buildFile(solidId, "Esto es un mensaje de prueba");
+        }
+
     }
-    
+
+
+    private readMessage(url) {
+        var message = this.searchMessage(url)
+        console.log(message);
+        return message;
+    }
+
+
 
 
     //method that creates the folder using the solid-file-client lib
@@ -87,9 +100,33 @@ export class ChatComponent implements OnInit {
 
 
     //method that creates a file in a folder using the solid-file-client lib
-    private buildFile(solidIdFolderUrl, content){
-        this.fileClient.createFile(solidIdFolderUrl,content,"text/plain").then( fileCreated => {
+    private buildFile(solidIdFolderUrl, content) {
+        this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
             console.log(`Created file ${fileCreated}.`);
-          }, err => console.log(err) );
+        }, err => console.log(err));
+    }
+
+
+    //method that search for a message in a pod
+    private searchMessage(url) {
+        this.fileClient.readFile(url).then(body => {
+            console.log(`File	content is : ${body}.`);
+            return body;
+        }, err => console.log(err));
+    }
+
+
+    private updateTTL(url, newContent, contentType?) {
+        if (contentType) {
+            this.fileClient.updateFile(url, newContent, contentType).then(success => {
+                console.log(`Updated ${url}.`)
+            }, err => console.log(err));
+        }
+        else{
+            this.fileClient.updateFile(url, newContent).then(success => {
+                console.log(`Updated ${url}.`)
+            }, err => console.log(err));
+        }
+
     }
 }
