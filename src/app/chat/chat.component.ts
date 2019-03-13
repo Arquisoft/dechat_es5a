@@ -108,10 +108,10 @@ export class ChatComponent implements OnInit {
         //Receiver WebId
         let recipientPerson:Friend = {webid:this.ruta_seleccionada}
 
-        let messageToSend: message = {content:"Probando 1, 2,3 ", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
+        let messageToSend: message = {content:"Hola!!.", date: new Date().toDateString(), sender:senderPerson, recipient: recipientPerson}
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/PruebaChatSintaxis3.ttl';
+        let path = '/public/dechat5a/' + user + '/Conversation2.txt';
 
         senderId = senderId.replace(stringToChange, path);
 
@@ -119,13 +119,23 @@ export class ChatComponent implements OnInit {
 
         console.log(message);
         
+        //For TXTPrinter
+        if(message!=null){
+            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        }
+        else{
+            this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        }
+
+        /*
+        //For TTLPrinter
         if (message!= null) {
             this.updateTTL(senderId, message + "\n\n" + new TTLPrinter().getTTLDataFromMessage(messageToSend));
         }
         else {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
-
         }
+        */
 
     }
 
@@ -189,3 +199,12 @@ class TTLPrinter{
             "<#recipient>\n\twebid: " + recipient.webId + "."
      }
     }
+
+    class TXTPrinter{
+        public getTXTDataFromMessage(message) {
+            return message.sender.webid + "###" + 
+             message.recipient.webid + "###" +
+             message.content + "###" + 
+             message.date  + "\n";
+         }
+        }
