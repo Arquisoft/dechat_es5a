@@ -119,7 +119,7 @@ export class ChatComponent implements OnInit {
         //Receiver WebId
         let recipientPerson: Friend = { webid: this.ruta_seleccionada }
 
-        let messageToSend: message = { content: messageContent, date: new Date().toDateString(), sender: senderPerson, recipient: recipientPerson }
+        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
@@ -221,7 +221,7 @@ export class ChatComponent implements OnInit {
                 console.log(messageToAdd);
              this.messages.push(messageToAdd);
             }
-            
+
         });
         messageArrayPropio.forEach(element => {
             console.log(element.content)
@@ -238,7 +238,7 @@ export class ChatComponent implements OnInit {
 
     private createChatMessages(){
         this.messages.forEach(message => {
-            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>"; 
+            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
         });
     }
 }
