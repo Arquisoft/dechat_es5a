@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 
 
 
@@ -76,16 +77,17 @@ export class ChatComponent implements OnInit {
      * Method to create a file for a message
      * @param solidId url of the folder
      */
-    private createNewFile() {
+    private async createNewFile() {
         let solidId = this.rdf.session.webId;
         let stringToChange = '/profile/card#me';
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        let path = '/public/' + user + '/Kike.ttl';
+        let path = '/public/' + user + '/superdefinitiva.ttl';
         solidId = solidId.replace(stringToChange, path);
 
-        let message = this.readMessage(solidId);
+        var message =  await this.readMessage(solidId);
+        console.log("message: " + message);
         if (message!= null) {
-            this.updateTTL(solidId, message + "@prefix schem: <http://schema.org/>.");
+            this.updateTTL(solidId, message + "\nprobando");
         }
         else {
             this.updateTTL(solidId, "@prefix schem: <http://schema.org/>.");
@@ -95,8 +97,8 @@ export class ChatComponent implements OnInit {
     }
 
 
-    private readMessage(url) {
-        var message = this.searchMessage(url)
+    private  async readMessage(url) {
+        var message =  await this.searchMessage(url);
         console.log(message);
         return message;
     }
@@ -116,11 +118,12 @@ export class ChatComponent implements OnInit {
 
 
     //method that search for a message in a pod
-    private searchMessage(url) {
-        this.fileClient.readFile(url).then(body => {
+    private async searchMessage(url) {
+        return await this.fileClient.readFile(url).then( body => {
             console.log(`File	content is : ${body}.`);
             return body;
         }, err => console.log(err));
+        
     }
 
 
