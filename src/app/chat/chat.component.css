@@ -1,25 +1,35 @@
 #chatbox {
-    text-align:left;
-    padding:10px;
-    background:#666666;
+    text-align: left;
+    padding: 10px;
+    background: whitesmoke;
     height: 400px;
-    border:1px solid #7C55FB;
-    overflow:auto; }
+    border: 1px solid #7C55FB;
+    overflow: auto;
+    width: 100%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 #menu {
     background-color: #7C55FB;
 }
 
-#writemessage{
+#message-input {
     margin-bottom: 200px;
 }
 
-#usermsg{
+#usermsg {
     width: 95%;
-    background-color: #89969F;
-    height: 80%;
+
 }
 
-#submitmsg{
+#submitmsg {
     background-color: #7C4DFF;
-    margin-right: 10px;
+    width: 5%;
+}
+
+#writemessage {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
 }
