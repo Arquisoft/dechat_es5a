@@ -1,3 +1,5 @@
+
+
 export class TTLPrinter {
     public getTTLHeader(messageToSend, sender, recipient) {
         return "@prefix schem: <http://schema.org/>." + "\n" +

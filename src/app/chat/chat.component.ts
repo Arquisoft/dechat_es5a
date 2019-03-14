@@ -5,6 +5,8 @@ import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
+import { TTLPrinter } from '../services/printers/ttlprinter.service';
+import {TXTPrinter} from '../services/printers/txtprinter.service'
 
 
 
@@ -267,37 +269,5 @@ export class ChatComponent implements OnInit {
         this.messages.forEach(message => {
             "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
         });
-    }
-}
-
-
-class TTLPrinter {
-    public getTTLHeader(messageToSend, sender, recipient) {
-        return "@prefix schem: <http://schema.org/>." + "\n" +
-            "@prefix mess: <http://schema.org/Message>.\n" +
-            "@prefix mess: <http://schema.org/Person>.\n\n" +
-            this.getTTLDataFromUser(sender, recipient) + "\n\n" + this.getTTLDataFromMessage(messageToSend)
-    }
-
-    public getTTLDataFromMessage(message) {
-        return "<#message-" + message.date + ">\n" +
-            "\trel: sender <#sender>;\n" +
-            "\trel: recipient <#recipient>;\n" +
-            "\tdate:" + message.date + ";\n" +
-            "\tcontent:" + message.content + ".\n";
-    }
-
-    public getTTLDataFromUser(sender, recipient) {
-        return "<#sender>\n\twebid: " + sender.webId + ".\n\n" +
-            "<#recipient>\n\twebid: " + recipient.webId + "."
-    }
-}
-
-class TXTPrinter {
-    public getTXTDataFromMessage(message) {
-        return message.sender.webid + "###" +
-            message.recipient.webid + "###" +
-            message.content + "###" +
-            message.date + "\n";
     }
 }
