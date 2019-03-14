@@ -24,6 +24,9 @@ export class ChatComponent implements OnInit {
     htmlToAdd: string;
     messages: message[]=[];
 
+    /*
+     * Constuctor
+     */
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
         this.rutaActiva.params.subscribe(data => {
             console.log(data['parametro']);
@@ -34,6 +37,9 @@ export class ChatComponent implements OnInit {
 
     }
 
+    /*
+     * This method synchronize the conversation once the application is launched
+     */
     ngOnInit() {
         this.fileClient = require('solid-file-client');
         const name = this.getUserByUrl(this.ruta_seleccionada);
@@ -45,6 +51,9 @@ export class ChatComponent implements OnInit {
         }, 3000);
     }
 
+    /*
+     * This method obtains the username based on his webID
+     */
     private getUserByUrl(ruta: string): string {
         let sinhttp;
         sinhttp = ruta.replace('https://', '');
@@ -53,6 +62,9 @@ export class ChatComponent implements OnInit {
 
     }
 
+    /*
+     * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
+     */
     private createNewFolder(name: string, ruta: string) {
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
@@ -68,7 +80,9 @@ export class ChatComponent implements OnInit {
         this.buildFolder(solidId);
 
     }
-    //method that creates the folder using the solid-file-client lib
+    /*
+     * Method that creates the folder using the solid-file-client lib
+     */
     private buildFolder(solidId) {
         this.fileClient.readFolder(solidId).then(folder => {
             console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
@@ -81,32 +95,10 @@ export class ChatComponent implements OnInit {
         });
     }
 
-    /**
-     * Method to create a file for a message
-     * @param solidId url of the folder
+    /*
+     * This method obtains different data and creates a new message. 
+     * It also creates (or updates if its already created) the conversation file.
      */
-    private async createNewFile() {
-        let solidId = this.rdf.session.webId;
-        let stringToChange = '/profile/card#me';
-        let user = this.getUserByUrl(this.ruta_seleccionada);
-
-        let path = '/public/' + user + '/Prueba.ttl';
-        solidId = solidId.replace(stringToChange, path);
-
-        let message = await this.readMessage(solidId);
-
-        console.log(message);
-
-        if (message != null) {
-            this.updateTTL(solidId, message + "Beep, beep");
-        }
-        else {
-            this.updateTTL(solidId, "@prefix schem: <http://schema.org/>.");
-
-        }
-
-    }
-
     private async createNewMessage() {
 
         //getting message from DOM
@@ -153,12 +145,18 @@ export class ChatComponent implements OnInit {
 
     }
 
+    /*
+     * This methos searches for a message in an url
+     */
     private async readMessage(url) {
         var message = await this.searchMessage(url)
         console.log(message);
         return message;
     }
 
+    /*
+     * Sorted methos that sorts the message array
+     */
     private order(mess:message[]){
           let ordered:message[]=[];
           let aux= mess;
@@ -169,7 +167,10 @@ export class ChatComponent implements OnInit {
           }
           return ordered;
         }
-
+ 
+    /*
+     * This is a sorting method that obtains the minor message
+     */
     private findMinor(aux:message[]){
           let idx=0
           let minor:message = aux[idx];
@@ -182,7 +183,9 @@ export class ChatComponent implements OnInit {
           return idx;
         }
 
-    //method that creates a file in a folder using the solid-file-client lib
+    /*
+     * This method creates a file in a folder using the solid-file-client lib
+     */
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
             console.log(`Created file ${fileCreated}.`);
@@ -190,7 +193,9 @@ export class ChatComponent implements OnInit {
     }
 
 
-    //method that search for a message in a pod
+    /*
+     * This method search for a message in a pod
+     */
     private async searchMessage(url) {
         return await this.fileClient.readFile(url).then(body => {
             console.log(`File	content is : ${body}.`);
@@ -199,7 +204,9 @@ export class ChatComponent implements OnInit {
 
     }
 
-
+    /*
+     * This methos updates the TTL file with the new content
+     */
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
@@ -213,7 +220,9 @@ export class ChatComponent implements OnInit {
         }
     }
 
-
+    /*
+     * This method gets the url of the connection to synchronize the different messages
+     */
     private async hackingFriendFolder(){
 
 
@@ -265,6 +274,9 @@ export class ChatComponent implements OnInit {
     }
 
 
+    /*
+     * This method creates the different message to show in the chat pane.
+     */
     private createChatMessages(){
         this.messages.forEach(message => {
             "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
