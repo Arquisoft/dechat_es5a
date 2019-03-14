@@ -111,6 +111,7 @@ export class ChatComponent implements OnInit {
         let myUser= this.getUserByUrl(this.rdf.session.webId);
         let user = this.getUserByUrl(this.ruta_seleccionada);
         var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
+        (document.getElementById("usermsg") as HTMLInputElement).value="";
         console.log(messageContent);
         //Sender WebID
         let senderId = this.rdf.session.webId;
