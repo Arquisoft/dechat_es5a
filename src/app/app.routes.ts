@@ -5,16 +5,21 @@ import { LoginPopupComponent } from './login-popup/login-popup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { CardComponent} from './card/card.component';
+import { FriendsComponent } from './friends/friends.component';
+import { ChatComponent } from './chat/chat.component';
 
 const APP_ROUTES: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login-popup', component: LoginPopupComponent },
   { path: 'dashboard', component: DashboardComponent,
-    canActivate: [AuthGuard], },
+    canActivate: [AuthGuard] },
   { path: 'card', component: CardComponent,
-    canActivate: [AuthGuard],},
+    canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+  { path: 'friends', component: FriendsComponent },
+  { path: 'chat/:parametro', component: ChatComponent },
+
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);

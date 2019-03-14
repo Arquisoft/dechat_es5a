@@ -1,26 +1,11 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Friends</title>
-</head>
 <body>
-<div class="container-fluid">
 <div class="grid-rows">
     <div class="row">
-    <div class="col-sm-4">
-        <ul class="list-group" *ngFor="let item of friends">
-            <li>{{ item.webid }}  <a routerLink="">  Enviar Mensaje</a></li>
+        <ul class="fas fa-user" style="font-size: 20px; color: #7C55FB " *ngFor="let item of friends">
+             <a [routerLink] = "['/chat',item.webid.toString()]"> {{ item.webid}} </a>
         </ul>
-    </div>
-    <div  class="col-sm-8">
-
-    </div>
-</div>
 </div>
 </div>
 </body>

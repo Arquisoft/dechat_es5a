@@ -1,0 +1,31 @@
+<div id="wrapper">
+    <div id="menu">
+        <div class="welcome"> <i class="fas fa-comments"style="font-size: 25px; margin-left: 2%;">  DECHAT_ES5A</i>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class = "float-right" id="chatbox" >
+        <ul >
+            <div  *ngFor="let message of messages">
+
+                <p> <i class="fas fa-user-circle" style="font-size: 30px; color: blueviolet">  </i>
+                {{message.content}}
+                </p>
+
+            </div>
+
+       </ul>
+
+        <p id ="pchatbox"></p>
+    </div>
+</div>
+<div id="writemessage">
+    <form name="message" action="" >
+        <input name="usermsg" type="text" id="usermsg" size="120"  placeholder="Write your message..." />
+        <button (click)="createNewMessage()" id="submitmsg"><i class="fa fa-paper-plane" aria-hidden="true"  style="font-size: 25px; "></i></button>
+    </form>
+</div>
+
+
+

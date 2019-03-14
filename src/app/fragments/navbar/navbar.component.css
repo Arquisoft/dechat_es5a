@@ -1,7 +1,50 @@
 html {
     position: relative;
     min-height: 100%;
+    width: max-content;
 }
+
 .navbar-inverse {
     background-color: #60A713;
+}
+
+.navbar-button {
+    border-radius: 12px;
+    border: 2px solid #7C55FB;
+    padding: 5px;
+    color: #fff;
+    background-color: #7C55FB;
+    margin-left: 10px ;
+
+}
+.navbar-logout {
+    border-radius: 12px;
+    border: 2px solid #7C55FB;
+
+    margin-left: 850px ;
+    color: #fff;
+    background-color: #7C55FB;
+}
+
+.barra{
+    margin-top: 10px ;
+    background-color: #7C55FB;
+    border: 2px solid #7C55FB;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+
+.right{
+    float: right;
+    display: inline;
+    text-align: right;
+
+}
+
+.left{
+    float: left;
+    display: inline;
+    text-align: left;
 }

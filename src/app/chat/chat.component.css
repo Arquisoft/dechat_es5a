@@ -1,0 +1,35 @@
+#chatbox {
+    text-align: left;
+    padding: 10px;
+    background: whitesmoke;
+    height: 400px;
+    border: 1px solid #7C55FB;
+    overflow: auto;
+    width: 100%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#menu {
+    background-color: #7C55FB;
+}
+
+#message-input {
+    margin-bottom: 200px;
+}
+
+#usermsg {
+    width: 95%;
+
+}
+
+#submitmsg {
+    background-color: #7C4DFF;
+    width: 5%;
+}
+
+#writemessage {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+}
