@@ -7,6 +7,7 @@ import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import { TTLPrinter } from '../services/printers/ttlprinter.service';
 import {TXTPrinter} from '../services/printers/txtprinter.service'
+import { filesCreator } from '../services/creators/filesCreator';
 
 
 
@@ -43,8 +44,8 @@ export class ChatComponent implements OnInit {
     ngOnInit() {
         this.fileClient = require('solid-file-client');
         const name = this.getUserByUrl(this.ruta_seleccionada);
-        this.createNewFolder('dechat5a', '/public/');
-        this.createNewFolder(name, '/public/dechat5a/');
+        new filesCreator().createNewFolder('dechat5a', '/public/',this.rdf.session.webId,this.fileClient);
+        new filesCreator().createNewFolder(name, '/public/dechat5a/',this.rdf.session.webId,this.fileClient);
         this.synchronizeMessages();
         setInterval(() => {
             this.synchronizeMessages();
@@ -60,39 +61,6 @@ export class ChatComponent implements OnInit {
         const user = sinhttp.split('.')[0];
         return user;
 
-    }
-
-    /*
-     * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
-     */
-    private createNewFolder(name: string, ruta: string) {
-        //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
-        //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
-        let solidId = this.rdf.session.webId;
-        let stringToChange = '/profile/card#me';
-        let path = ruta + name;
-        solidId = solidId.replace(stringToChange, path);
-
-        //Necesito logearme en el cliente para que me de permiso, sino me dara un error al intentar
-        //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
-        // que se ejecuta correctamente.
-
-        this.buildFolder(solidId);
-
-    }
-    /*
-     * Method that creates the folder using the solid-file-client lib
-     */
-    private buildFolder(solidId) {
-        this.fileClient.readFolder(solidId).then(folder => {
-            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
-        }, err => {
-            //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
-            this.fileClient.createFolder(solidId).then(success => {
-                console.log(`Created folder ${solidId}.`);
-            }, err1 => console.log(err1));
-
-        });
     }
 
     /*
