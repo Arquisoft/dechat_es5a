@@ -116,17 +116,16 @@ export class ChatComponent implements OnInit {
     /*
      * Sorted methos that sorts the message array
      */
-    private order(mess:message[]){
-          let ordered:message[]=[];
-          let aux= mess;
-          while(aux.length>0){
-              let idx = this.findMinor(aux);
-              ordered.push(aux[idx]);
-              aux.splice(idx,1);
-          }
-          return ordered;
-        }
- 
+     private order( mess : message[] )
+     {
+        return mess.sort(function(a, b) {
+             let date1 =a.date;
+             let date2 = b.date;
+             return date2>date1 ? -1 : date2<date1 ? 1 : 0;
+         });
+     }
+
+
     /*
      * This is a sorting method that obtains the minor message
      */
