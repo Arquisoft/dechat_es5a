@@ -52,16 +52,7 @@ export class ChatComponent implements OnInit {
         }, 3000);
     }
 
-    /*
-     * This method obtains the username based on his webID
-     */
-    private getUserByUrl(ruta: string): string {
-        let sinhttp;
-        sinhttp = ruta.replace('https://', '');
-        const user = sinhttp.split('.')[0];
-        return user;
 
-    }
 
     /*
      * This method obtains different data and creates a new message. 
@@ -70,8 +61,8 @@ export class ChatComponent implements OnInit {
     private async createNewMessage() {
 
         //getting message from DOM
-        let myUser= this.getUserByUrl(this.rdf.session.webId);
-        let user = this.getUserByUrl(this.ruta_seleccionada);
+        let myUser= new filesCreator().getUserByUrl(this.rdf.session.webId);
+        let user = new filesCreator().getUserByUrl(this.ruta_seleccionada);
         var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
         (document.getElementById("usermsg") as HTMLInputElement).value="";
         console.log(messageContent);
