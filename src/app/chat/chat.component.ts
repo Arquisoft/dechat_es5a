@@ -45,9 +45,9 @@ export class ChatComponent implements OnInit {
         const name = this.getUserByUrl(this.ruta_seleccionada);
         this.createNewFolder('dechat5a', '/public/');
         this.createNewFolder(name, '/public/dechat5a/');
-        this.hackingFriendFolder();
+        this.synchronizeMessages();
         setInterval(() => {
-            this.hackingFriendFolder();
+            this.synchronizeMessages();
         }, 3000);
     }
 
@@ -141,7 +141,7 @@ export class ChatComponent implements OnInit {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
         }
         */
-        this.hackingFriendFolder();
+        this.synchronizeMessages();
 
     }
 
@@ -223,7 +223,7 @@ export class ChatComponent implements OnInit {
     /*
      * This method gets the url of the connection to synchronize the different messages
      */
-    private async hackingFriendFolder(){
+    private async synchronizeMessages(){
 
 
         var urlArray = this.ruta_seleccionada.split("/");
