@@ -1,20 +1,18 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <nav class="navbar navbar-expand-lg navbar-darck bg-light">
-    <a class="navbar-brand" href="#"><i class="fas fa-home" style="font-size: 40px;"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="barra">
-        <li class="left"><a class="navbar-button" routerLink="/card" *ngIf="isLogged()">My Profile </a></li>
-        <li class="left"><a class="navbar-button" routerLink="/friends" *ngIf="isLogged()"> Friends list</a></li>
-        <li class="left"><a class="navbar-button" href="https://arquisoft.github.io/dechat_es5a/" > Documentation </a></li>
-        <li class="right"><a class="navbar-logout" [routerLink]='login' *ngIf="isLogged()" (click)="logout()"> Logout</a></li>
+    <ul class="topnav" id="myTopnav">
+        <a class="navbar-brand" href="#"><i class="fas fa-home" style="font-size: 30px;"></i></a>
+        <a class="navbar-button" routerLink="/card" *ngIf="isLogged()">My Profile </a>
+        <a class="navbar-button" routerLink="/friends" *ngIf="isLogged()"> Friends list</a>
+        <a class="navbar-button" href="https://arquisoft.github.io/dechat_es5a/"> Documentation </a>
+        <a class="navbar-logout" [routerLink]='login' *ngIf="isLogged()" (click)="logout()" style="margin-left: 50%"> Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
     </ul>
-
-
-
-
-
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    </div>
 </nav>
