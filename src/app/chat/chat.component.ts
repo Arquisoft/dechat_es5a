@@ -6,6 +6,8 @@ import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import {TXTPrinter} from '../services/printers/txtprinter.service';
+import { TTLPrinter } from '../services/printers/ttlprinter.service';
+import { filesCreator } from '../services/creators/filesCreator';
 
 @Component({
     selector: 'app-chat',
@@ -19,6 +21,7 @@ export class ChatComponent implements OnInit {
     htmlToAdd: string;
     messages: message[]=[];
     names: string;
+    fC:filesCreator;
 
     /*
      * Constuctor
@@ -30,7 +33,6 @@ export class ChatComponent implements OnInit {
             console.log(this.ruta_seleccionada);
             console.log(typeof this.ruta_seleccionada);
         });
-
         this.names = this.getUserByUrl(this.ruta_seleccionada);
     }
 
@@ -38,13 +40,18 @@ export class ChatComponent implements OnInit {
      * This method synchronize the conversation once the application is launched
      */
     ngOnInit() {
+
         this.fileClient = require('solid-file-client');
-        const name = this.getUserByUrl(this.ruta_seleccionada);
-        this.createNewFolder('dechat5a', '/public/');
-        this.createNewFolder(name, '/public/dechat5a/');
-        this.hackingFriendFolder();
+        
+        this.fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
+        const name = this.fC.getUserByUrl(this.ruta_seleccionada);
+        this.fC.createNewFolder('dechat5a', '/public/');
+        this.fC.createNewFolder(name, '/public/dechat5a/');
+        this.fC.synchronizeMessages();
+        this.messages= this.fC.messages;
         setInterval(() => {
-            this.hackingFriendFolder();
+            this.fC.synchronizeMessages();
+            this.messages= this.fC.messages;
         }, 3000);
 
 
@@ -239,46 +246,20 @@ export class ChatComponent implements OnInit {
         {
             messageArray = messageContent.split("\n");
         }
-        let messageContentPropia = await  this.searchMessage(urlPropia);
-        let messageArrayPropio = [] ;
-        if(messageContentPropia != undefined)
-        {
-            messageArrayPropio = messageContentPropia.split("\n");
-        }
-
-        this.messages = [];
-        messageArray.forEach(element => {
-            console.log(element.content)
-            if(element[0]){
-             let messageArrayContent = element.split("###");
-             let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
-             this.messages.push(messageToAdd);
-            }
-
-        });
-        messageArrayPropio.forEach(element => {
-            console.log(element.content)
-            if(element[0]){
-                let messageArrayContent = element.split("###");
-                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
-                this.messages.push(messageToAdd);
-            }
-
-        });
-
-        let ordered = this.order(this.messages);
-        this.messages=ordered;
-    }
 
 
     /*
      * This method creates the different message to show in the chat pane.
      */
-    private createChatMessages(){
+    private insertHTMLMessages(){
+        let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         this.messages.forEach(message => {
-            "<p> " + this.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
+            "<p> " + fC.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
         });
+    }
+
+    private callFilesCreatorMessage(){
+        let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
+        fC.createNewMessage();
     }
 }
