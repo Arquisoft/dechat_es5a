@@ -4,8 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
-import { message } from '../models/message.model';
-import { TTLPrinter } from '../services/printers/ttlprinter.service';
+import { Message } from '../models/message.model';
+import { TTLWriterService } from '../services/printers/ttlwriter.service';
 import {TXTPrinter} from '../services/printers/txtprinter.service'
 
 
@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit {
     fileClient: any;
     ruta_seleccionada: string;
     htmlToAdd: string;
-    messages: message[]=[];
+    messages: Message[]=[];
 
     /*
      * Constuctor
@@ -96,7 +96,7 @@ export class ChatComponent implements OnInit {
     }
 
     /*
-     * This method obtains different data and creates a new message. 
+     * This method obtains different data and creates a new message.
      * It also creates (or updates if its already created) the conversation file.
      */
     private async createNewMessage() {
@@ -114,7 +114,7 @@ export class ChatComponent implements OnInit {
         //Receiver WebId
         let recipientPerson: Friend = { webid: this.ruta_seleccionada }
 
-        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+        let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
         let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
@@ -157,8 +157,8 @@ export class ChatComponent implements OnInit {
     /*
      * Sorted methos that sorts the message array
      */
-    private order(mess:message[]){
-          let ordered:message[]=[];
+    private order(mess:Message[]){
+          let ordered:Message[]=[];
           let aux= mess;
           while(aux.length>0){
               let idx = this.findMinor(aux);
@@ -167,13 +167,13 @@ export class ChatComponent implements OnInit {
           }
           return ordered;
         }
- 
+
     /*
      * This is a sorting method that obtains the minor message
      */
-    private findMinor(aux:message[]){
+    private findMinor(aux:Message[]){
           let idx=0
-          let minor:message = aux[idx];
+          let minor:Message = aux[idx];
           for(let i=0; i<aux.length; i++){
             if(aux[i].date< minor.date){
               idx=i;
@@ -252,7 +252,7 @@ export class ChatComponent implements OnInit {
             console.log(element.content)
             if(element[0]){
              let messageArrayContent = element.split("###");
-             let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+             let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
              this.messages.push(messageToAdd);
             }
@@ -262,7 +262,7 @@ export class ChatComponent implements OnInit {
             console.log(element.content)
             if(element[0]){
                 let messageArrayContent = element.split("###");
-                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+                let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
                 this.messages.push(messageToAdd);
             }

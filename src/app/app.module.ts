@@ -24,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
-import { TTLWritterService } from './services/printers/ttlprinter.service';
+import { TTLWriterService } from './services/printers/ttlwriter.service';
 
 
 
@@ -52,7 +52,7 @@ import { TTLWritterService } from './services/printers/ttlprinter.service';
   ],
   providers: [
     AuthService,
-    TTLWritterService,
+    TTLWriterService,
   ],
   bootstrap: [AppComponent]
 })
