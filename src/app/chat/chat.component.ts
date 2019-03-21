@@ -27,7 +27,8 @@ export class ChatComponent implements OnInit {
     /*
      * Constuctor
      */
-    constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
+    constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute,
+    private ttlwriter:TTLWriterService) {
         this.rutaActiva.params.subscribe(data => {
             console.log(data['parametro']);
             this.ruta_seleccionada = data['parametro'];
@@ -116,20 +117,23 @@ export class ChatComponent implements OnInit {
 
         let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
         let stringToChange = '/profile/card#me';
-        let path = '/public/dechat5a/' + user + '/Conversation.txt';
-
+        let path = '/public/dechat5a/' + user + '/Conversation.ttl';
+        console.log(messageToSend);
         senderId = senderId.replace(stringToChange, path);
 
         let message = await this.readMessage(senderId);
 
         console.log(message);
-
         //For TXTPrinter
         if (message != null) {
-            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+          let content =  this.ttlwriter.initService(messageToSend.sender.webid, messageToSend.recipient.webid);
+          content = content + this.ttlwriter.writteData(messageToSend);
+          this.updateTTL(senderId, content);
         }
         else {
-            this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
+          let content =  this.ttlwriter.initService(messageToSend.sender.webid, messageToSend.recipient.webid);
+          content = content + this.ttlwriter.writteData(messageToSend);
+            this.updateTTL(senderId, content);
         }
 
         /*
@@ -209,6 +213,7 @@ export class ChatComponent implements OnInit {
      */
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
+            let newTtl = this.ttlwriter
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
                 console.log(`Updated ${url}.`)
             }, err => console.log(err));
@@ -227,10 +232,10 @@ export class ChatComponent implements OnInit {
 
 
         var urlArray = this.ruta_seleccionada.split("/");
-        let url= "https://" + urlArray[2] + "/public/dechat5a/" +this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
+        let url= "https://" + urlArray[2] + "/public/dechat5a/" +this.getUserByUrl(this.rdf.session.webId) + "/Conversation.ttl";
 
         var urlArrayPropio = this.rdf.session.webId.split("/");
-        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" +this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.txt";
+        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" +this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.ttl";
         console.log("URL PROPIA: "+ urlPropia);
         console.log(url);
         let messageContent = await this.searchMessage(url);
