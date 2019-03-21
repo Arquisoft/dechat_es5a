@@ -5,6 +5,7 @@ import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
+import {TXTPrinter} from '../services/printers/txtprinter.service';
 
 @Component({
     selector: 'app-chat',
@@ -139,7 +140,6 @@ export class ChatComponent implements OnInit {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
         }
         */
-
         this.hackingFriendFolder();
 
     }
