@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
+import { TTLWritterService } from './services/printers/ttlprinter.service';
 
 
 
@@ -50,7 +51,9 @@ import { AuthGuard } from './services/auth.guard.service';
     BrowserAnimationsModule // required for toastr
   ],
   providers: [
-    AuthService],
+    AuthService,
+    TTLWritterService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

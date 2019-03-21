@@ -1,11 +1,18 @@
 
 
-export class TTLPrinter {
-    public getTTLHeader(messageToSend, sender, recipient) {
-        return "@prefix schem: <http://schema.org/>." + "\n" +
-            "@prefix mess: <http://schema.org/Message>.\n" +
-            "@prefix mess: <http://schema.org/Person>.\n\n" +
-            this.getTTLDataFromUser(sender, recipient) + "\n\n" + this.getTTLDataFromMessage(messageToSend)
+export class TTLWritterService {
+
+    public writeTTLPrefixes( urlSender :string, urlRecipient :string
+      , urlOntology:string ='http://schema.org/') :string{
+      let message :string =``;
+      //Adding empty prefix
+      message+= '@prefix : <#>.\n';
+      //Adding default prefix to Schema.org ontologies.
+      message+= `@prefix: ont: <${urlOntology}>.\n`;
+      //Adding Pod profiles prefixes from SENDER and RECIPIENT
+      message+=`@prefix: c0: <${urlSender}>.\n`;
+      message+=`@prefix: c1:<${urlRecipient}>.\n\n`;
+      return message;
     }
 
     public getTTLDataFromMessage(message) {
