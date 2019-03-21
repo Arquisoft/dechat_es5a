@@ -185,14 +185,14 @@ export class filesCreator {
             messageArrayPropio = messageContentPropia.split("\n");
         }
 
-        this.messages = [];
+        let mess = [];
         messageArray.forEach(element => {
             console.log(element.content)
             if(element[0]){
              let messageArrayContent = element.split("###");
              let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
-             this.messages.push(messageToAdd);
+             mess.push(messageToAdd);
             }
 
         });
@@ -202,13 +202,21 @@ export class filesCreator {
                 let messageArrayContent = element.split("###");
                 let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
-                this.messages.push(messageToAdd);
+                mess.push(messageToAdd);
             }
 
         });
 
-        let ordered = new messagesSorter().order(this.messages);
-        this.messages=ordered;
+
+
+        let ordered = new messagesSorter().order(mess);
+
+        if(mess.length > this.messages.length){
+            for (var i = this.messages.length; i < mess.length; i++) {
+                this.messages.push( mess[i]);
+            }
+        }
+
     }
 
     
