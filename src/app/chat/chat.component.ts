@@ -9,6 +9,7 @@ import {TXTPrinter} from '../services/printers/txtprinter.service';
 import { TTLPrinter } from '../services/printers/ttlprinter.service';
 import { filesCreator } from '../services/creators/filesCreator';
 
+
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
@@ -19,9 +20,9 @@ export class ChatComponent implements OnInit {
     fileClient: any;
     ruta_seleccionada: string;
     htmlToAdd: string;
-    messages: message[]=[];
+    messages: message[] = [];
     names: string;
-    fC:filesCreator;
+    fC: filesCreator;
 
     /*
      * Constuctor
@@ -229,25 +230,24 @@ export class ChatComponent implements OnInit {
     /*
      * This method gets the url of the connection to synchronize the different messages
      */
-    private async hackingFriendFolder(){
+    private async hackingFriendFolder() {
 
 
         var urlArray = this.ruta_seleccionada.split("/");
-        let url= "https://" + urlArray[2] + "/public/dechat5a/" +this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
+        let url = "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
 
         var urlArrayPropio = this.rdf.session.webId.split("/");
-        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" +this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.txt";
-        console.log("URL PROPIA: "+ urlPropia);
+        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.txt";
+        console.log("URL PROPIA: " + urlPropia);
         console.log(url);
         let messageContent = await this.searchMessage(url);
         console.log("MessageContent " + messageContent);
-        let messageArray = [] ;
-        if(messageContent != undefined)
-        {
+        let messageArray = [];
+        if (messageContent != undefined) {
             messageArray = messageContent.split("\n");
         }
 
-
+    }
     /*
      * This method creates the different message to show in the chat pane.
      */
