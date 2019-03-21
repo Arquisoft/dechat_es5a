@@ -19,7 +19,7 @@ html {
 
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #32465a;
     width: 300%;
 }
 
@@ -34,7 +34,7 @@ html {
 }
 
 .topnav a:hover {
-    background-color: #7C4DFB;
+    background-color: #5B2C6F;
     color: black;
 }
 

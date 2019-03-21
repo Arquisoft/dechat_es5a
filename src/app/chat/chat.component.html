@@ -1,31 +1,34 @@
-<div id="wrapper">
-    <div id="menu">
-        <div class="welcome"> <i class="fas fa-comments"style="font-size: 25px; margin-left: 2%;">  DECHAT_ES5A</i>
-        </div>
-        <div style="clear:both"></div>
-    </div>
 
-    <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class = "float-right" id="chatbox" >
-        <ul >
-            <div  *ngFor="let message of messages">
-
-                <p> <i class="fas fa-user-circle" style="font-size: 30px; color: blueviolet">  </i>
-                {{message.content}}
-                </p>
-
+<div id="frame">
+    <div class="content">
+        <div class="contact-profile">
+            <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+            <p>{{names}}</p>
+            <div class="social-media">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
             </div>
+        </div>
+        <div class="messages">
+            <ul>
+                <li class="sent" *ngFor="let message of messages">
+                    <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+                    <p>
+                        {{message.content}}
+                    </p>
 
-       </ul>
-
-        <p id ="pchatbox"></p>
+                </li>
+            </ul>
+        </div>
+        <div class="message-input">
+            <div class="wrap" id="writemessage">
+                <input name="usermsg" type="text" id="usermsg" placeholder="Write your message..."/>
+                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                <button (click)="createNewMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
+                                                                                      aria-hidden="true"></i></button>
+            </div>
+        </div>
     </div>
-</div>
-<div id="writemessage">
-    <form name="message" action="" >
-        <input name="usermsg" type="text" id="usermsg" size="120"  placeholder="Write your message..." />
-        <button (click)="createNewMessage()" id="submitmsg"><i class="fa fa-paper-plane" aria-hidden="true"  style="font-size: 25px; "></i></button>
-    </form>
-</div>
-
 
 

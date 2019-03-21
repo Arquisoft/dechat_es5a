@@ -5,8 +5,7 @@ import { getBodyNode } from '@angular/animations/browser/src/render/shared';
 import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
-
-
+import * as $ from 'jquery';
 
 @Component({
     selector: 'app-chat',
@@ -15,12 +14,11 @@ import { message } from '../models/message.model';
 })
 export class ChatComponent implements OnInit {
 
-
-
     fileClient: any;
     ruta_seleccionada: string;
     htmlToAdd: string;
     messages: message[]=[];
+    names: string;
 
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
         this.rutaActiva.params.subscribe(data => {
@@ -30,6 +28,7 @@ export class ChatComponent implements OnInit {
             console.log(typeof this.ruta_seleccionada);
         });
 
+        this.names = this.getUserByUrl(this.ruta_seleccionada);
     }
 
     ngOnInit() {
@@ -41,6 +40,8 @@ export class ChatComponent implements OnInit {
         setInterval(() => {
             this.hackingFriendFolder();
         }, 3000);
+
+
     }
 
     private getUserByUrl(ruta: string): string {
@@ -147,6 +148,7 @@ export class ChatComponent implements OnInit {
             this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
         }
         */
+
         this.hackingFriendFolder();
 
     }
