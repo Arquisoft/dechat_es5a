@@ -32,7 +32,7 @@ export class filesCreator {
             this.fileClient.createFolder(solidId).then(success => {
                 console.log(`Created folder ${solidId}.`);
             }, err1 => console.log(err1));
-
+ 
         });
     }
 
