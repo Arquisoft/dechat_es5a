@@ -136,15 +136,15 @@ export class ChatComponent implements OnInit {
             this.updateTTL(senderId, content);
         }
 
-        /*
+
         //For TTLPrinter
-        if (message!= null) {
-            this.updateTTL(senderId, message + "\n\n" + new TTLPrinter().getTTLDataFromMessage(messageToSend));
-        }
-        else {
-            this.updateTTL(senderId, new TTLPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
-        }
-        */
+        // if (message!= null) {
+        //     this.updateTTL(senderId, message + "\n\n" + new TXTPrinter().getTTLDataFromMessage(messageToSend));
+        // }
+        // else {
+        //     this.updateTTL(senderId, new TXTPrinter().getTTLHeader(messageToSend,senderId,this.ruta_seleccionada));
+        // }
+      //
         this.hackingFriendFolder();
 
     }
