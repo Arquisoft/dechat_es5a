@@ -36,6 +36,102 @@ export class filesCreator {
         });
     }
 
+    /*
+     * Creates a .acl for the file in the path.
+     * This file is only for the owner
+     * path must have the / at the end of the folder
+     * @param path:string the file for the .acl
+     * @param user:string the /profile/card#me of the user owner of the folder
+     */
+    private createOwnerACL(path:string, user:string) {
+        let file = path+'.acl';
+        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
+            '<#owner>\n'+
+            'a             acl:Authorization;\n'+
+            'acl:agent     <'+this.sessionWebId+'>;\n'+
+            'acl:accessTo  <'+path+'>;\n'+
+            'acl:defaultForNew <./>;'+
+            'acl:mode\n      acl:Read,\n'+
+            'acl:Write,\n'+
+            'acl:Control.'
+
+        this.fileClient.updateFile(file,contenido).then(success => {
+            console.log(`Created acl owner ${file}.`)
+        }, err => console.log(err));
+    }
+
+    /*
+     * Creates a .acl for the file in the path.
+     * This file made for the owner and one reader
+     * Used in p2p chats
+     * path must have the / at the end of the folder
+     * @param path:string the file for the .acl
+     * @param owner:string the /profile/card#me of the user owner of the folder
+     * @param reader:string the /profile/card#me of the reader of the folder
+     */
+    public createReadForOneACL(path: string, owner: string, reader:string) {
+        let file = path + '.acl';
+        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .'+
+            '<#owner>\n'+
+            'a             acl:Authorization;\n'+
+            'acl:agent     <'+owner+'>;\n'+
+            'acl:accessTo  <'+path+'>;\n'+
+            'acl:defaultForNew <./>;'+
+            'acl:mode\n      acl:Read,\n'+
+            'acl:Write,\n'+
+            'acl:Control.\n'+
+
+            '<#reader>\n'+
+            'a             acl:Authorization;\n'+
+            'acl:agent     <'+reader+'>;\n'+
+            'acl:accessTo  <'+path+'>;\n'+
+            'acl:defaultForNew <./>;'+
+            'acl:mode\n      acl:Read.'
+
+        this.fileClient.updateFile(file,contenido).then(success => {
+            console.log(`Created acl one reader ${file}.`)
+        }, err => console.log(err));
+    }
+
+    /*
+     * Creates a .acl for the file in the path.
+     * This file made for the owner and many readers
+     * Used in p2p chats
+     * path must have the / at the end of the folder
+     * @param path:string the file for the .acl
+     * @param owner:string the /profile/card#me of the user owner of the folder
+     * @param readers:string[] the /profile/card#me of the readers of the folder
+     */
+    public createReadForManyACL(path: string, owner:string, readers: string[]) {
+        let file = path + '.acl';
+        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .'+
+            '<#owner>'+
+            'a             acl:Authorization;'+
+            'acl:agent     <'+owner+'>'+
+            'acl:accessTo  <'+path+'>'+
+            'acl:defaultForNew <./>;'+
+            'acl:mode      acl:Read,'+
+            'acl:Write,'+
+            'acl:Control.'+
+
+            '<#readers>'+
+            'a               acl:Authorization;'+
+            'acl:accessTo    <'+path+'>'+
+            'acl:defaultForNew <./>;'+
+            'acl:mode        acl:Read'
+
+        readers.forEach(function (e, idx, array) {
+            if (idx === array.length - 1){
+                contenido = contenido + 'acl:agent  <'+e+'>.'
+            } else {
+                contenido = contenido + 'acl:agent  <'+e+'>;'
+            }
+        })
+        this.fileClient.updateFile(file,contenido).then(success => {
+            console.log(`Created acl many readers ${file}.`)
+        }, err => console.log(err));
+    }
+
         /*
      * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
      */
