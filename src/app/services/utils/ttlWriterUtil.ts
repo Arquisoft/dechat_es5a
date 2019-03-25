@@ -16,5 +16,5 @@ export class TTLWriterUtil {
     `\t a ${ontology}:${type};\n`
 
     writeName=(name:string)=>
-    `:${name}\n`
+    `\n:${name}\n`
 }

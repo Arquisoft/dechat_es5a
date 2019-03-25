@@ -123,11 +123,11 @@ export class ChatComponent implements OnInit {
 
         let message = await this.readMessage(senderId);
 
-        console.log(message);
+        console.log("MENSAJE------------>" +message);
+        console.log("MENSAJE CONTENT---->" + messageContent);
         //For TXTPrinter
         if (message != null) {
-          let content =  this.ttlwriter.initService(messageToSend.sender.webid, messageToSend.recipient.webid);
-          content = content + this.ttlwriter.writteData(messageToSend);
+          let content =  message + this.ttlwriter.writteData(messageToSend);
           this.updateTTL(senderId, content);
         }
         else {
@@ -212,8 +212,10 @@ export class ChatComponent implements OnInit {
      * This methos updates the TTL file with the new content
      */
     private updateTTL(url, newContent, contentType?) {
+      console.log("NEW CONTENT-->" +  newContent);
+      console.log("ContentTYpe-->"+ contentType);
         if (contentType) {
-            let newTtl = this.ttlwriter
+            let newTtl = this.ttlwriter;
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
                 console.log(`Updated ${url}.`)
             }, err => console.log(err));
@@ -246,6 +248,7 @@ export class ChatComponent implements OnInit {
             messageArray = messageContent.split("\n");
         }
         let messageContentPropia = await  this.searchMessage(urlPropia);
+        console.log("Leimos nuestro ttl");
         let messageArrayPropio = [] ;
         if(messageContentPropia != undefined)
         {
