@@ -85,7 +85,7 @@ export class filesCreator {
             'a             acl:Authorization;\n'+
             'acl:agent     <'+reader+'>;\n'+
             'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;'+
+            'acl:defaultForNew <./>;\n'+
             'acl:mode\n      acl:Read.'
 
         this.fileClient.updateFile(file,contenido).then(success => {
@@ -104,32 +104,48 @@ export class filesCreator {
      */
     public createReadForManyACL(path: string, owner:string, readers: string[]) {
         let file = path + '.acl';
-        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .'+
-            '<#owner>'+
-            'a             acl:Authorization;'+
-            'acl:agent     <'+owner+'>'+
-            'acl:accessTo  <'+path+'>'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode      acl:Read,'+
-            'acl:Write,'+
-            'acl:Control.'+
+        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
+            '<#owner>\n'+
+            'a             acl:Authorization;\n'+
+            'acl:agent     <'+owner+'>\n'+
+            'acl:accessTo  <'+path+'>\n'+
+            'acl:defaultForNew <./>;\n'+
+            'acl:mode      acl:Read,\n'+
+            'acl:Write,\n'+
+            'acl:Control.\n'+
 
-            '<#readers>'+
-            'a               acl:Authorization;'+
-            'acl:accessTo    <'+path+'>'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode        acl:Read'
+            '<#readers>\n'+
+            'a               acl:Authorization;\n'+
+            'acl:accessTo    <'+path+'>\n'+
+            'acl:defaultForNew <./>;\n'+
+            'acl:mode        acl:Read;\n'
 
         readers.forEach(function (e, idx, array) {
             if (idx === array.length - 1){
                 contenido = contenido + 'acl:agent  <'+e+'>.'
             } else {
-                contenido = contenido + 'acl:agent  <'+e+'>;'
+                contenido = contenido + 'acl:agent  <'+e+'>;\n'
             }
         })
         this.fileClient.updateFile(file,contenido).then(success => {
             console.log(`Created acl many readers ${file}.`)
         }, err => console.log(err));
+    }
+    /*
+     * Returns a string with all the readers of a acl, divided by '|'
+     * @param path:string the file or folder to look the readers
+     * In TODO
+     */
+    public getReaders(path:string): string{
+        let file;
+        let list;
+        this.fileClient.readFile(path+'.acl').then(  body => {
+            file= body;
+            console.log(`File content is : ${body}.`);
+        }, err => console.log(err) );
+
+
+        return  list;
     }
 
         /*
