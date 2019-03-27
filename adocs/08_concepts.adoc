@@ -65,3 +65,17 @@ _<explanation>_
 === _<Concept n>_
 
 _<explanation>_
+
+
+=== Directory Structure and Required Files
+----
+|-dechat5a
+   |  |-chat1
+   |  |  |-conversacion.ttl
+   |  |-chat2
+   |  |  |-conversacion.ttl
+   |  |-chat3
+   |  |  |-conversacion.ttl
+   |
+----
+
