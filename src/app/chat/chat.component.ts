@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { getBodyNode } from '@angular/animations/browser/src/render/shared';
-import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import {TXTPrinter} from '../services/printers/txtprinter.service';
-import { TTLPrinter } from '../services/printers/ttlprinter.service';
 import { filesCreator } from '../services/creators/filesCreator';
+import {deepEqual} from 'assert';
 
 
 @Component({
@@ -23,7 +21,8 @@ export class ChatComponent implements OnInit {
     messages: message[] = [];
     names: string;
     fC: filesCreator;
-
+    emisor: string;
+    contador: number;
     /*
      * Constuctor
      */
@@ -35,6 +34,9 @@ export class ChatComponent implements OnInit {
             console.log(typeof this.ruta_seleccionada);
         });
         this.names = this.getUserByUrl(this.ruta_seleccionada);
+        this.emisor = this.rdf.session.webId;
+        console.log("######################################");
+        console.log(this.emisor);
     }
 
     /*
@@ -43,7 +45,7 @@ export class ChatComponent implements OnInit {
     ngOnInit() {
 
         this.fileClient = require('solid-file-client');
-        
+
         this.fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         const name = this.fC.getUserByUrl(this.ruta_seleccionada);
         this.fC.createNewFolder('dechat5a', '/public/');
@@ -57,6 +59,7 @@ export class ChatComponent implements OnInit {
 
 
     }
+
 
     /*
      * This method obtains the username based on his webID
@@ -111,17 +114,17 @@ export class ChatComponent implements OnInit {
         //getting message from DOM
         let myUser= this.getUserByUrl(this.rdf.session.webId);
         let user = this.getUserByUrl(this.ruta_seleccionada);
-        var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
-        (document.getElementById("usermsg") as HTMLInputElement).value="";
+        var messageContent = myUser + ': ' + ((document.getElementById('usermsg') as HTMLInputElement).value);
+        (document.getElementById('usermsg') as HTMLInputElement).value='';
         console.log(messageContent);
+
         //Sender WebID
         let senderId = this.rdf.session.webId;
         let senderPerson: Friend = { webid: senderId };
-
         //Receiver WebId
-        let recipientPerson: Friend = { webid: this.ruta_seleccionada }
+        let recipientPerson: Friend = { webid: this.ruta_seleccionada };
 
-        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson };
         let stringToChange = '/profile/card#me';
         let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
@@ -133,7 +136,7 @@ export class ChatComponent implements OnInit {
 
         //For TXTPrinter
         if (message != null) {
-            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+            this.updateTTL(senderId, message + '\n' + new TXTPrinter().getTXTDataFromMessage(messageToSend));
         }
         else {
             this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
@@ -156,7 +159,7 @@ export class ChatComponent implements OnInit {
      * This methos searches for a message in an url
      */
     private async readMessage(url) {
-        var message = await this.searchMessage(url)
+        var message = await this.searchMessage(url);
         console.log(message);
         return message;
     }
@@ -179,7 +182,7 @@ export class ChatComponent implements OnInit {
      * This is a sorting method that obtains the minor message
      */
     private findMinor(aux:message[]){
-          let idx=0
+          let idx=0;
           let minor:message = aux[idx];
           for(let i=0; i<aux.length; i++){
             if(aux[i].date< minor.date){
@@ -194,7 +197,7 @@ export class ChatComponent implements OnInit {
      * This method creates a file in a folder using the solid-file-client lib
      */
     private buildFile(solidIdFolderUrl, content) {
-        this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
+        this.fileClient.createFile(solidIdFolderUrl, content, 'text/plain').then(fileCreated => {
             console.log(`Created file ${fileCreated}.`);
         }, err => console.log(err));
     }
@@ -217,12 +220,12 @@ export class ChatComponent implements OnInit {
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
-                console.log(`Updated ${url}.`)
+                console.log(`Updated ${url}.`);
             }, err => console.log(err));
         }
         else {
             this.fileClient.updateFile(url, newContent).then(success => {
-                console.log(`Updated ${url}.`)
+                console.log(`Updated ${url}.`);
             }, err => console.log(err));
         }
     }
@@ -231,16 +234,16 @@ export class ChatComponent implements OnInit {
      * This method gets the url of the connection to synchronize the different messages
      */
     private async hackingFriendFolder() {
-        var urlArray = this.ruta_seleccionada.split("/");
-        let url = "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.rdf.session.webId) + "/Conversation.txt";
+        var urlArray = this.ruta_seleccionada.split('/');
+        let url = 'https://' + urlArray[2] + '/public/dechat5a/' + this.getUserByUrl(this.rdf.session.webId) + '/Conversation.txt';
 
-        var urlArrayPropio = this.rdf.session.webId.split("/");
-        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.txt";
+        var urlArrayPropio = this.rdf.session.webId.split('/');
+        let urlPropia = 'https://' + urlArrayPropio[2] + '/public/dechat5a/' + this.getUserByUrl(this.ruta_seleccionada) + '/Conversation.txt';
 
         let messageContent = await this.searchMessage(url);
         let messageArray = [];
         if (messageContent != undefined) {
-            messageArray = messageContent.split("\n");
+            messageArray = messageContent.split('\n');
         }
 
     }
@@ -250,7 +253,7 @@ export class ChatComponent implements OnInit {
     private insertHTMLMessages(){
         let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         this.messages.forEach(message => {
-            "<p> " + fC.getUserByUrl(message.sender.webid) + ": " + message.content + "</p>";
+            '<p> ' + fC.getUserByUrl(message.sender.webid) + ': ' + message.content + '</p>';
         });
     }
 

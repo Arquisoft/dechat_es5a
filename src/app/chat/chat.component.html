@@ -1,4 +1,3 @@
-
 <div id="frame">
     <div class="content">
         <div class="contact-profile">
@@ -11,22 +10,25 @@
             </div>
         </div>
         <div class="messages">
-            <ul>
-                <li class="replies" *ngFor="let message of messages">
+            <ul *ngFor="let message of messages">
+
+                <li [ngClass]="message.recipient == emisor ? 'sent' : 'replies'">
                     <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
                     <p>
                         {{message.content}}
                     </p>
-
                 </li>
+
             </ul>
         </div>
         <div class="message-input">
             <div class="wrap" id="writemessage">
-                <input name="usermsg" type="text" id="usermsg" placeholder="Write your message..."/>
+                <input name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
+                       placeholder="Write your message..."/>
                 <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
                 <button (click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
-                                                                                      aria-hidden="true"></i></button>
+                                                                                             aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>

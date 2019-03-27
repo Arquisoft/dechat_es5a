@@ -196,6 +196,7 @@ export class filesCreator {
         let recipientPerson: Friend = { webid: this.recipientWebId }
 
         let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+        this.messages.push(messageToSend);
         let stringToChange = '/profile/card#me';
         let path = '/public/dechat5a/' + user + '/Conversation.txt';
 
