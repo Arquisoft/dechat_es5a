@@ -24,5 +24,7 @@ Only in english at the moment.
 | Scrum             | Agile methodology for working in group
 | SOLID             | Social Linked Data
 | Stakeholders      | People interested in a proyect
+| Angular           | A framwork for working in typescript
+| Turtle            | Is a syntax for expressing data in RDF
 |===
 
