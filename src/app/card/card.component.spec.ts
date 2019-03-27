@@ -1,3 +1,5 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrService, ToastrModule, TOAST_CONFIG } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -11,7 +13,9 @@ describe('CardComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CardComponent]
+            imports: [RouterTestingModule, FormsModule, ToastrModule.forRoot()],
+            declarations: [CardComponent],
+            providers: [ToastrService]
         })
             .compileComponents();
     }));
@@ -47,23 +51,26 @@ describe('Form testing', () => {
             declarations: [CardComponent],
             imports: [BrowserModule,
                 FormsModule,
-                ReactiveFormsModule]
+                ReactiveFormsModule, RouterTestingModule, ToastrModule.forRoot()],
+            providers: [ToastrService],
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(CardComponent);
             comp = fixture.componentInstance;
             de = fixture.debugElement.query(By.css('form'));
-            el = de.nativeElement;
+            if (de != null) {
+                el = de.nativeElement;
+            }
         });
     }));
 
-    it('should has name save', async (() =>{
+    it('should has name save', async(() => {
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('button').textContent).toContain('Save');
     }));
 
     it('should call the submit method', async(() => {
         fixture.detectChanges();
-        spyOn(comp,'onSubmit');
+        spyOn(comp, 'onSubmit');
         el = fixture.debugElement.query(By.css('button')).nativeElement;
         el.click();
         expect(comp.onSubmit).toHaveBeenCalledTimes(0);
