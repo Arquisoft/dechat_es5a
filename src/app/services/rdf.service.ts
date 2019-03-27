@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { SolidSession } from '../models/solid-session.model';
 declare let solid: any;
 
+
 import * as $rdf from 'rdflib'
 
 
 // TODO: Remove any UI interaction from this service
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import {T} from '@angular/core/src/render3';
-import {listener} from '@angular/core/src/render3/instructions';
-import {Friend} from '../models/friend.model';
+import { T } from '@angular/core/src/render3';
+import { listener } from '@angular/core/src/render3/instructions';
+import { Friend } from '../models/friend.model';
 
 const VCARD = $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
 const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
@@ -45,7 +46,7 @@ export class RdfService {
    */
   updateManager = $rdf.UpdateManager;
 
-  constructor (private toastr: ToastrService) {
+  constructor(private toastr: ToastrService) {
     const fetcherOptions = {};
     this.fetcher = new $rdf.Fetcher(this.store, fetcherOptions);
     this.updateManager = new $rdf.UpdateManager(this.store);
@@ -55,8 +56,12 @@ export class RdfService {
   /**
    * Fetches the session from Solid, and store results in localStorage
    */
-  getSession = async() => {
-    this.session = await solid.auth.currentSession(localStorage);
+  getSession = async () => {
+    if (typeof solid.auth === "undefined") {
+    }
+    else{
+      this.session = await solid.auth.currentSession(localStorage);
+    }
   }
 
   /**
@@ -297,7 +302,7 @@ export class RdfService {
     const friends = this.store.each($rdf.sym(person), FOAF('knows'));
     const list_friends = Array<Friend>();
     try {
-      for ( let i = 0; i < friends.length; i++) {
+      for (let i = 0; i < friends.length; i++) {
         const f: Friend = {
           webid: friends[i].value
         };
@@ -314,9 +319,9 @@ export class RdfService {
     const friends = this.store.each($rdf.sym(person), FOAF('knows'));
     const list_friends = Array<string>();
     try {
-      for ( let i = 0; i < friends.length; i++) {
+      for (let i = 0; i < friends.length; i++) {
         const fullName = this.store.any(friends[i], FOAF('fn'));
-          list_friends.push(fullName);
+        list_friends.push(fullName);
       }
       return list_friends;
     } catch (error) {
@@ -333,8 +338,8 @@ export class RdfService {
       await this.fetcher.load(this.session.webId);
 
       return {
-        fn : this.getValueFromVcard('fn'),
-        company : this.getValueFromVcard('organization-name'),
+        fn: this.getValueFromVcard('fn'),
+        company: this.getValueFromVcard('organization-name'),
         phone: this.getPhone(),
         role: this.getValueFromVcard('role'),
         image: this.getValueFromVcard('hasPhoto'),

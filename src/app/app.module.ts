@@ -51,7 +51,8 @@ import { AuthGuard } from './services/auth.guard.service';
    // BrowserAnimationsModule // required for toastr
   ],
   providers: [
-    AuthService],
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
