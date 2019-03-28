@@ -38,13 +38,11 @@ jobs:
       if: commit_message != "Deploy documentation to GitHub Pages"
       before_install:
         - pip install --user codecov
-      before_script:
-        - npm install -g codecov
-        - ng test --watch=false --code-coverage
-      
-      script: echo "Implementar tests"
+      #before_script:
+        #- npm install -g codecov
+        #- ng test --watch=false --code-coverage
 
       after_success:
-        - bash <(curl -s https://codecov.io/bash) -t e5c1e5f1-f057-4df4-b714-7d6cfe3e11e2
+        #- bash <(curl -s https://codecov.io/bash) -t e5c1e5f1-f057-4df4-b714-7d6cfe3e11e2
         - codecov
 
