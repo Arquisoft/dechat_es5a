@@ -62,7 +62,7 @@ describe('Form testing', () => {
             }
         });
     }));
-
+/*
     it('should has name save', async(() => {
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('button').textContent).toContain('Save');
@@ -74,5 +74,5 @@ describe('Form testing', () => {
         el = fixture.debugElement.query(By.css('button')).nativeElement;
         el.click();
         expect(comp.onSubmit).toHaveBeenCalledTimes(0);
-    }));
+    }));*/
 });
