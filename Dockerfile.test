@@ -1,0 +1,21 @@
+FROM node:11.9.0-alpine
+
+RUN sed -i -e 's/v3.8/edge/g' /etc/apk/repositories \
+    && apk add --no-cache \
+    python \
+    build-base \
+    chromium-chromedriver \
+    chromium \
+    && apk upgrade --no-cache --available
+
+ENV CHROME_BIN /usr/bin/chromium-browser
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+CMD npm run test:protactor; npm run test:karma

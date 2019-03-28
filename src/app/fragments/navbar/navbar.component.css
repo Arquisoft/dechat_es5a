@@ -21,8 +21,12 @@ html {
     overflow: hidden;
     background-color: #32465a;
     width: 300%;
+
 }
 
+.navbar{
+    padding: 0;
+}
 .topnav a {
     float: left;
     display: block;

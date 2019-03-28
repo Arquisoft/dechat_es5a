@@ -1,6 +1,5 @@
 {
   "name": "solid-app",
-  "module": "./@angular/core.es5.js",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "test:karma": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
+    "test:protactor": "ng e2e --protractor-config=e2e/protractor-ci.conf.js"
   },
   "browser": {
     "crypto": false,
@@ -57,13 +58,11 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.9.5",
-    "codecov.io": "^0.1.6",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
     "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage": "^1.1.2",
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
