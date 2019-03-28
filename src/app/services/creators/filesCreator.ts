@@ -21,16 +21,14 @@ export class filesCreator {
     }
 
 
-    /*
-     * Method that creates the folder using the solid-file-client lib
-     */
-    public buildFolder() {
-        this.fileClient.readFolder(this.sessionWebId).then(folder => {
+    //method that creates the folder using the solid-file-client lib
+    private buildFolder(solidId) {
+        this.fileClient.readFolder(solidId).then(folder => {
             console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
         }, err => {
             //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
-            this.fileClient.createFolder(this.sessionWebId).then(success => {
-                console.log(`Created folder ${this.sessionWebId}.`);
+            this.fileClient.createFolder(solidId).then(success => {
+                console.log(`Created folder ${solidId}.`);
             }, err1 => console.log(err1));
 
         });
@@ -161,7 +159,7 @@ export class filesCreator {
         //Necesito logearme en el cliente para que me de permiso, sino me dara un error al intentar
         //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
         // que se ejecuta correctamente.
-        this.buildFolder();
+        this.buildFolder(solidId);
     }
 
         /*
