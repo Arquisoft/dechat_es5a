@@ -45,12 +45,15 @@ import { AuthGuard } from './services/auth.guard.service';
     BrowserModule,
     FormsModule,
     APP_ROUTING,
+    RouterModule,
     NgSelectModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule // required for toastr
+   // BrowserAnimationsModule // required for toastr
   ],
   providers: [
-    AuthService],
+    AuthService,
+    ToastrModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

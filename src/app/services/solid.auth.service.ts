@@ -34,7 +34,11 @@ export class AuthService {
    * This will check if current session is active to avoid security problems
   */
   isSessionActive = async () => {
-    this.session = from(solid.auth.currentSession());
+    if (typeof solid.auth === "undefined") {
+    }
+    else{
+      this.session = from(solid.auth.currentSession());
+    }
   }
 
   /**
@@ -44,7 +48,7 @@ export class AuthService {
    */
   solidLoginPopup = async () => {
     try {
-      await solid.auth.popupLogin({ popupUri: './login-popup'});
+      await solid.auth.popupLogin({ popupUri: './login-popup' });
       // Check if session is valid to avoid redirect issues
       await this.isSessionActive();
 

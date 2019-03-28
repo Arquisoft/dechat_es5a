@@ -32,7 +32,7 @@ export class filesCreator {
             this.fileClient.createFolder(this.sessionWebId).then(success => {
                 console.log(`Created folder ${this.sessionWebId}.`);
             }, err1 => console.log(err1));
- 
+
         });
     }
 
@@ -175,9 +175,9 @@ export class filesCreator {
 
     }
 
-    
+
     /*
-     * This method obtains different data and creates a new message. 
+     * This method obtains different data and creates a new message.
      * It also creates (or updates if its already created) the conversation file.
      */
     public async createNewMessage() {
@@ -300,7 +300,6 @@ export class filesCreator {
 
         let mess = [];
         messageArray.forEach(element => {
-            console.log(element.content)
             if(element[0]){
              let messageArrayContent = element.split("###");
              let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
@@ -310,7 +309,6 @@ export class filesCreator {
 
         });
         messageArrayPropio.forEach(element => {
-            console.log(element.content)
             if(element[0]){
                 let messageArrayContent = element.split("###");
                 let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
@@ -332,5 +330,5 @@ export class filesCreator {
 
     }
 
-    
+
 }
