@@ -185,7 +185,7 @@ export class filesCreator {
         //getting message from DOM
         let myUser= this.getUserByUrl(this.sessionWebId);
         let user = this.getUserByUrl(this.recipientWebId);
-        var messageContent = myUser + ': ' + ((document.getElementById("usermsg") as HTMLInputElement).value);
+        var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
         (document.getElementById("usermsg") as HTMLInputElement).value="";
         console.log(messageContent);
         //Sender WebID

@@ -32,8 +32,6 @@ export class ChatComponent implements OnInit {
         });
         this.names = this.getUserByUrl(this.ruta_seleccionada);
         this.emisor = this.rdf.session.webId;
-        console.log("######################################");
-        console.log(this.emisor);
     }
 
     /*

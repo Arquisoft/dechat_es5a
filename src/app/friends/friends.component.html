@@ -32,7 +32,7 @@
                     <div class="wrap">
                         <img src="https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
                         <div class="meta" style="margin-left: 20%">
-                            <p [routerLink]="['/chat',item.webid.toString()]" class="name"> {{ item.webid}}</p>
+                            <p [routerLink]="['/chat',item.webid.toString()]" class="name"> {{ getUserByUrl(item.webid.toString())}}</p>
                             <p class="preview"> </p>
                         </div>
                     </div>
