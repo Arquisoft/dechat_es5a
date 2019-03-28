@@ -5,8 +5,6 @@ import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import {TXTPrinter} from '../services/printers/txtprinter.service';
 import { filesCreator } from '../services/creators/filesCreator';
-import {deepEqual} from 'assert';
-
 
 @Component({
     selector: 'app-chat',
@@ -22,7 +20,6 @@ export class ChatComponent implements OnInit {
     names: string;
     fC: filesCreator;
     emisor: string;
-    contador: number;
     /*
      * Constuctor
      */
