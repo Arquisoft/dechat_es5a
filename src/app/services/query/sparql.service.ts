@@ -55,11 +55,10 @@ export class SparqlService {
     let prueba= $rdf.serialize(doc, store, doc.uri, 'text/turtle');
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     console.log(prueba);
-    console.log(store.match(null,null,doc,null));
     console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
   //  console.log($rdf.parse ('<a> <b> <c>', store,'https://mavic96.inrupt.net/public/dechat5a/adanvetusta/Conversation.ttl','text/turtle'));
-    console.log(prueba[1])
-
+    let quads = store.match(null, null, null, prueba.doc);
+    console.log(quads);
     // try {
     // $rdf.parse(body, store, uri, mimeType);
     // } catch(err){
