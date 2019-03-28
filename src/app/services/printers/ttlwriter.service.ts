@@ -40,12 +40,6 @@ export class TTLWriterService {
        + this.writer.writeProperty('ont','dateSent', String(message.date))+" ;\n"
        + this.writer.writeProperty('ont', 'messageAttachment', message.content)+" ;\n"
        + this.writer.writeProperty ('ont','sender', 'c0:me') +" ;\n"
-       + this.writer.writeProperty ('ont','recipient', 'c1:me') +" .\n"
-      // return `:msg${message.date.getTime()}
-      // \ta ont:Message;
-      // \tont:dateSent "${message.date}";
-      // \tont:messageAttachment "${message.content}";
-      // \tont:sender c0:emisor;
-      // \tont:recipient c1:receptor.`;
+       + this.writer.writeProperty ('ont','recipient', 'c1:me') +" .\n";
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import {Router} from '@angular/router';
 import {Friend} from '../models/friend.model';
-import {forEach} from '@angular/router/src/utils/collection';
+import {SparqlService} from '../services/query/sparql.service';
 
 @Component({
   selector: 'app-friends',
@@ -13,7 +13,7 @@ export class FriendsComponent implements OnInit {
 
   friends: Friend[];
 
-  constructor(private router: Router, private rdf: RdfService) { }
+  constructor(private sparql:SparqlService, private router: Router, private rdf: RdfService) { }
 
   ngOnInit() {
     this.loadFriends();
@@ -28,6 +28,11 @@ export class FriendsComponent implements OnInit {
     } catch (error) {
       console.log(`Error: ${error}`);
     }
+  }
+
+  printquery(){
+    console.log(this.sparql);
+    this.sparql.printQuery();
   }
 
 }
