@@ -8,11 +8,6 @@ jobs:
       if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
       before_script:
         - mkdir -p output
-        - npm install -g codecov
-        - ng test --watch=false --code-coverage
-
-      before_install:
-        - pip install --user codecov
       script:
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -a toc=left -D /documents/output adocs/*.adoc
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output adocs/*.adoc
@@ -26,8 +21,6 @@ jobs:
         - docker logs asciidoc-to-pdf
       
       after_success:
-        - bash <(curl -s https://codecov.io/bash) -t e5c1e5f1-f057-4df4-b714-7d6cfe3e11e2
-        - codecov
         - cd output
         - cp -R ../adocs/images/ images
         - cd ..
@@ -43,6 +36,15 @@ jobs:
         
     - stage: tests
       if: commit_message != "Deploy documentation to GitHub Pages"
-      script: echo "Implementar tests"
+      before_install:
+        - pip install --user codecov
+      before_script:
+        - npm install -g codecov
+        - ng test --watch=false --code-coverage
       
+      script: echo "Implementar tests"
+
       after_success:
+        - bash <(curl -s https://codecov.io/bash) -t e5c1e5f1-f057-4df4-b714-7d6cfe3e11e2
+        - codecov
+
