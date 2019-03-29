@@ -37,9 +37,9 @@ export class TTLWriterService {
   public writteData(message:Message) {
       return this.writer.writeName("msg"+ message.date.getTime())
        + this.writer.writeType('ont','Message')
-       + this.writer.writeProperty('ont','dateSent', String(message.date))+" ;\n"
-       + this.writer.writeProperty('ont', 'messageAttachment', message.content)+" ;\n"
-       + this.writer.writeProperty ('ont','sender', 'c0:me') +" ;\n"
-       + this.writer.writeProperty ('ont','recipient', 'c1:me') +" .\n";
+       + this.writer.writeStringProperty('ont','dateSent', String(message.date))+" ;\n"
+       + this.writer.writeStringProperty('ont', 'messageAttachment', message.content)+" ;\n"
+       + this.writer.writeObjectProperty ('ont','sender', 'c0:me') +" ;\n"
+       + this.writer.writeObjectProperty ('ont','recipient', 'c1:me') +" .\n";
   }
 }
