@@ -15,7 +15,7 @@
         </div>
         <div id="contacts" style="margin-bottom: 20%;">
             <ul *ngFor="let item of friends"  id="friend">
-                <li class="contact" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">
+                <li class="contact" id="listaFriends" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">
                     <div class="wrap" >
                         <img src=" https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
                         <div class="meta" style="margin-left: 20%;"  >
@@ -40,17 +40,14 @@
         </div>
         <div class="messages" id="scroll">
             <ul id="lista" *ngFor="let message of messages">
-
                 <li [ngClass]="message.recipient == emisor ? 'sent' : 'replies'">
                     <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
-                    <p>
+                    <p class="mscontent">
                         {{message.content}} <br/>
                         {{getDate(message.date)}}
                     </p>
                 </li>
-
             </ul>
-
 
         </div>
         <div class="message-input">
@@ -65,6 +62,12 @@
         </div>
     </div>
 </div>
+
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script> import * as $ from 'jquery';
+
+$(".messages").animate({scrollTop: $(document).height()}, "fast");</script>
 </body>
 </html>
 
