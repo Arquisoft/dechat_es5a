@@ -41,10 +41,10 @@ export class FriendsComponent implements OnInit {
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
 
 
+
     }
 
     addChat(ruta: string): string {
-        $('.messages').animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'fast');
         this.messages = [];
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
@@ -58,20 +58,12 @@ export class FriendsComponent implements OnInit {
             this.fC.synchronizeMessages();
             this.messages = this.fC.messages;
         }, 3000);
-       // this.addMessage(ruta,this.messages);
+
         this.names = this.getUserByUrl(ruta);
         return ruta;
     }
 
-    addMessage(ruta:string, messages:message[]) {
-        if (ruta === (this.ruta_seleccionada)) {
-            for (const message of messages) {
-                $('#scroll').append('  <ul id="lista" <li>'
-                    + '<p class="mscontent">' + message.content + ' <br/> '
-                    + this.getDate(message.date) + '</p></li></ul>');
-            }
-        }
-    }
+
     /*
      * This method obtains the username based on his webID
      */
@@ -92,15 +84,6 @@ export class FriendsComponent implements OnInit {
         return cadena + ' ' + cadena4;
     }
 
-    /*
-     * This method creates the different message to show in the chat pane.
-     */
-    private insertHTMLMessages() {
-        const fC = new filesCreator(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
-        this.messages.forEach(message => {
-            '<p> ' + fC.getUserByUrl(message.sender.webid) + ': ' + message.content + '</p>';
-        });
-    }
 
     private callFilesCreatorMessage() {
         const fC = new filesCreator(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);

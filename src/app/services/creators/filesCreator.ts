@@ -271,7 +271,7 @@ export class filesCreator {
      * This method gets the url of the connection to synchronize the different messages
      */
     public async synchronizeMessages() {
-
+        $("#scroll").animate({ scrollTop: $('#scroll')[0].scrollHeight}, 200);
         const urlArray = this.recipientWebId.split('/');
         const url = 'https://' + urlArray[2] + '/public/dechat5a/' + this.getUserByUrl(this.sessionWebId) + '/Conversation.txt';
 
