@@ -1,23 +1,24 @@
-import { Friend } from "src/app/models/friend.model";
-import { message } from "src/app/models/message.model";
-import { TXTPrinter } from "../printers/txtprinter.service";
-import {messagesSorter} from "../sorters/messagesSorter"
+import { Friend } from 'src/app/models/friend.model';
+import { message } from 'src/app/models/message.model';
+import { TXTPrinter } from '../printers/txtprinter.service';
+import {messagesSorter} from '../sorters/messagesSorter';
+import * as $ from 'jquery';
 
 export class filesCreator {
 
     sessionWebId: string;
     recipientWebId: string;
     fileClient: any;
-    messages:message[];
+    messages: message[];
 
      /*
      * Constuctor
      */
-    constructor(userWebId:string, recipientWebId:string,fileClientP:any, messages: message[]) {
-        this.sessionWebId=userWebId;
-        this.recipientWebId=recipientWebId;
-        this.fileClient=fileClientP;
-        this.messages=messages;
+    constructor(userWebId: string, recipientWebId: string, fileClientP: any, messages: message[]) {
+        this.sessionWebId = userWebId;
+        this.recipientWebId = recipientWebId;
+        this.fileClient = fileClientP;
+        this.messages = messages;
     }
 
 
@@ -41,20 +42,20 @@ export class filesCreator {
      * @param path:string the file for the .acl
      * @param user:string the /profile/card#me of the user owner of the folder
      */
-    private createOwnerACL(path:string, user:string) {
-        let file = path+'.acl';
-        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+this.sessionWebId+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode\n      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.'
+    private createOwnerACL(path: string, user: string) {
+        const file = path + '.acl';
+        const contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n' +
+            '<#owner>\n' +
+            'a             acl:Authorization;\n' +
+            'acl:agent     <' + this.sessionWebId + '>;\n' +
+            'acl:accessTo  <' + path + '>;\n' +
+            'acl:defaultForNew <./>;' +
+            'acl:mode\n      acl:Read,\n' +
+            'acl:Write,\n' +
+            'acl:Control.';
 
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl owner ${file}.`)
+        this.fileClient.updateFile(file, contenido).then(success => {
+            console.log(`Created acl owner ${file}.`);
         }, err => console.log(err));
     }
 
@@ -67,27 +68,27 @@ export class filesCreator {
      * @param owner:string the /profile/card#me of the user owner of the folder
      * @param reader:string the /profile/card#me of the reader of the folder
      */
-    public createReadForOneACL(path: string, owner: string, reader:string) {
-        let file = path + '.acl';
-        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+owner+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode\n      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.\n'+
+    public createReadForOneACL(path: string, owner: string, reader: string) {
+        const file = path + '.acl';
+        const contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .' +
+            '<#owner>\n' +
+            'a             acl:Authorization;\n' +
+            'acl:agent     <' + owner + '>;\n' +
+            'acl:accessTo  <' + path + '>;\n' +
+            'acl:defaultForNew <./>;' +
+            'acl:mode\n      acl:Read,\n' +
+            'acl:Write,\n' +
+            'acl:Control.\n' +
 
-            '<#reader>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+reader+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode\n      acl:Read.'
+            '<#reader>\n' +
+            'a             acl:Authorization;\n' +
+            'acl:agent     <' + reader + '>;\n' +
+            'acl:accessTo  <' + path + '>;\n' +
+            'acl:defaultForNew <./>;\n' +
+            'acl:mode\n      acl:Read.';
 
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl one reader ${file}.`)
+        this.fileClient.updateFile(file, contenido).then(success => {
+            console.log(`Created acl one reader ${file}.`);
         }, err => console.log(err));
     }
 
@@ -100,33 +101,33 @@ export class filesCreator {
      * @param owner:string the /profile/card#me of the user owner of the folder
      * @param readers:string[] the /profile/card#me of the readers of the folder
      */
-    public createReadForManyACL(path: string, owner:string, readers: string[]) {
-        let file = path + '.acl';
-        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+owner+'>\n'+
-            'acl:accessTo  <'+path+'>\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.\n'+
+    public createReadForManyACL(path: string, owner: string, readers: string[]) {
+        const file = path + '.acl';
+        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n' +
+            '<#owner>\n' +
+            'a             acl:Authorization;\n' +
+            'acl:agent     <' + owner + '>\n' +
+            'acl:accessTo  <' + path + '>\n' +
+            'acl:defaultForNew <./>;\n' +
+            'acl:mode      acl:Read,\n' +
+            'acl:Write,\n' +
+            'acl:Control.\n' +
 
-            '<#readers>\n'+
-            'a               acl:Authorization;\n'+
-            'acl:accessTo    <'+path+'>\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode        acl:Read;\n'
+            '<#readers>\n' +
+            'a               acl:Authorization;\n' +
+            'acl:accessTo    <' + path + '>\n' +
+            'acl:defaultForNew <./>;\n' +
+            'acl:mode        acl:Read;\n';
 
         readers.forEach(function (e, idx, array) {
-            if (idx === array.length - 1){
-                contenido = contenido + 'acl:agent  <'+e+'>.'
+            if (idx === array.length - 1) {
+                contenido = contenido + 'acl:agent  <' + e + '>.';
             } else {
-                contenido = contenido + 'acl:agent  <'+e+'>;\n'
+                contenido = contenido + 'acl:agent  <' + e + '>;\n';
             }
-        })
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl many readers ${file}.`)
+        });
+        this.fileClient.updateFile(file, contenido).then(success => {
+            console.log(`Created acl many readers ${file}.`);
         }, err => console.log(err));
     }
     /*
@@ -134,11 +135,11 @@ export class filesCreator {
      * @param path:string the file or folder to look the readers
      * In TODO
      */
-    public getReaders(path:string): string{
+    public getReaders(path: string): string {
         let file;
         let list;
-        this.fileClient.readFile(path+'.acl').then(  body => {
-            file= body;
+        this.fileClient.readFile(path + '.acl').then(  body => {
+            file = body;
             console.log(`File content is : ${body}.`);
         }, err => console.log(err) );
 
@@ -152,9 +153,9 @@ export class filesCreator {
     public createNewFolder(name: string, ruta: string) {
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
-        let stringToChange = '/profile/card#me';
-        let path = ruta + name;
-        let solidId=this.sessionWebId;
+        const stringToChange = '/profile/card#me';
+        const path = ruta + name;
+        let solidId = this.sessionWebId;
         solidId = solidId.replace(stringToChange, path);
         //Necesito logearme en el cliente para que me de permiso, sino me dara un error al intentar
         //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
@@ -179,36 +180,33 @@ export class filesCreator {
      * It also creates (or updates if its already created) the conversation file.
      */
     public async createNewMessage() {
-
         //getting message from DOM
-        let myUser= this.getUserByUrl(this.sessionWebId);
-        let user = this.getUserByUrl(this.recipientWebId);
-        var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
-        (document.getElementById("usermsg") as HTMLInputElement).value="";
+        const myUser = this.getUserByUrl(this.sessionWebId);
+        const user = this.getUserByUrl(this.recipientWebId);
+        const messageContent = (document.getElementById('usermsg') as HTMLInputElement).value;
+        (document.getElementById('usermsg') as HTMLInputElement).value = '';
         console.log(messageContent);
         //Sender WebID
         let senderId = this.sessionWebId;
-        let senderPerson: Friend = { webid: senderId };
+        const senderPerson: Friend = { webid: senderId };
 
         //Receiver WebId
-        let recipientPerson: Friend = { webid: this.recipientWebId }
+        const recipientPerson: Friend = { webid: this.recipientWebId };
 
-        let messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+        const messageToSend: message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson };
         this.messages.push(messageToSend);
-        let stringToChange = '/profile/card#me';
-        let path = '/public/dechat5a/' + user + '/Conversation.txt';
-
+        const stringToChange = '/profile/card#me';
+        const path = '/public/dechat5a/' + user + '/Conversation.txt';
         senderId = senderId.replace(stringToChange, path);
 
-        let message = await this.readMessage(senderId);
+        const message = await this.readMessage(senderId);
 
         console.log(message);
 
         //For TXTPrinter
         if (message != null) {
-            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
-        }
-        else {
+            this.updateTTL(senderId, message + '\n' + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        } else {
             this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
         }
 
@@ -231,12 +229,11 @@ export class filesCreator {
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
-                console.log(`Updated ${url}.`)
+                console.log(`Updated ${url}.`);
             }, err => console.log(err));
-        }
-        else {
+        } else {
             this.fileClient.updateFile(url, newContent).then(success => {
-                console.log(`Updated ${url}.`)
+                console.log(`Updated ${url}.`);
             }, err => console.log(err));
         }
     }
@@ -245,7 +242,7 @@ export class filesCreator {
      * This methos searches for a message in an url
      */
     public async readMessage(url) {
-        var message = await this.searchMessage(url)
+        const message = await this.searchMessage(url);
         console.log(message);
         return message;
     }
@@ -265,7 +262,7 @@ export class filesCreator {
      * This method creates a file in a folder using the solid-file-client lib
      */
     private buildFile(solidIdFolderUrl, content) {
-        this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
+        this.fileClient.createFile(solidIdFolderUrl, content, 'text/plain').then(fileCreated => {
             console.log(`Created file ${fileCreated}.`);
         }, err => console.log(err));
     }
@@ -273,43 +270,44 @@ export class filesCreator {
      /*
      * This method gets the url of the connection to synchronize the different messages
      */
-    public async synchronizeMessages(){
+    public async synchronizeMessages() {
 
-        var urlArray = this.recipientWebId.split("/");
-        let url= "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.sessionWebId) + "/Conversation.txt";
+        const urlArray = this.recipientWebId.split('/');
+        const url = 'https://' + urlArray[2] + '/public/dechat5a/' + this.getUserByUrl(this.sessionWebId) + '/Conversation.txt';
 
-        var urlArrayPropio = this.sessionWebId.split("/");
-        let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.txt";
-        console.log("URL PROPIA: "+ urlPropia);
+        const urlArrayPropio = this.sessionWebId.split('/');
+        const urlPropia = 'https://' + urlArrayPropio[2] + '/public/dechat5a/' + this.getUserByUrl(this.recipientWebId) + '/Conversation.txt';
+        console.log('URL PROPIA: ' + urlPropia);
         console.log(url);
-        let messageContent = await this.searchMessage(url);
-        console.log("MessageContent " + messageContent);
+        const messageContent = await this.searchMessage(url);
+        console.log('MessageContent ' + messageContent);
+
+        
         let messageArray = [] ;
-        if(messageContent != undefined)
-        {
-            messageArray = messageContent.split("\n");
+        if (messageContent != undefined) {
+            messageArray = messageContent.split('\n');
         }
-        let messageContentPropia = await  this.searchMessage(urlPropia);
+        const messageContentPropia = await  this.searchMessage(urlPropia);
         let messageArrayPropio = [] ;
-        if(messageContentPropia != undefined)
-        {
-            messageArrayPropio = messageContentPropia.split("\n");
+        if (messageContentPropia != undefined) {
+            messageArrayPropio = messageContentPropia.split('\n');
         }
 
-        let mess = [];
+        const mess = [];
         messageArray.forEach(element => {
-            if(element[0]){
-             let messageArrayContent = element.split("###");
-             let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
+            if (element[0]) {
+             const messageArrayContent = element.split('###');
+             const messageToAdd: message = { content: messageArrayContent[2], date: messageArrayContent[3], sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+                console.log(messageToAdd );
              mess.push(messageToAdd);
+
             }
 
         });
         messageArrayPropio.forEach(element => {
-            if(element[0]){
-                let messageArrayContent = element.split("###");
-                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+            if (element[0]) {
+                const messageArrayContent = element.split('###');
+                const messageToAdd: message = { content: messageArrayContent[2], date: messageArrayContent[3], sender: messageArrayContent[0], recipient: messageArrayContent[1]};
                 console.log(messageToAdd);
                 mess.push(messageToAdd);
             }
@@ -318,10 +316,10 @@ export class filesCreator {
 
 
 
-        let ordered = new messagesSorter().order(mess);
+        const ordered = new messagesSorter().order(mess);
 
-        if(mess.length > this.messages.length){
-            for (var i = this.messages.length; i < mess.length; i++) {
+        if (mess.length > this.messages.length) {
+            for (let i = this.messages.length; i < mess.length; i++) {
                 this.messages.push( mess[i]);
             }
         }

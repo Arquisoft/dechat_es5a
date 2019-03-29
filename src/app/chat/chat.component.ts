@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Friend } from '../models/friend.model';
+import { ActivatedRoute } from '@angular/router';
 import { message } from '../models/message.model';
-import {TXTPrinter} from '../services/printers/txtprinter.service';
+import * as $ from 'jquery';
 import { filesCreator } from '../services/creators/filesCreator';
+import {Friend} from '../models/friend.model';
 
 @Component({
     selector: 'app-chat',
@@ -15,11 +15,11 @@ export class ChatComponent implements OnInit {
 
     fileClient: any;
     ruta_seleccionada: string;
-    htmlToAdd: string;
     messages: message[] = [];
     names: string;
     fC: filesCreator;
     emisor: string;
+    friends: Friend[];
     /*
      * Constuctor
      */
@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit {
      * This method synchronize the conversation once the application is launched
      */
     ngOnInit() {
-
+        this.loadFriends();
         this.fileClient = require('solid-file-client');
 
         this.fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
@@ -50,9 +50,14 @@ export class ChatComponent implements OnInit {
         setInterval(() => {
             this.fC.synchronizeMessages();
             this.messages= this.fC.messages;
-        }, 3000);
+        }, 3000)
 
-
+        //JQUERY
+        $(function() {
+            $('.target').sticky({
+                speed: 0 // The scroll animation speed
+            });
+        });
     }
 
 
@@ -79,5 +84,19 @@ export class ChatComponent implements OnInit {
     private callFilesCreatorMessage(){
         let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         fC.createNewMessage();
+        var $t = $('#scroll');
+        $t.animate({"scrollTop": $('#scroll')[0].scrollHeight}, "swing");
     }
+
+    async loadFriends() {
+        try {
+            const list_friends = await this.rdf.getFriends();
+            if (list_friends) {
+                this.friends = list_friends;
+            }
+        } catch (error) {
+            console.log(`Error: ${error}`);
+        }
+    }
+
 }
