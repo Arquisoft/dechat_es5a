@@ -47,9 +47,7 @@ export class ChatComponent implements OnInit {
         setInterval(() => {
             this.fC.synchronizeMessages();
             this.messages= this.fC.messages;
-            var $t = $('#scroll');
-            $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
-        }, 500);
+        }, 3000);
 
 
 
