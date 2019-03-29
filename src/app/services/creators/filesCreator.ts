@@ -2,9 +2,7 @@ import { Friend } from "src/app/models/friend.model";
 import { message } from "src/app/models/message.model";
 import { TXTPrinter } from "../printers/txtprinter.service";
 import {messagesSorter} from "../sorters/messagesSorter";
-import {
-    PushNotificationsService
-} from '../push.notifications.service';
+import {PushNotificationsService} from '../push.notifications.service';
 
 
 
@@ -13,14 +11,14 @@ export class filesCreator {
     sessionWebId: string;
     recipientWebId: string;
     fileClient: any;
-    messages:message[];
+    messages: message[];
 
     _notificationService: PushNotificationsService;
     primera: boolean;
 
-     /*
-     * Constuctor
-     */
+    /*
+    * Constuctor
+    */
     constructor(userWebId:string, recipientWebId:string,fileClientP:any, messages: message[]) {
         this.sessionWebId=userWebId;
         this.recipientWebId=recipientWebId;
@@ -157,9 +155,9 @@ export class filesCreator {
         return  list;
     }
 
-        /*
-     * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
-     */
+    /*
+ * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
+ */
     public createNewFolder(name: string, ruta: string) {
         //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
         //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
@@ -173,9 +171,9 @@ export class filesCreator {
         this.buildFolder(solidId);
     }
 
-        /*
-     * This method obtains the username based on his webID
-     */
+    /*
+ * This method obtains the username based on his webID
+ */
     public getUserByUrl(ruta: string): string {
         let sinhttp;
         sinhttp = ruta.replace('https://', '');
@@ -235,9 +233,9 @@ export class filesCreator {
 
     }
 
-     /*
-     * This methos updates the TTL file with the new content
-     */
+    /*
+    * This methos updates the TTL file with the new content
+    */
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
@@ -251,18 +249,18 @@ export class filesCreator {
         }
     }
 
-     /*
-     * This methos searches for a message in an url
-     */
+    /*
+    * This methos searches for a message in an url
+    */
     public async readMessage(url) {
         var message = await this.searchMessage(url)
 
         return message;
     }
 
-     /*
-     * This method search for a message in a pod
-     */
+    /*
+    * This method search for a message in a pod
+    */
     public async searchMessage(url) {
         return await this.fileClient.readFile(url).then(body => {
 
@@ -271,25 +269,25 @@ export class filesCreator {
 
     }
 
-        /*
-     * This method creates a file in a folder using the solid-file-client lib
-     */
+    /*
+ * This method creates a file in a folder using the solid-file-client lib
+ */
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
 
         }, err => console.log(err));
     }
 
-     /*
-     * This method gets the url of the connection to synchronize the different messages
-     */
+    /*
+    * This method gets the url of the connection to synchronize the different messages
+    */
     public async synchronizeMessages(){
         var urlArray = this.recipientWebId.split("/");
         let url= "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.sessionWebId) + "/Conversation.txt";
 
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.txt";
-        
+
         let messageContent = await this.searchMessage(url);
 
         let messageArray = [] ;
@@ -307,10 +305,10 @@ export class filesCreator {
         let mess = [];
         messageArray.forEach(element => {
             if(element[0]){
-             let messageArrayContent = element.split("###");
-             let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
+                let messageArrayContent = element.split("###");
+                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
 
-             mess.push(messageToAdd);
+                mess.push(messageToAdd);
             }
 
         });
@@ -334,12 +332,12 @@ export class filesCreator {
 
                 if(!this.primera)
                 {
-                  let data: Array < any >= [];
-                  data.push({
-                    'title': 'Nuevo Mensaje de: '+ mess[i].sender,
-                    'alertContent': mess[i].content
-                  });
-                  this._notificationService.generateNotification(data);
+                    let data: Array < any >= [];
+                    data.push({
+                        'title': 'Nuevo Mensaje de: '+ mess[i].sender,
+                        'alertContent': mess[i].content
+                    });
+                    this._notificationService.generateNotification(data);
                 }
             }
             this.primera = false;
