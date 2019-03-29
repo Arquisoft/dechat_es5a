@@ -289,7 +289,7 @@ export class filesCreator {
 
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.txt";
-
+        
         let messageContent = await this.searchMessage(url);
 
         let messageArray = [] ;

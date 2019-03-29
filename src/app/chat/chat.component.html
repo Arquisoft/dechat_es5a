@@ -9,7 +9,7 @@
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </div>
         </div>
-        <div class="messages" id="scroll">
+        <div class="messages">
             <ul *ngFor="let message of messages">
 
                 <li [ngClass]="message.recipient == emisor ? 'sent' : 'replies'">

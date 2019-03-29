@@ -5,7 +5,7 @@ import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import {TXTPrinter} from '../services/printers/txtprinter.service';
 import { filesCreator } from '../services/creators/filesCreator';
-import * as $ from 'jquery';
+
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
@@ -76,14 +76,12 @@ export class ChatComponent implements OnInit {
             '<p> ' + fC.getUserByUrl(message.sender.webid) + ': ' + message.content + '</p>';
 
         });
-        var $t = $('#scroll');
-        $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
+
 
     }
 
-    private callFilesCreatorMessage(){
-      var $t = $('#scroll');
-      $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
+    public callFilesCreatorMessage(){
+
         let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         fC.createNewMessage();
     }
