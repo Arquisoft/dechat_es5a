@@ -313,17 +313,6 @@ export class filesCreator {
             }
 
         });
-        messageArrayPropio.forEach(element => {
-            if(element[0]){
-                let messageArrayContent = element.split("###");
-                let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-
-                mess.push(messageToAdd);
-            }
-
-        });
-
-
 
         mess = new messagesSorter().order(mess);
 
