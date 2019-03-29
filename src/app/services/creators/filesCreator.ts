@@ -3,7 +3,7 @@ import { message } from "src/app/models/message.model";
 import { TXTPrinter } from "../printers/txtprinter.service";
 import {messagesSorter} from "../sorters/messagesSorter";
 import {PushNotificationsService} from '../push.notifications.service';
-
+import * as $ from 'jquery';
 
 
 export class filesCreator {
@@ -282,6 +282,7 @@ export class filesCreator {
     * This method gets the url of the connection to synchronize the different messages
     */
     public async synchronizeMessages(){
+        $("#scroll").animate({ scrollTop: $('#scroll')[0].scrollHeight}, 200);
         var urlArray = this.recipientWebId.split("/");
         let url= "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.sessionWebId) + "/Conversation.txt";
 
