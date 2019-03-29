@@ -1,7 +1,10 @@
 import { Friend } from "src/app/models/friend.model";
 import { message } from "src/app/models/message.model";
 import { TXTPrinter } from "../printers/txtprinter.service";
-import {messagesSorter} from "../sorters/messagesSorter"
+import {messagesSorter} from "../sorters/messagesSorter";
+import {
+    PushNotificationsService
+} from '../push.notifications.service';
 
 export class filesCreator {
 
@@ -9,6 +12,9 @@ export class filesCreator {
     recipientWebId: string;
     fileClient: any;
     messages:message[];
+
+    _notificationService: PushNotificationsService;
+    primera: boolean;
 
      /*
      * Constuctor
@@ -18,6 +24,9 @@ export class filesCreator {
         this.recipientWebId=recipientWebId;
         this.fileClient=fileClientP;
         this.messages=messages;
+        this._notificationService = new PushNotificationsService();
+        this._notificationService.requestPermission();
+        this.primera = true;
     }
 
 
@@ -318,13 +327,25 @@ export class filesCreator {
 
 
 
-        let ordered = new messagesSorter().order(mess);
+        mess = new messagesSorter().order(mess);
 
         if(mess.length > this.messages.length){
             for (var i = this.messages.length; i < mess.length; i++) {
                 this.messages.push( mess[i]);
+
+                if(!this.primera)
+                {
+                  let data: Array < any >= [];
+                  data.push({
+                    'title': 'Nuevo Mensaje de: '+ mess[i].sender,
+                    'alertContent': mess[i].content
+                  });
+                  this._notificationService.generateNotification(data);
+                }
             }
+            this.primera = false;
         }
+
 
     }
 
