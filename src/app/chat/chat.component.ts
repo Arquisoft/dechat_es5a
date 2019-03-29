@@ -5,7 +5,7 @@ import { Friend } from '../models/friend.model';
 import { message } from '../models/message.model';
 import {TXTPrinter} from '../services/printers/txtprinter.service';
 import { filesCreator } from '../services/creators/filesCreator';
-
+import * as $ from 'jquery';
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
@@ -25,10 +25,7 @@ export class ChatComponent implements OnInit {
      */
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
         this.rutaActiva.params.subscribe(data => {
-            console.log(data['parametro']);
             this.ruta_seleccionada = data['parametro'];
-            console.log(this.ruta_seleccionada);
-            console.log(typeof this.ruta_seleccionada);
         });
         this.names = this.getUserByUrl(this.ruta_seleccionada);
         this.emisor = this.rdf.session.webId;
@@ -50,7 +47,11 @@ export class ChatComponent implements OnInit {
         setInterval(() => {
             this.fC.synchronizeMessages();
             this.messages= this.fC.messages;
-        }, 3000);
+            var $t = $('#scroll');
+            $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
+        }, 500);
+
+
 
 
     }
@@ -73,10 +74,16 @@ export class ChatComponent implements OnInit {
         let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         this.messages.forEach(message => {
             '<p> ' + fC.getUserByUrl(message.sender.webid) + ': ' + message.content + '</p>';
+
         });
+        var $t = $('#scroll');
+        $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
+
     }
 
     private callFilesCreatorMessage(){
+      var $t = $('#scroll');
+      $t.animate({"scrollTop": $('#scroll')[0].scrollHeight},"swing");
         let fC=new filesCreator(this.rdf.session.webId,this.ruta_seleccionada,this.fileClient,this.messages);
         fC.createNewMessage();
     }

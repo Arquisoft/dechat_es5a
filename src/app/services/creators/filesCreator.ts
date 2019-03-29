@@ -6,6 +6,8 @@ import {
     PushNotificationsService
 } from '../push.notifications.service';
 
+
+
 export class filesCreator {
 
     sessionWebId: string;
@@ -33,11 +35,11 @@ export class filesCreator {
     //method that creates the folder using the solid-file-client lib
     private buildFolder(solidId) {
         this.fileClient.readFolder(solidId).then(folder => {
-            console.log(`Read ${folder.name}, it has ${folder.files.length} files.`);
+
         }, err => {
             //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
             this.fileClient.createFolder(solidId).then(success => {
-                console.log(`Created folder ${solidId}.`);
+
             }, err1 => console.log(err1));
 
         });
@@ -194,7 +196,7 @@ export class filesCreator {
         let user = this.getUserByUrl(this.recipientWebId);
         var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
         (document.getElementById("usermsg") as HTMLInputElement).value="";
-        console.log(messageContent);
+
         //Sender WebID
         let senderId = this.sessionWebId;
         let senderPerson: Friend = { webid: senderId };
@@ -211,7 +213,6 @@ export class filesCreator {
 
         let message = await this.readMessage(senderId);
 
-        console.log(message);
 
         //For TXTPrinter
         if (message != null) {
@@ -240,12 +241,12 @@ export class filesCreator {
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
-                console.log(`Updated ${url}.`)
+
             }, err => console.log(err));
         }
         else {
             this.fileClient.updateFile(url, newContent).then(success => {
-                console.log(`Updated ${url}.`)
+
             }, err => console.log(err));
         }
     }
@@ -255,7 +256,7 @@ export class filesCreator {
      */
     public async readMessage(url) {
         var message = await this.searchMessage(url)
-        console.log(message);
+
         return message;
     }
 
@@ -264,7 +265,7 @@ export class filesCreator {
      */
     public async searchMessage(url) {
         return await this.fileClient.readFile(url).then(body => {
-            console.log(`File	content is : ${body}.`);
+
             return body;
         }, err => console.log(err));
 
@@ -275,7 +276,7 @@ export class filesCreator {
      */
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
-            console.log(`Created file ${fileCreated}.`);
+
         }, err => console.log(err));
     }
 
@@ -283,16 +284,14 @@ export class filesCreator {
      * This method gets the url of the connection to synchronize the different messages
      */
     public async synchronizeMessages(){
-
         var urlArray = this.recipientWebId.split("/");
         let url= "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.sessionWebId) + "/Conversation.txt";
 
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.txt";
-        console.log("URL PROPIA: "+ urlPropia);
-        console.log(url);
+
         let messageContent = await this.searchMessage(url);
-        console.log("MessageContent " + messageContent);
+
         let messageArray = [] ;
         if(messageContent != undefined)
         {
@@ -310,7 +309,7 @@ export class filesCreator {
             if(element[0]){
              let messageArrayContent = element.split("###");
              let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
+
              mess.push(messageToAdd);
             }
 
@@ -319,7 +318,7 @@ export class filesCreator {
             if(element[0]){
                 let messageArrayContent = element.split("###");
                 let messageToAdd:message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
+
                 mess.push(messageToAdd);
             }
 
