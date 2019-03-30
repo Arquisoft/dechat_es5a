@@ -50,6 +50,7 @@ export class FriendsComponent implements OnInit {
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.emisor = this.rdf.session.webId;
         this.fC.createNewFolder('dechat5a', '/public/');
+        let name = this.getUserByUrl(ruta);
         this.fC.createNewFolder(name, '/public/dechat5a/');
         this.fC.synchronizeMessages();
         this.messages = this.fC.messages;
@@ -84,7 +85,7 @@ export class FriendsComponent implements OnInit {
     }
 
 
-    private callFilesCreatorMessage() {        
+    private callFilesCreatorMessage() {
         this.fC.createNewMessage();
         const $t = $('#scroll');
         $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');
