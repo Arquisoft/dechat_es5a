@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {RdfService} from '../services/rdf.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Friend} from '../models/friend.model';
-import {forEach} from '@angular/router/src/utils/collection';
+import {forEach} from '@angular/router/src/utils/collection';import { FilesCreatorService } from '../services/creators/files-creator.service';
+import {Message} from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
-import {filesCreator} from '../services/creators/filesCreator';
-import {message} from '../models/message.model';
 
 @Component({
     selector: 'app-friends',
@@ -17,9 +16,8 @@ export class FriendsComponent implements OnInit {
 
     fileClient: any;
     ruta_seleccionada: string;
-    messages: message[] = [];
+    messages: Message[] = [];
     names: string;
-    fC: filesCreator;
     emisor: string;
     friends: Friend[];
     value: Friend[];
@@ -28,7 +26,7 @@ export class FriendsComponent implements OnInit {
     /*
      * Constuctor
      */
-    constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
+    constructor(private rdf: RdfService, private fC:FilesCreatorService, private rutaActiva: ActivatedRoute) {
     }
 
     /*
@@ -37,7 +35,7 @@ export class FriendsComponent implements OnInit {
     ngOnInit() {
         this.loadFriends();
         this.fileClient = require('solid-file-client');
-        this.fC = new filesCreator(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+        this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
 
 
@@ -49,9 +47,10 @@ export class FriendsComponent implements OnInit {
         this.messages = [];
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
-        this.fC = new filesCreator(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+        this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.emisor = this.rdf.session.webId;
         this.fC.createNewFolder('dechat5a', '/public/');
+        let name = this.getUserByUrl(ruta);
         this.fC.createNewFolder(name, '/public/dechat5a/');
         this.fC.synchronizeMessages();
         this.messages = this.fC.messages;
@@ -87,8 +86,7 @@ export class FriendsComponent implements OnInit {
 
 
     private callFilesCreatorMessage() {
-        const fC = new filesCreator(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
-        fC.createNewMessage();
+        this.fC.createNewMessage();
         const $t = $('#scroll');
         $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');
     }
