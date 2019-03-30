@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { getBodyNode } from '@angular/animations/browser/src/render/shared';
+import { FriendsComponent } from '../friends/friends.component';
+import { Friend } from '../models/friend.model';
+import { Message } from '../models/message.model';
+import { TTLWriterService } from '../services/printers/ttlwriter.service';
+import { SparqlService } from '../services/query/sparql.service';
+import {TXTPrinter} from '../services/printers/txtprinter.service'
 import { ActivatedRoute } from '@angular/router';
 import { message } from '../models/message.model';
 import * as $ from 'jquery';
@@ -15,6 +23,9 @@ export class ChatComponent implements OnInit {
 
     fileClient: any;
     ruta_seleccionada: string;
+    htmlToAdd: string;
+    messages: Message[]=[];
+
     messages: message[] = [];
     names: string;
     fC: filesCreator;
@@ -23,7 +34,8 @@ export class ChatComponent implements OnInit {
     /*
      * Constuctor
      */
-    constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute) {
+    constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute,
+    private ttlwriter:TTLWriterService, private queryService:SparqlService) {
         this.rutaActiva.params.subscribe(data => {
             this.ruta_seleccionada = data['parametro'];
         });

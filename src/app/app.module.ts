@@ -24,8 +24,8 @@ import { RegisterComponent } from './register/register.component';
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
-
-
+import { TTLWriterService } from './services/printers/ttlwriter.service';
+import {SparqlService} from './services/query/sparql.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { AuthGuard } from './services/auth.guard.service';
   ],
   providers: [
     AuthService,
-    ToastrModule,
+    TTLWriterService,
+    SparqlService
   ],
   bootstrap: [AppComponent]
 })
