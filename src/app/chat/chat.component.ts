@@ -54,7 +54,7 @@ export class ChatComponent implements OnInit {
         setInterval(() => {
             this.fC.synchronizeMessages();
             this.messages= this.fC.messages;
-        }, 3000)
+        }, 1500)
     }
     /*
      * This method obtains the username based on his webID

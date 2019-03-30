@@ -85,7 +85,7 @@ export class FriendsComponent implements OnInit {
     }
 
 
-    private callFilesCreatorMessage() {
+    public callFilesCreatorMessage() {
         this.fC.createNewMessage();
         const $t = $('#scroll');
         $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');

@@ -304,7 +304,7 @@ export class FilesCreatorService {
             for (var i = this.messages.length; i < mess.length; i++) {
                 this.messages.push( mess[i]);
 
-                if(!this.primera)
+                if(!this.primera )
                 {
                   let data: Array < any >= [];
                   data.push({
@@ -314,8 +314,9 @@ export class FilesCreatorService {
                   this.notificationService.generateNotification(data);
                 }
             }
-            this.primera = false;
+
         }
+        this.primera = false;
 
 
     }
