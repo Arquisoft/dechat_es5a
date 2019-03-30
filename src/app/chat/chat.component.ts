@@ -6,6 +6,7 @@ import { FriendsComponent } from '../friends/friends.component';
 import { Friend } from '../models/friend.model';
 import { Message } from '../models/message.model';
 import { TTLWriterService } from '../services/printers/ttlwriter.service';
+import { SparqlService } from '../services/query/sparql.service';
 import {TXTPrinter} from '../services/printers/txtprinter.service'
 
 
@@ -28,7 +29,7 @@ export class ChatComponent implements OnInit {
      * Constuctor
      */
     constructor(private rdf: RdfService, private rutaActiva: ActivatedRoute,
-    private ttlwriter:TTLWriterService) {
+    private ttlwriter:TTLWriterService, private queryService:SparqlService) {
         this.rutaActiva.params.subscribe(data => {
             console.log(data['parametro']);
             this.ruta_seleccionada = data['parametro'];
@@ -240,45 +241,17 @@ export class ChatComponent implements OnInit {
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" +this.getUserByUrl(this.ruta_seleccionada) + "/Conversation.ttl";
         console.log("URL PROPIA: "+ urlPropia);
         console.log(url);
-        let messageContent = await this.searchMessage(url);
+        let messageContent = await this.queryService.getMessages(url);
         console.log("MessageContent " + messageContent);
-        let messageArray = [] ;
-        if(messageContent != undefined)
-        {
-            messageArray = messageContent.split("\n");
-        }
-        let messageContentPropia = await  this.searchMessage(urlPropia);
+        // let messageArray = [] ;
+
+        let messageContentPropia = await  this.queryService.getMessages(urlPropia);
         console.log("Leimos nuestro ttl");
-        let messageArrayPropio = [] ;
-        if(messageContentPropia != undefined)
-        {
-            messageArrayPropio = messageContentPropia.split("\n");
-        }
-
-        this.messages = [];
-        messageArray.forEach(element => {
-            console.log(element.content)
-            if(element[0]){
-             let messageArrayContent = element.split("###");
-             let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
-             this.messages.push(messageToAdd);
-            }
-
-        });
-        messageArrayPropio.forEach(element => {
-            console.log(element.content)
-            if(element[0]){
-                let messageArrayContent = element.split("###");
-                let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-                console.log(messageToAdd);
-                this.messages.push(messageToAdd);
-            }
-
-        });
-
-        let ordered = this.order(this.messages);
-        this.messages=ordered;
+        // let messageArrayPropio = [] ;
+        let allMessages = [];
+        messageContent.forEach(mess=> allMessages.push(mess));
+        messageContentPropia.forEach(mess=> allMessages.push(mess));
+        this.messages = this.order(allMessages);
     }
 
 

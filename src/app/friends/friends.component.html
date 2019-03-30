@@ -1,14 +1,12 @@
 <!doctype html>
 <html lang="en">
-<body>
-<div class="grid-rows">
-    <div class="row">
-        <ul class="fas fa-user" style="font-size: 20px; color: #7C55FB " *ngFor="let item of friends">
-             <a [routerLink] = "['/chat',item.webid.toString()]"> {{ item.webid}} </a>
-        </ul>
-
-</div>
-<button type="button" name="button" class="btn btn-danger" (click)="printquery()">consulta!!</button>
-</div>
-</body>
+  <body>
+    <div class="grid-rows">
+          <div class="row">
+            <ul class="fas fa-user" style="font-size: 20px; color: #7C55FB " *ngFor="let item of friends">
+                 <a [routerLink] = "['/chat',item.webid.toString()]"> {{ item.webid}} </a>
+            </ul>
+          </div>
+    </div>
+  </body>
 </html>
