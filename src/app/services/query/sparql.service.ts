@@ -36,7 +36,7 @@ export class SparqlService {
    }
 
 
-   getMessage(quads:any[], idx:number):Message{
+  private  getMessage(quads:any[], idx:number):Message{
      return {
        date: this.getValue(quads[idx+1]),
        content: this.getValue(quads[idx+2]),
@@ -45,7 +45,7 @@ export class SparqlService {
      }
    }
 
-   getValue(elem:any) :any{
+   private getValue(elem:any) :any{
      return elem.object.value;
    }
 

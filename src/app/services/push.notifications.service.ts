@@ -1,10 +1,9 @@
-import {
-    Injectable
-} from '@angular/core';
-import {
-    Observable
-} from 'rxjs';
-@Injectable()
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class PushNotificationsService {
     public permission: Permission;
     constructor() {

@@ -1,32 +1,40 @@
+import { Injectable } from '@angular/core';
 import { Friend } from "src/app/models/friend.model";
 import { Message } from "src/app/models/message.model";
 import { TXTPrinter } from "../printers/txtprinter.service";
+import { TTLWriterService } from '../printers/ttlwriter.service';
+import {SparqlService} from '../query/sparql.service';
 import {messagesSorter} from "../sorters/messagesSorter";
 import {PushNotificationsService} from '../push.notifications.service';
 import * as $ from 'jquery';
 
+@Injectable({
+  providedIn: 'root'
+})
 
-export class filesCreator {
-
+export class FilesCreatorService {
     sessionWebId: string;
     recipientWebId: string;
     fileClient: any;
     messages:Message[];
-
-    _notificationService: PushNotificationsService;
     primera: boolean;
 
      /*
      * Constuctor
      */
-    constructor(userWebId:string, recipientWebId:string,fileClientP:any, messages: Message[]) {
-        this.sessionWebId=userWebId;
-        this.recipientWebId=recipientWebId;
-        this.fileClient=fileClientP;
-        this.messages=messages;
-        this._notificationService = new PushNotificationsService();
-        this._notificationService.requestPermission();
+    constructor(private ttlwriter:TTLWriterService,
+       private notificationService:PushNotificationsService,
+       private sparqlService:SparqlService) {
+        this.notificationService = new PushNotificationsService();
+        this.notificationService.requestPermission();
         this.primera = true;
+    }
+
+    init(userWebId:string, recipientWebId:string,fileClientP:any, messages: Message[]){
+      this.sessionWebId=userWebId;
+      this.recipientWebId=recipientWebId;
+      this.fileClient=fileClientP;
+      this.messages=messages;
     }
 
 
@@ -205,20 +213,28 @@ export class filesCreator {
         let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
         this.messages.push(messageToSend);
         let stringToChange = '/profile/card#me';
-        let path = '/public/dechat5a/' + user + '/Conversation.txt';
+        let path = '/public/dechat5a/' + user + '/Conversation.ttl';
 
         senderId = senderId.replace(stringToChange, path);
 
         let message = await this.readMessage(senderId);
 
+        if(message != null){
+          let content = message + this.ttlwriter.writteData(messageToSend);
+          this.updateTTL(senderId, content);
+        } else{
+          let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
+          content = content + this.ttlwriter.writteData(messageToSend);
+          this.updateTTL(senderId, content);
+        }
 
         //For TXTPrinter
-        if (message != null) {
-            this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
-        }
-        else {
-            this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
-        }
+        // if (message != null) {
+        //     this.updateTTL(senderId, message + "\n" + new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        // }
+        // else {
+        //     this.updateTTL(senderId, new TXTPrinter().getTXTDataFromMessage(messageToSend));
+        // }
 
         /*
         //For TTLPrinter
@@ -237,36 +253,29 @@ export class filesCreator {
      * This methos updates the TTL file with the new content
      */
     private updateTTL(url, newContent, contentType?) {
-        if (contentType) {
-            this.fileClient.updateFile(url, newContent, contentType).then(success => {
-
-            }, err => console.log(err));
-        }
-        else {
-            this.fileClient.updateFile(url, newContent).then(success => {
-
-            }, err => console.log(err));
-        }
-    }
+    console.log("NEW CONTENT-->" +  newContent);
+    console.log("ContentTYpe-->"+ contentType);
+      if (contentType) {
+          let newTtl = this.ttlwriter;
+          this.fileClient.updateFile(url, newContent, contentType).then(success => {
+              console.log(`Updated ${url}.`)
+          }, err => console.log(err));
+      }
+      else {
+          this.fileClient.updateFile(url, newContent).then(success => {
+              console.log(`Updated ${url}.`)
+          }, err => console.log(err));
+      }
+  }
 
      /*
      * This methos searches for a message in an url
      */
     public async readMessage(url) {
-        var message = await this.searchMessage(url)
-
-        return message;
-    }
-
-     /*
-     * This method search for a message in a pod
-     */
-    public async searchMessage(url) {
-        return await this.fileClient.readFile(url).then(body => {
-
-            return body;
-        }, err => console.log(err));
-
+      return await this.fileClient.readFile(url).then(body => {
+          console.log(`File	content is : ${body}.`);
+          return body;
+      }, err => console.log(err));
     }
 
         /*
@@ -282,6 +291,7 @@ export class filesCreator {
      * This method gets the url of the connection to synchronize the different messages
      */
     public async synchronizeMessages(){
+        this.ttlwriter.initService(this.sessionWebId,this.recipientWebId);
          $("#scroll").animate({ scrollTop: $('#scroll')[0].scrollHeight}, 200);
         var urlArray = this.recipientWebId.split("/");
         let url= "https://" + urlArray[2] + "/public/dechat5a/" + this.getUserByUrl(this.sessionWebId) + "/Conversation.ttl";
@@ -289,41 +299,19 @@ export class filesCreator {
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
 
-        let messageContent = await this.searchMessage(url);
-
-        let messageArray = [] ;
-        if(messageContent != undefined)
-        {
-            messageArray = messageContent.split("\n");
-        }
-        let messageContentPropia = await  this.searchMessage(urlPropia);
-        let messageArrayPropio = [] ;
-        if(messageContentPropia != undefined)
-        {
-            messageArrayPropio = messageContentPropia.split("\n");
-        }
-
+        let messageContent = await this.sparqlService.getMessages(url);
+        // if(messageContent != undefined)
+        // {
+        //     messageArray = messageContent.split("\n");
+        // }
+        let messageContentPropia = await  this.sparqlService.getMessages(urlPropia);
+        // if(messageContentPropia != undefined)
+        // {
+        //     messageArrayPropio = messageContentPropia.split("\n");
+        // }
         let mess = [];
-        messageArray.forEach(element => {
-            if(element[0]){
-             let messageArrayContent = element.split("###");
-             let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-
-             mess.push(messageToAdd);
-            }
-
-        });
-        messageArrayPropio.forEach(element => {
-            if(element[0]){
-                let messageArrayContent = element.split("###");
-                let messageToAdd:Message = { content: messageArrayContent[2], date: messageArrayContent[3],sender: messageArrayContent[0], recipient: messageArrayContent[1]};
-
-                mess.push(messageToAdd);
-            }
-
-        });
-
-
+        messageContent.forEach(msg=> mess.push(msg));
+        messageContentPropia.forEach(msg=> mess.push(msg));
 
         mess = new messagesSorter().order(mess);
 
@@ -338,7 +326,7 @@ export class filesCreator {
                     'title': 'Nuevo Mensaje de: '+ mess[i].sender,
                     'alertContent': mess[i].content
                   });
-                  this._notificationService.generateNotification(data);
+                  this.notificationService.generateNotification(data);
                 }
             }
             this.primera = false;
@@ -346,6 +334,4 @@ export class filesCreator {
 
 
     }
-
-
 }

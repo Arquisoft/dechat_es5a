@@ -1,11 +1,11 @@
-import { message } from "src/app/models/message.model";
+import { Message } from "src/app/models/message.model";
 
 export class messagesSorter {
 
      /*
      * Sorted methos that sorts the message array
      */
-    public order( mess : message[] )
+    public order( mess : Message[] )
     {
        return mess.sort(function(a, b) {
             let date1 =a.date;
@@ -18,9 +18,9 @@ export class messagesSorter {
    /*
     * This is a sorting method that obtains the minor message
     */
-   private findMinor(aux:message[]){
+   private findMinor(aux:Message[]){
          let idx=0
-         let minor:message = aux[idx];
+         let minor:Message = aux[idx];
          for(let i=0; i<aux.length; i++){
            if(aux[i].date< minor.date){
              idx=i;

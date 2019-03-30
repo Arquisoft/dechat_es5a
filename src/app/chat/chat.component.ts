@@ -8,11 +8,8 @@ import { Message } from '../models/message.model';
 import { TTLWriterService } from '../services/printers/ttlwriter.service';
 import { SparqlService } from '../services/query/sparql.service';
 import {TXTPrinter} from '../services/printers/txtprinter.service'
-import { ActivatedRoute } from '@angular/router';
-import { message } from '../models/message.model';
 import * as $ from 'jquery';
 import { filesCreator } from '../services/creators/filesCreator';
-import {Friend} from '../models/friend.model';
 
 @Component({
     selector: 'app-chat',
@@ -25,8 +22,6 @@ export class ChatComponent implements OnInit {
     ruta_seleccionada: string;
     htmlToAdd: string;
     messages: Message[]=[];
-
-    messages: message[] = [];
     names: string;
     fC: filesCreator;
     emisor: string;
