@@ -21,11 +21,13 @@ html {
     overflow: hidden;
     background-color: #32465a;
     width: 300%;
+    margin-bottom:0;
 
 }
 
 .navbar{
     padding: 0;
+    height: 9vh;
 }
 .topnav a {
     float: left;
