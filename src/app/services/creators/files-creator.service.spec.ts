@@ -12,7 +12,7 @@ import { from } from 'rxjs';
 
 
 
-describe('FilesCreatorService', () => {
+fdescribe('FilesCreatorService', () => {
   let senderPerson: Friend = { webid: 'https://sender.solid.community/profile/card/#me' };
   let recipientPerson: Friend = { webid: 'https://recipient.solid.community/profile/card/#me' }  
   let service: FilesCreatorService = new FilesCreatorService(new TTLWriterService(new TTLWriterUtil()), new PushNotificationsService(), new SparqlService());
@@ -48,7 +48,7 @@ describe('FilesCreatorService', () => {
     expect(username).toBe('username');
   });
 
-  it('should read 1 message', () => {
+  fit('should read 1 message', () => {
     //arrange
     const messages: Message[] = [
       {
@@ -65,16 +65,16 @@ describe('FilesCreatorService', () => {
       }
     ]
 
-    spyOn(service, 'readMessage').and.returnValue(() => {
+    const spy = spyOn(service, 'readMessage').and.returnValue(() => {
       from([messages]);
     });
 
     //act
-    let fakemessages = service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
+    service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
 
-    //TODO access promise array to check they both have same values
     //assert
-    expect(messages.length).toBe(2);
+    expect(spy).toHaveBeenCalled();
+
   });
 
   it('shyncronize messages', () =>{
@@ -136,16 +136,15 @@ describe('FilesCreatorService', () => {
     ]
     
 
-    spyOn(service, 'synchronizeMessages').and.returnValue(() => {
+    const spy = spyOn(service, 'synchronizeMessages').and.returnValue(() => {
       from([totalMessages]);
     });
 
     //act
-    let fakeMessages = service.synchronizeMessages();
+    service.synchronizeMessages();
 
     //assert
-    expect(totalMessages.length).toBe(4);
-
+    expect(spy).toHaveBeenCalled();
   });
 
 });
