@@ -15,8 +15,8 @@ export class TTLWriterService {
 
   public initService(urlSender :string, urlRecipient :string
     , urlOntology:string ='https://schema.org/') :string{
-    this.sender = urlSender.replace('me',"");
-    this.recipient = urlRecipient.replace('me',"");
+    this.sender = urlSender.substring(0, urlSender.length-2);
+    this.recipient = urlRecipient.substring(0, urlRecipient.length-2);
     this.ontology = urlOntology;
 
     return this.writeTTLPrefixes();

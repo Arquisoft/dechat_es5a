@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {RdfService} from '../services/rdf.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Friend} from '../models/friend.model';
-import {forEach} from '@angular/router/src/utils/collection';import { FilesCreatorService } from '../services/creators/files-creator.service';
+import {forEach} from '@angular/router/src/utils/collection';
+import { FilesCreatorService } from '../services/creators/files-creator.service';
 import {Message} from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';

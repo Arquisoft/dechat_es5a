@@ -19,6 +19,7 @@ export class SparqlService {
     try{
       let doc = $rdf.sym(url);
       let store = $rdf.graph();
+      console.log(url);
       console.log("tenemos uri");
       let e=  await this.searchMessage(doc.value);
       let par = $rdf.parse(e, store, doc.uri, 'text/turtle');
