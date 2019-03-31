@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RdfService} from '../services/rdf.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Friend} from '../models/friend.model';
-import {forEach} from '@angular/router/src/utils/collection';
-import { FilesCreatorService } from '../services/creators/files-creator.service';
+import {forEach} from '@angular/router/src/utils/collection';import { FilesCreatorService } from '../services/creators/files-creator.service';
 import {Message} from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
@@ -54,7 +53,7 @@ export class FriendsComponent implements OnInit {
         console.log('TIMER '+this.timer);
 
         this.fC.primera = true;
-        this.messages = [];
+        setImmediate(this.messages = []);
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
@@ -135,6 +134,11 @@ export class FriendsComponent implements OnInit {
         } catch (error) {
             console.log(`Error: ${error}`);
         }
+    }
+
+    ngOnDestroy()
+    {
+      clearInterval(this.timer);
     }
 
 }
