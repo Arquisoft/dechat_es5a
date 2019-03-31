@@ -27,6 +27,7 @@ html {
 
 .navbar{
     padding: 0;
+    height: 9vh;
 }
 .topnav a {
     float: left;

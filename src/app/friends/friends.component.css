@@ -8,7 +8,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
   /*  background: #27ae60; */
     font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     font-size: 1em;
@@ -22,7 +21,7 @@ body {
 
 #frame {
     width: 100%;
-    height: 92vh;
+    height: 91vh;
     background: #E6EAEA;
 }
 
@@ -718,7 +717,8 @@ body {
 #frame .content .message-input {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    left: 15px;
+    width: 95%;
     z-index: 99;
 }
 
