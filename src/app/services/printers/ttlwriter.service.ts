@@ -22,7 +22,7 @@ export class TTLWriterService {
     return this.writeTTLPrefixes();
   }
 
-  private writeTTLPrefixes() :string{
+  public writeTTLPrefixes() :string{
     let prefixes :string =``;
     //Adding empty prefix
     prefixes+= this.writer.writePrefix(':', '#');
