@@ -7,6 +7,7 @@ import {SparqlService} from '../query/sparql.service';
 import {messagesSorter} from "../sorters/messagesSorter";
 import {PushNotificationsService} from '../push.notifications.service';
 import * as $ from 'jquery';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,9 @@ export class FilesCreatorService {
         this.primera = true;
     }
 
+    ngOnInit(){
+        this.synchronizeMessages();
+    }
     init(userWebId:string, recipientWebId:string,fileClientP:any, messages: Message[]){
       this.sessionWebId=userWebId;
       this.recipientWebId=recipientWebId;
@@ -256,7 +260,7 @@ export class FilesCreatorService {
      /*
      * This methos searches for a message in an url
      */
-    public async readMessage(url) {
+    public async readMessage(url): Promise<Message[]> {
       return await this.fileClient.readFile(url).then(body => {
           console.log(`File	content is : ${body}.`);
           return body;
@@ -317,7 +321,5 @@ export class FilesCreatorService {
 
         }
         this.primera = false;
-
-
     }
 }
