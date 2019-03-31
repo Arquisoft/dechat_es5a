@@ -11,7 +11,7 @@
         </div>
         <div id="search">
             <label><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input id="busq" type="text" placeholder="Search contacts..." />
+            <input id="searchText" type="text" placeholder="Search contacts..." (keyup.enter)="searchFriend()"/>
         </div>
         <div id="contacts" style="margin-bottom: 20%;">
             <ul *ngFor="let item of friends"  id="friend">

@@ -90,6 +90,27 @@ export class FriendsComponent implements OnInit {
         const $t = $('#scroll');
         $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');
     }
+    
+
+    public searchFriend(){
+        var searchText = (document.getElementById("searchText") as HTMLInputElement).value;
+        if(searchText!=""){
+            let output: Friend[] = new Array();
+            let friendsList= this.friends;
+            for(var f in friendsList){
+                let friend= friendsList[f];
+                let logWeb= friend.webid;
+                if(logWeb.includes(searchText)){
+                   output.push(friend);
+                }
+            }
+            this.friends=output;
+            this.value=output;
+        }
+        else{
+            this.loadFriends();
+        }
+    }
 
     async loadFriends() {
         try {
