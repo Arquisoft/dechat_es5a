@@ -1,4 +1,4 @@
-# SolidApp
+# DeChat5A
 
 image:https://travis-ci.org/Arquisoft/dechat_es5a.svg?branch=master["Build Status", link="https://travis-ci.org/Arquisoft/dechat_es5a"]
 image:https://codecov.io/gh/Arquisoft/dechat_es5a/branch/develop/graph/badge.svg["Codecov",link="https://codecov.io/gh/Arquisoft/dechat_es5a"]
