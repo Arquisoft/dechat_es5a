@@ -15,6 +15,7 @@ import { async } from 'q';
 })
 export class FriendsComponent implements OnInit {
 
+  timer: NodeJS.Timer;
     fileClient: any;
     ruta_seleccionada: string;
     messages: Message[] = [];
@@ -45,6 +46,13 @@ export class FriendsComponent implements OnInit {
 
     addChat(ruta: string): string {
 
+
+        clearInterval(this.timer);
+
+
+        console.log('TIMER '+this.timer);
+
+        this.fC.primera = true;
         this.messages = [];
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
@@ -55,10 +63,10 @@ export class FriendsComponent implements OnInit {
         this.fC.createNewFolder(name, '/public/dechat5a/');
         this.fC.synchronizeMessages();
         this.messages = this.fC.messages;
-        setInterval(() => {
+        this.timer = setInterval(() => {
             this.fC.synchronizeMessages();
             this.messages = this.fC.messages;
-        }, 3000);
+        }, 1000);
 
         this.names = this.getUserByUrl(ruta);
         return ruta;
@@ -91,7 +99,7 @@ export class FriendsComponent implements OnInit {
         const $t = $('#scroll');
         $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');
     }
-    
+
 
     public async searchFriend(){
         var searchText = (document.getElementById("searchText") as HTMLInputElement).value;
