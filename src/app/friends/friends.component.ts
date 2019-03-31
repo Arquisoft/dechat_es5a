@@ -6,6 +6,7 @@ import {forEach} from '@angular/router/src/utils/collection';import { FilesCreat
 import {Message} from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
+import { async } from 'q';
 
 @Component({
     selector: 'app-friends',
@@ -92,10 +93,11 @@ export class FriendsComponent implements OnInit {
     }
     
 
-    public searchFriend(){
+    public async searchFriend(){
         var searchText = (document.getElementById("searchText") as HTMLInputElement).value;
         if(searchText!=""){
             let output: Friend[] = new Array();
+            await this.loadFriends();
             let friendsList= this.friends;
             for(var f in friendsList){
                 let friend= friendsList[f];
