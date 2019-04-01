@@ -34,8 +34,10 @@ export class ChatComponent implements OnInit {
         this.rutaActiva.params.subscribe(data => {
             this.ruta_seleccionada = data['parametro'];
         });
-        this.names = this.getUserByUrl(this.ruta_seleccionada);
-        this.emisor = this.rdf.session.webId;
+        if (this.ruta_seleccionada !== undefined){
+            this.names = this.getUserByUrl(this.ruta_seleccionada);
+            this.emisor = this.rdf.session.webId;
+        }
     }
 
     /*
@@ -59,7 +61,7 @@ export class ChatComponent implements OnInit {
     /*
      * This method obtains the username based on his webID
      */
-    private getUserByUrl(ruta: string): string {
+    public getUserByUrl(ruta: string): string {
         let sinhttp;
         sinhttp = ruta.replace('https://', '');
         const user = sinhttp.split('.')[0];
