@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, async, TestBed } from '@angular/core/testing';
 import { ChatComponent } from './chat.component';
-fdescribe('ChatComponent', () => {
+describe('ChatComponent', () => {
     let component: ChatComponent;
     let fixture: ComponentFixture<ChatComponent>;
 
