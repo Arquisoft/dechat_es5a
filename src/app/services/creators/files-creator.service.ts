@@ -20,7 +20,6 @@ export class FilesCreatorService {
     fileClient: any;
     messages: Message[];
     primera: boolean;
-    httpClient: HttpClient;
 
     /*
     * Constuctor
@@ -265,10 +264,9 @@ export class FilesCreatorService {
     public async readMessage(url) {
         return await this.fileClient.readFile(url).then(body => {
             console.log(`File	content is : ${body}.`);
-            return of(body);
+            return body;
         }, err => {
             console.log(err);
-            return Observable.throw(err);
         });
     }
 

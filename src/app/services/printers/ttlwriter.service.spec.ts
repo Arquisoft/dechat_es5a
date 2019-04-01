@@ -3,7 +3,7 @@ import { Message } from './../../models/message.model';
 import { TTLWriterUtil } from './../utils/ttlWriterUtil';
 import { TTLWriterService } from "./ttlwriter.service";
 
-fdescribe('TTL Writer service ', () => {
+describe('TTL Writer service ', () => {
 
     let service: TTLWriterService = new TTLWriterService(new TTLWriterUtil());
     let senderURL: string = 'https://sender.solid.community/profile/card/#me';
@@ -12,7 +12,7 @@ fdescribe('TTL Writer service ', () => {
     beforeAll(() =>
         service.initService(senderURL, recipientURL))
 
-    fit('should write ontology header information', () => {
+    it('should write ontology header information', () => {
         //arrange
         //nothing is needed for this test
 
@@ -25,7 +25,7 @@ fdescribe('TTL Writer service ', () => {
         expect(header).toContain('c1');
     });
 
-    fit('should write message', () => {
+    it('should write message', () => {
         //arrange
         let sender: Friend = {webid: senderURL};
         let recipient: Friend = {webid: recipientURL};

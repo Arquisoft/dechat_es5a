@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {RdfService} from '../services/rdf.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Friend} from '../models/friend.model';
-import {forEach} from '@angular/router/src/utils/collection';import { FilesCreatorService } from '../services/creators/files-creator.service';
-import {Message} from '../models/message.model';
+import { Component, OnInit } from '@angular/core';
+import { RdfService } from '../services/rdf.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Friend } from '../models/friend.model';
+import { forEach } from '@angular/router/src/utils/collection'; 
+import { FilesCreatorService } from '../services/creators/files-creator.service';
+import { Message } from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
 import { async } from 'q';
+import { Observable, from } from 'rxjs';
 
 @Component({
     selector: 'app-friends',
@@ -15,7 +17,7 @@ import { async } from 'q';
 })
 export class FriendsComponent implements OnInit {
 
-  timer: NodeJS.Timer;
+    timer: NodeJS.Timer;
     fileClient: any;
     ruta_seleccionada: string;
     messages: Message[] = [];
@@ -28,20 +30,19 @@ export class FriendsComponent implements OnInit {
     /*
      * Constuctor
      */
-    constructor(private rdf: RdfService, private fC:FilesCreatorService, private rutaActiva: ActivatedRoute) {
+    constructor(private rdf: RdfService, private fC: FilesCreatorService, private rutaActiva: ActivatedRoute) {
     }
 
     /*
      * This method synchronize the conversation once the application is launched
      */
     ngOnInit() {
+        
         this.loadFriends();
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
-
-
-
+        
     }
 
     addChat(ruta: string): string {
@@ -50,10 +51,10 @@ export class FriendsComponent implements OnInit {
         clearInterval(this.timer);
 
 
-        console.log('TIMER '+this.timer);
+        console.log('TIMER ' + this.timer);
 
         this.fC.primera = true;
-        setImmediate(this.messages = []);
+        //setImmediate(this.messages = []);
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
@@ -97,27 +98,27 @@ export class FriendsComponent implements OnInit {
     public callFilesCreatorMessage() {
         this.fC.createNewMessage();
         const $t = $('#scroll');
-        $t.animate({'scrollTop': $('#scroll')[0].scrollHeight}, 'swing');
+        $t.animate({ 'scrollTop': $('#scroll')[0].scrollHeight }, 'swing');
     }
 
 
-    public async searchFriend(){
+    public async searchFriend() {
         var searchText = (document.getElementById("searchText") as HTMLInputElement).value;
-        if(searchText!=""){
+        if (searchText != "") {
             let output: Friend[] = new Array();
             await this.loadFriends();
-            let friendsList= this.friends;
-            for(var f in friendsList){
-                let friend= friendsList[f];
-                let logWeb= friend.webid;
-                if(logWeb.includes(searchText)){
-                   output.push(friend);
+            let friendsList = this.friends;
+            for (var f in friendsList) {
+                let friend = friendsList[f];
+                let logWeb = friend.webid;
+                if (logWeb.includes(searchText)) {
+                    output.push(friend);
                 }
             }
-            this.friends=output;
-            this.value=output;
+            this.friends = output;
+            this.value = output;
         }
-        else{
+        else {
             this.loadFriends();
         }
     }
@@ -128,6 +129,7 @@ export class FriendsComponent implements OnInit {
             if (list_friends) {
                 this.friends = list_friends;
                 this.value = list_friends;
+                return list_friends;
             }
 
 
@@ -136,9 +138,8 @@ export class FriendsComponent implements OnInit {
         }
     }
 
-    ngOnDestroy()
-    {
-      clearInterval(this.timer);
+    ngOnDestroy() {
+        clearInterval(this.timer);
     }
 
 }

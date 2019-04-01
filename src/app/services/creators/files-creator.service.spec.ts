@@ -48,7 +48,7 @@ describe('FilesCreatorService', () => {
     expect(username).toBe('username');
   });
 
-  fit('should read 1 message', () => {
+  it('should read 1 message', () => {
     //arrange
     const messages: Message[] = [
       {
