@@ -6,7 +6,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { CardComponent} from './card/card.component';
 import { FriendsComponent } from './friends/friends.component';
-import { ChatComponent } from './chat/chat.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: LoginComponent },
@@ -18,7 +17,7 @@ const APP_ROUTES: Routes = [
     canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   { path: 'friends', component: FriendsComponent },
-  { path: 'chat/:parametro', component: ChatComponent },
+
 
 ];
 
