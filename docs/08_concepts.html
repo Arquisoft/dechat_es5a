@@ -437,9 +437,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#section-concepts">Cross-cutting Concepts</a>
 <ul class="sectlevel2">
-<li><a href="#_concept_1"><em>&lt;Concept 1&gt;</em></a></li>
-<li><a href="#_concept_2"><em>&lt;Concept 2&gt;</em></a></li>
-<li><a href="#_concept_n"><em>&lt;Concept n&gt;</em></a></li>
+<li><a href="#_important_modules">Important modules</a></li>
 <li><a href="#_directory_structure_and_required_files">Directory Structure and Required Files</a></li>
 </ul>
 </li>
@@ -450,135 +448,70 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="section-concepts">Cross-cutting Concepts</h2>
 <div class="sectionbody">
-<div class="sidebarblock arc42help">
+<div class="sect2 arc42help">
+<h3 id="_important_modules">Important modules</h3>
+<div class="paragraph">
+<p>As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.</p>
+</div>
+<div class="imageblock">
 <div class="content">
+<img src="images/04_solution_strategy.JPG" alt="04 solution strategy">
+</div>
+</div>
 <div class="paragraph">
-<div class="title">Content</div>
-<p>This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as</p>
+<p>It is important to remember that for the application we are using npm, working (obviously) in Node.js, which is a package administrator that allows you to easily manage your resources.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>domain models</p>
-</li>
-<li>
-<p>architecture patterns or design patterns</p>
-</li>
-<li>
-<p>rules for using specific technology</p>
-</li>
-<li>
-<p>principal, often technical decisions of overall decisions</p>
-</li>
-<li>
-<p>implementation rules</p>
+<p>Testing *
+To test our application, we are using karma testing, with the Jasmine framework.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<div class="title">Motivation</div>
-<p>Concepts form the basis for <em>conceptual integrity</em> (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.</p>
+<p>Jasmine is an easy OpenSource framework that allows you to test JavaScript functionality developed in Angular.
+More information here:</p>
 </div>
 <div class="paragraph">
-<p>Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The form can be varied:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>concept papers with any kind of structure</p>
-</li>
-<li>
-<p>cross-cutting model excerpts or scenarios using notations of the architecture views</p>
-</li>
-<li>
-<p>sample implementations, especially for technical concepts</p>
-</li>
-<li>
-<p>reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Structure</div>
-<p>A potential (but not mandatory) structure for this section could be:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Domain concepts</p>
-</li>
-<li>
-<p>User Experience concepts (UX)</p>
-</li>
-<li>
-<p>Safety and security concepts</p>
-</li>
-<li>
-<p>Architecture and design patterns</p>
-</li>
-<li>
-<p>"Under-the-hood"</p>
-</li>
-<li>
-<p>development concepts</p>
-</li>
-<li>
-<p>operational concepts</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Note: it might be difficult to assign individual concepts to one specific topic
-on this list.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="08-Crosscutting-Concepts-Structure-EN.png" alt="Possible topics for crosscutting concepts"></span></p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_concept_1"><em>&lt;Concept 1&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_concept_2"><em>&lt;Concept 2&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
-</div>
-<div class="paragraph">
-<p>&#8230;&#8203;</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_concept_n"><em>&lt;Concept n&gt;</em></h3>
-<div class="paragraph">
-<p><em>&lt;explanation&gt;</em></p>
+<p><a href="https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework" class="bare">https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework</a>)</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_directory_structure_and_required_files">Directory Structure and Required Files</h3>
+<div class="paragraph">
+<p>This is the directory structure of the source folder:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>|-dechat5a
-   |  |-chat1
-   |  |  |-conversacion.ttl
-   |  |-chat2
-   |  |  |-conversacion.ttl
-   |  |-chat3
-   |  |  |-conversacion.ttl
-   |</pre>
+<pre>├───app
+│   ├───card
+│   ├───chat
+│   ├───dashboard
+│   ├───fragments
+│   │   ├───footer
+│   │   ├───header
+│   │   └───navbar
+│   ├───friends
+│   ├───login
+│   ├───login-popup
+│   ├───models
+│   ├───register
+│   └───services
+│       ├───creators
+│       ├───printers
+│       ├───query
+│       ├───sorters
+│       └───utils
+├───assets
+│   ├───images
+│   ├───js
+│   │   └───libs
+│   └───types
+│       └───rdflib
+├───coverage
+│   └───Chrome 73.0.3683 (Windows 10 0.0.0)
+└───environments</pre>
 </div>
 </div>
 </div>
@@ -587,7 +520,7 @@ on this list.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-02 15:40:12 UTC
+Last updated 2019-04-02 16:03:46 UTC
 </div>
 </div>
 </body>
