@@ -1,7 +1,5 @@
 [[section-technical-risks]]
-=== Risks and Technical Debts
-
-****
+== Risks and Technical Debts
 .Contents
 A list of identified technical risks or technical debts, ordered by priority
 
@@ -14,7 +12,7 @@ This should be your motto for systematic detection and evaluation of risks and t
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 
 [width="100%",frame="topbot",options="header", cols=".^5,2"]
-|======================
+|==
 | Risks|Solutions                                                    
 | Lack of knowledge and use of angularjs a|
 * Consult forums
@@ -27,5 +25,4 @@ List of risks and/or technical debts, probably including suggested measures to m
 |Lack of time to complete the project a| * Do it stepwise and continue
 |Misunderstood the requirements of the application a| * Consult with the professor about the requirements            	
 |Problems with git a| * Use a specific methodology to do merges and commits 
-|======================
-****
+|==
