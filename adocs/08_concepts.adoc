@@ -4,7 +4,7 @@
 === Important modules
 As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.
 
-image::images/04_solution_strategy.JPG[]
+image:/04_solution_strategy.JPG[]
 
 It is important to remember that for the application we are using npm, working (obviously) in Node.js, which is a package administrator that allows you to easily manage your resources.
 
