@@ -1,8 +1,6 @@
 [[section-quality-scenarios]]
-== Quality Requirements
+=== Quality Requirements
 
-
-[role="arc42help"]
 ****
 There are some important quality requirements that need to be considered when developing an application, specially when you develop a server-connected one.
 
