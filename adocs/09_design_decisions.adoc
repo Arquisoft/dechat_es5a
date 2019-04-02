@@ -1,6 +1,5 @@
 [[section-design-decisions]]
-=== Design Decisions
-
+== Design Decisions
 * First decision is that we are using Git as version control system instead of using mercurial, vsn, etc. and GitHub as source code management instead of using Bitbucket, this decision was imposed by the teachers of the subject.
 * We are using javascript family language(javascript, typescript, node.js, angular, etc) to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.
 * We are also using basic languages for the web such as html, css, etc.
@@ -10,4 +9,4 @@
 * Use Karma testing, with Jasmine framework, a tool that allow us to easily test code on Angular.
 * Turtle language (.ttl) to create the messages.
 * Sparql queries, to access to Turtle files and get resources faster than using plain text.
-* Notificaitons service, that allows us to send a notification to a user when he receives a message.
+* Notifications service, that allows us to send a notification to a user when he receives a message.
