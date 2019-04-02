@@ -1,8 +1,6 @@
 [[section-runtime-view]]
-== Runtime View
+=== Runtime View
 
-
-[role="arc42help"]
 ****
 The architecture of the application is very simple:
 
