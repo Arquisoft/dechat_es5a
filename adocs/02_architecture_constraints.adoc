@@ -5,7 +5,7 @@
 ****
 
 ****
-==== Technical Constraints
+=== Technical Constraints
 
 ****
 [options="header",cols="1,2,2"]
@@ -21,7 +21,7 @@
 |TC008  |Program language: JavaScrip or TypeScript |We have chosen this language, but we don't have enough knowledge about this languages.
 |======================
 ****
-==== Organizational Constraints
+=== Organizational Constraints
 
 ****
 [options="header",cols="1,2,2"]
@@ -35,7 +35,7 @@
 |CC005 |Beta version| Limited time to develop the project maximum in May 2019.
 |======================
 ****
-==== Conventions Constraints
+=== Conventions Constraints
 
 ****
 [options="header",cols="1,2,2"]
