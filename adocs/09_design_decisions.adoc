@@ -5,10 +5,9 @@
 * We are using javascript family language(javascript, typescript, node.js, angular, etc) to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.
 * We are also using basic languages for the web such as html, css, etc.
 * Social linked data(SOLID) based application. A must decision we have to follow if we want to make a decentralized application. This means following several important constraints to build the application. One of them is storing date in PODS, so the user is the owner of their data.
-* Following MVC architecture as much as we can. It is the main architecture model we know something about, so we are going to try to follow it as much as we can.
+* Using a Service architecture that helps us to easily separate responsabilities. This services are used from the main app to obtain extra-functionality. 
 * Following Angular components structure, so we can build a high cohesion and low coupling app.
-* To be continued.
-
-
-===== TODO Improve Mind-Map
-===== TODO Full decisions table?
+* Use Karma testing, with Jasmine framework, a tool that allow us to easily test code on Angular.
+* Turtle language (.ttl) to create the messages.
+* Sparql queries, to access to Turtle files and get resources faster than using plain text.
+* Notificaitons service, that allows us to send a notification to a user when he receives a message.
