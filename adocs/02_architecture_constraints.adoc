@@ -2,7 +2,6 @@
 == Architecture Constraints
 
 === Technical Constraints
-
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
@@ -18,7 +17,6 @@
 
 
 === Organizational Constraints
-
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
@@ -32,7 +30,6 @@
 
 
 === Conventions Constraints
-
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
