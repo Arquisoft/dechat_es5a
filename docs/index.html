@@ -1595,18 +1595,26 @@ This is the directory structure of the source folder:</p>
 </div>
 </div>
 <div class="paragraph">
-<div class="title">Content</div>
-<p>This section contains all quality requirements as quality tree with scenarios. The most important ones have already been described in section 1.2. (quality goals)</p>
+<p>There are some important quality requirements that need to be considered when developing an application, specially when you develop a server-connected one.</p>
 </div>
 <div class="paragraph">
-<p>Here you can also capture quality requirements with lesser priority,
-which will not create high risks when they are not fully achieved.</p>
+<p>The most importants are:</p>
 </div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Since quality requirements will have a lot of influence on architectural
-decisions you should know for every stakeholder what is really important to them,
-concrete and measurable.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Velocity: When you are chatting with a friend, you need a fast application to make sure the conversation is fluid.</p>
+</li>
+<li>
+<p>Security: When talking about a de-centralized chat, we ensure that our application is well-safe and we have control of our own informations.</p>
+</li>
+<li>
+<p>Fluency: We need a optimized application.</p>
+</li>
+<li>
+<p>Space: This is a forgotten one. This kind of application should be light and easy to convert to an executable file.</p>
+</li>
+</ul>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1616,29 +1624,12 @@ concrete and measurable.</p>
 </div>
 </div>
 <div class="paragraph">
-<div class="title">Content</div>
-<p>The quality tree (as defined in ATAM – Architecture Tradeoff Analysis Method) with quality/evaluation scenarios as leafs.</p>
+<p>Heres a map that allows us to easily get a high quality application:</p>
 </div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>The tree structure with priorities provides an overview for a sometimes large number of quality requirements.</p>
+<div class="imageblock">
+<div class="content">
+<img src="./images/images/10_quality_scenarios.JPG" alt="10 quality scenarios">
 </div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>The quality tree is a high-level overview of the quality goals and requirements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>tree-like refinement of the term "quality". Use "quality" or "usefulness" as a root</p>
-</li>
-<li>
-<p>a mind map with quality categories as main branches</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In any case the tree should include links to the scenarios of the following section.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1647,42 +1638,26 @@ concrete and measurable.</p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<div class="title">Contents</div>
-<p>Concretization of (sometimes vague or implicit) quality requirements using (quality) scenarios.</p>
-</div>
-<div class="paragraph">
-<p>These scenarios describe what should happen when a stimulus arrives at the system.</p>
-</div>
-<div class="paragraph">
-<p>For architects, two kinds of scenarios are important:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Usage scenarios (also called application scenarios or use case scenarios) describe the system’s runtime reaction to a certain stimulus. This also includes scenarios that describe the system’s efficiency or performance. Example: The system reacts to a user’s request within one second.</p>
-</li>
-<li>
-<p>Change scenarios describe a modification of the system or of its immediate environment. Example: Additional functionality is implemented or requirements for a quality attribute change.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Motivation</div>
-<p>Scenarios make quality requirements concrete and allow to
-more easily measure or decide whether they are fulfilled.</p>
-</div>
-<div class="paragraph">
-<p>Especially when you want to assess your architecture using methods like
-ATAM you need to describe your quality goals (from section 1.2)
-more precisely down to a level of scenarios that can be discussed and evaluated.</p>
-</div>
-<div class="paragraph">
-<div class="title">Form</div>
-<p>Tabular or free form text.</p>
-</div>
 <div class="sidebarblock">
 <div class="content">
+<div class="paragraph">
+<p><strong>Scenario 1 - Security</strong></p>
+</div>
+<div class="paragraph">
+<p>When a user tries to access to a private conversation, it should´t be permitted.</p>
+</div>
+<div class="paragraph">
+<p><strong>Scenario 2 - Velocity and Fluency</strong></p>
+</div>
+<div class="paragraph">
+<p>When conversating with a friend, it is really logic that conversation should be fast.</p>
+</div>
+<div class="paragraph">
+<p><strong>Scenario 3 - Space</strong></p>
+</div>
+<div class="paragraph">
+<p>As we said, an application should be as lighter as possible, if a concrete use wants to create a portable version.</p>
+</div>
 <div style="page-break-after: always;"></div>
 <div id="section-technical-risks" class="paragraph">
 <p>== Risks and Technical Debts</p>
@@ -1894,7 +1869,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-02 16:08:32 UTC
+Last updated 2019-04-02 16:30:26 UTC
 </div>
 </div>
 </body>
