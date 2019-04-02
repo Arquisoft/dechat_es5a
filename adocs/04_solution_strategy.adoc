@@ -1,15 +1,15 @@
 [[section-solution-strategy]]
 === Solution Strategy
 
-=== Technology and IDE
+==== Technology and IDE
 The team had to choose between new technologies for us and technologies already kown but that did not have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose TypeScript, which is a JavaScript-based language, and, more specifically, the Angular Framework.
 
 About the IDE, we choose WebStorm due to its power and the fact that, as students, we have a free payment license. In addition, some of the members of the group have used it in previous subjects. Although, another powerful tools like Visual Studio Code have been really helpful when developing our project.
 
-=== Architectural pattern
+==== Architectural pattern
 The development of our architecture is based on a service system. The main class relies on these services to perform the different operations that it needs throughout the execution of the application.
 
 image::images/04_solution_strategy.JPG[]
 
-=== Methodology of work
+==== Methodology of work
 We will use Scrum to develope this project. Scrum can provide us an early software development, and more independence when programming. Our project will start implementing the basic functions of a chat and it will grow in complexity (https://en.wikipedia.org/wiki/Scrum_(software_development)).
