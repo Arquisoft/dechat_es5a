@@ -5,7 +5,6 @@
 [role="arc42help"]
 
 === Important modules
-***
 As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.
 
 image::images/04_solution_strategy.JPG[]
@@ -19,7 +18,6 @@ Jasmine is an easy OpenSource framework that allows you to test JavaScript funct
 More information here: 
 
 https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework)
-****
 
 === Directory Structure and Required Files
 This is the directory structure of the source folder:
