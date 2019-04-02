@@ -2,9 +2,7 @@
 
 == Architecture Constraints
 
-****
 
-****
 === Technical Constraints
 
 ****
