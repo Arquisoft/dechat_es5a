@@ -51,7 +51,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 
 === Technical Context
 
-****
+
 As we have said before, we will use the so-called PODs provided by SOLID to connect to the server of the same, and through it, communicate with other people.
 
 For the design of the connection we will use different mechanisms:
@@ -62,4 +62,4 @@ For the design of the connection we will use different mechanisms:
 
 image::images/03_System_Scope_and_Context.JPG[]
 
-****
+
