@@ -1,12 +1,10 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-
-The development will consist of a WebApp whose objective is to be a decentralized chat, using SOLID technologies. This chat will allow users to exchange messages in different formats (audio, text, video), as well as other functions such as: share screen or video call; It will also allow you to save friends lists, show notifications, among other functions. It will be a web application developed at Angular, and an RDF library will be used to communicate and obtain information on the different PODs
+The development will consist of a WebApp whose objective is to be a decentralized chat, using SOLID technologies. This chat will allow users to exchange messages in different formats (audio, text, video), as well as other functions such as: share screen or video call; It will also allow you to save friends lists, show notifications, among other functions. It will be a web application developed at Angular, and an RDF library will be used to communicate and obtain information on the different PODs.
 
 
 === Requirements Overview
-
 
 The application will mainly comply with the following:
 
@@ -20,9 +18,7 @@ The application will mainly comply with the following:
 •	Users can share their screens in the chat
 
 
-
 === Quality Goals
-
 
 The main Stakeholders of this application are Inrupt and users, I will list the most important quality goals for them:
 
@@ -54,4 +50,3 @@ Stakeholders of the system:
 | Users | | Users can chat,they can have live calls and videos and they can share their screens in the chat
 | Inrupt |link:https://inrupt.com/[Inrupt]| They has been proposed as a challenge
 |===
-
