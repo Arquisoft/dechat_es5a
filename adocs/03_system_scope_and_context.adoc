@@ -1,5 +1,5 @@
 [[section-system-scope-and-context]]
-=== System Scope and Context
+== System Scope and Context
 
 ****
 The project that we are going to develop aims to communicate two people through different mechanisms:
@@ -22,7 +22,7 @@ In this way, we will create a private chat that will have the advantage of being
 ****
 
 
-==== Business Context
+=== Business Context
 
 ****
 ** Communication elements:
@@ -49,7 +49,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 
 ****
 
-==== Technical Context
+=== Technical Context
 
 ****
 As we have said before, we will use the so-called PODs provided by SOLID to connect to the server of the same, and through it, communicate with other people.
