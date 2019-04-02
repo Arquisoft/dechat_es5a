@@ -45,16 +45,12 @@ export class FriendsComponent implements OnInit {
         
     }
 
-    addChat(ruta: string): string {
-
-
+    async addChat(ruta: string){
         clearInterval(this.timer);
 
-
         console.log('TIMER ' + this.timer);
-
         this.fC.primera = true;
-        //setImmediate(this.messages = []);
+        this.messages = [];
         this.ruta_seleccionada = ruta;
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
@@ -70,7 +66,6 @@ export class FriendsComponent implements OnInit {
         }, 1000);
 
         this.names = this.getUserByUrl(ruta);
-        return ruta;
     }
 
 
