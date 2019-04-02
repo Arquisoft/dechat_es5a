@@ -2,7 +2,7 @@
 == Building Block View
 Here is a simple scheme that explains the basic organizations of the application components:
 
-image::images/05_building_block_view.JPG[]
+image:05_building_block_view.JPG[]
 
 
 === Whitebox Overall System
