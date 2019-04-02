@@ -1,9 +1,5 @@
 [[section-deployment-view]]
-
-
-=== Deployment View
-
-****
+== Deployment View
 *¿What hardware do you need to use the application?*
 
 Fortunately, to use the application you just need one computer connected to Internet. You can also use a mobile phone to chat with your friends, but we haven´t developed the app specyfically to be used on it, so there will be some problems. We are working hard to try to make it more comfortable for mobile users.
@@ -28,5 +24,3 @@ The relationship between software and hardware is very simple, there are three m
 * Server: Automatically synchronizes with solid server.
 
 It is important to notice that talking about resources *the application consumes the same resources as another app*, because it is launched in a browser.
-
-****
