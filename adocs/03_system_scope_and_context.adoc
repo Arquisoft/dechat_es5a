@@ -51,4 +51,4 @@ For the design of the connection we will use different mechanisms:
 * *Authenticator:* This tool receives the POD of a user and allows us to know if it is a valid POD.
 * *Angular:* It is a JavaScript framework that will allow us to handle the language in a more comfortable way.
 
-image::images/03_System_Scope_and_Context.JPG[]
+image::03_System_Scope_and_Context.JPG[]
