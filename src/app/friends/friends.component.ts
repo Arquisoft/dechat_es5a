@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Friend } from '../models/friend.model';
-import { forEach } from '@angular/router/src/utils/collection'; 
+import { forEach } from '@angular/router/src/utils/collection';
 import { FilesCreatorService } from '../services/creators/files-creator.service';
 import { Message } from '../models/message.model';
 // Declaramos las variables para jQuery
@@ -37,18 +37,17 @@ export class FriendsComponent implements OnInit {
      * This method synchronize the conversation once the application is launched
      */
     ngOnInit() {
-        
+
         this.loadFriends();
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
-        
+
     }
 
     async addChat(ruta: string){
         clearInterval(this.timer);
 
-        console.log('TIMER ' + this.timer);
         this.fC.primera = true;
         this.messages = [];
         this.ruta_seleccionada = ruta;

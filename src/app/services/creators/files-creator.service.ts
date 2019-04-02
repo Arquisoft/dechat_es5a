@@ -211,7 +211,7 @@ export class FilesCreatorService {
         var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
         (document.getElementById("usermsg") as HTMLInputElement).value = "";
 
-        var messageString= messageContent.replace(/\s/g,'');  
+        var messageString= messageContent.replace(/\s/g,'');
         if(messageString!=""){
             //Sender WebID
             let senderId = this.sessionWebId;
@@ -311,16 +311,27 @@ export class FilesCreatorService {
 
         if (mess.length > this.messages.length) {
             for (var i = this.messages.length; i < mess.length; i++) {
-                this.messages.push(mess[i]);
 
-                if (!this.primera) {
-                    let data: Array<any> = [];
-                    data.push({
-                        'title': 'Nuevo Mensaje de: ' + mess[i].sender,
-                        'alertContent': mess[i].content
-                    });
-                    this.notificationService.generateNotification(data);
+                console.log("Entra al bucle");
+                console.log("Emisor: "+ mess[i].sender);
+                console.log("Receptor: "+ this.recipientWebId);
+
+                if((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
+                (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId))
+                {
+                  console.log("entra al if");
+                  this.messages.push(mess[i]);
+
+                  if (!this.primera) {
+                      let data: Array<any> = [];
+                      data.push({
+                          'title': 'Nuevo Mensaje de: ' + mess[i].sender,
+                          'alertContent': mess[i].content
+                      });
+                      this.notificationService.generateNotification(data);
+                  }
                 }
+
             }
 
         }
