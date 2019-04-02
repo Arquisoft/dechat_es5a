@@ -211,32 +211,34 @@ export class FilesCreatorService {
         var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
         (document.getElementById("usermsg") as HTMLInputElement).value = "";
 
-        //Sender WebID
-        let senderId = this.sessionWebId;
-        let senderPerson: Friend = { webid: senderId };
+        var messageString= messageContent.replace(/\s/g,'');  
+        if(messageString!=""){
+            //Sender WebID
+            let senderId = this.sessionWebId;
+            let senderPerson: Friend = { webid: senderId };
 
-        //Receiver WebId
-        let recipientPerson: Friend = { webid: this.recipientWebId }
+            //Receiver WebId
+            let recipientPerson: Friend = { webid: this.recipientWebId }
 
-        let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
-        this.messages.push(messageToSend);
-        let stringToChange = '/profile/card#me';
-        let path = '/public/dechat5a/' + user + '/Conversation.ttl';
+            let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+            this.messages.push(messageToSend);
+            let stringToChange = '/profile/card#me';
+            let path = '/public/dechat5a/' + user + '/Conversation.ttl';
 
-        senderId = senderId.replace(stringToChange, path);
+            senderId = senderId.replace(stringToChange, path);
 
-        let message = await this.readMessage(senderId);
+            let message = await this.readMessage(senderId);
 
-        if (message != null) {
-            let content = message + this.ttlwriter.writteData(messageToSend);
-            this.updateTTL(senderId, content);
-        } else {
-            let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
-            content = content + this.ttlwriter.writteData(messageToSend);
-            this.updateTTL(senderId, content);
-        }
+            if (message != null) {
+                let content = message + this.ttlwriter.writteData(messageToSend);
+                this.updateTTL(senderId, content);
+            } else {
+                let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
+                content = content + this.ttlwriter.writteData(messageToSend);
+                this.updateTTL(senderId, content);
+            }
 
-        this.synchronizeMessages();
+            this.synchronizeMessages();}
     }
 
     /*
