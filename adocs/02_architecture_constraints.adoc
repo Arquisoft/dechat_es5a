@@ -2,12 +2,9 @@
 
 === Architecture Constraints
 
-****
 
-****
-=== Technical Constraints
+==== Technical Constraints
 
-****
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
@@ -20,10 +17,9 @@
 |TC007  |Groups |Users can have groups of friends with whom they may want to chat.
 |TC008  |Program language: JavaScrip or TypeScript |We have chosen this language, but we don't have enough knowledge about this languages.
 |======================
-****
-=== Organizational Constraints
 
-****
+==== Organizational Constraints
+
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
@@ -34,10 +30,9 @@
 |CC005 |Open source| The project, including source code and documentation.
 |CC005 |Beta version| Limited time to develop the project maximum in May 2019.
 |======================
-****
-=== Conventions Constraints
 
-****
+==== Conventions Constraints
+
 [options="header",cols="1,2,2"]
 |===
 |Code |Restricction |Motive
@@ -53,4 +48,3 @@
 |CC010 |Documentation | We use AsciiDoc
 |======================
 
-****
