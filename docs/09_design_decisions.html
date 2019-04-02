@@ -435,12 +435,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#section-design-decisions">Design Decisions</a>
-<ul class="sectlevel4">
-<li><a href="#_todo_improve_mind_map">TODO Improve Mind-Map</a></li>
-<li><a href="#_todo_full_decisions_table">TODO Full decisions table?</a></li>
-</ul>
-</li>
+<li><a href="#section-design-decisions">Design Decisions</a></li>
 </ul>
 </div>
 </div>
@@ -463,30 +458,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Social linked data(SOLID) based application. A must decision we have to follow if we want to make a decentralized application. This means following several important constraints to build the application. One of them is storing date in PODS, so the user is the owner of their data.</p>
 </li>
 <li>
-<p>Following MVC architecture as much as we can. It is the main architecture model we know something about, so we are going to try to follow it as much as we can.</p>
+<p>Using a Service architecture that helps us to easily separate responsabilities. This services are used from the main app to obtain extra-functionality.</p>
 </li>
 <li>
 <p>Following Angular components structure, so we can build a high cohesion and low coupling app.</p>
 </li>
 <li>
-<p>To be continued.</p>
+<p>Use Karma testing, with Jasmine framework, a tool that allow us to easily test code on Angular.</p>
+</li>
+<li>
+<p>Turtle language (.ttl) to create the messages.</p>
+</li>
+<li>
+<p>Sparql queries, to access to Turtle files and get resources faster than using plain text.</p>
+</li>
+<li>
+<p>Notificaitons service, that allows us to send a notification to a user when he receives a message.</p>
 </li>
 </ul>
-</div>
-<div class="sect4">
-<h5 id="_todo_improve_mind_map">TODO Improve Mind-Map</h5>
-
-</div>
-<div class="sect4">
-<h5 id="_todo_full_decisions_table">TODO Full decisions table?</h5>
-
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-02 16:03:46 UTC
+Last updated 2019-04-02 16:08:32 UTC
 </div>
 </div>
 </body>
