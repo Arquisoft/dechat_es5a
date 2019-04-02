@@ -3,79 +3,55 @@
 
 
 [role="arc42help"]
+
+=== Important modules
+***
+As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.
+
+image::images/04_solution_strategy.JPG[]
+
+It is important to remember that for the application we are using npm, working (obviously) in Node.js, which is a package administrator that allows you to easily manage your resources.
+
+* Testing *
+To test our application, we are using karma testing, with the Jasmine framework.
+
+Jasmine is an easy OpenSource framework that allows you to test JavaScript functionality developed in Angular.
+More information here: 
+
+https://en.wikipedia.org/wiki/Jasmine_(JavaScript_testing_framework)
 ****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
-
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
-
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
-
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
-=== _<Concept 1>_
-
-_<explanation>_
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
-
 
 === Directory Structure and Required Files
+This is the directory structure of the source folder:
+
 ----
-|-dechat5a
-   |  |-chat1
-   |  |  |-conversacion.ttl
-   |  |-chat2
-   |  |  |-conversacion.ttl
-   |  |-chat3
-   |  |  |-conversacion.ttl
-   |
+├───app
+│   ├───card
+│   ├───chat
+│   ├───dashboard
+│   ├───fragments
+│   │   ├───footer
+│   │   ├───header
+│   │   └───navbar
+│   ├───friends
+│   ├───login
+│   ├───login-popup
+│   ├───models
+│   ├───register
+│   └───services
+│       ├───creators
+│       ├───printers
+│       ├───query
+│       ├───sorters
+│       └───utils
+├───assets
+│   ├───images
+│   ├───js
+│   │   └───libs
+│   └───types
+│       └───rdflib
+├───coverage
+│   └───Chrome 73.0.3683 (Windows 10 0.0.0)
+└───environments
 ----
 
