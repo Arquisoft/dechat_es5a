@@ -25,7 +25,6 @@ This is the directory structure of the source folder:
 ----
 ├───app
 │   ├───card
-│   ├───chat
 │   ├───dashboard
 │   ├───fragments
 │   │   ├───footer
