@@ -1,7 +1,6 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-****
 The project that we are going to develop aims to communicate two people through different mechanisms:
 
 * *Text messages.*
@@ -19,12 +18,10 @@ SOLID is a project that consists of a decentralized website. It deals with estab
 We will use these PODs to connect both users, but the data they exchange will be stored in the interlocutors' devices.
 In this way, we will create a private chat that will have the advantage of being isolated, reliable and safe.
 
-****
 
 
 === Business Context
 
-****
 ** Communication elements:
 
 *  *Users:* Users are the main recipient of the application.
@@ -47,7 +44,6 @@ Through the website, users will enter some small data on the SOLID website to ob
 | Web								|										| POD, Server Connection
 |===
 
-****
 
 === Technical Context
 
