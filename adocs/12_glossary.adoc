@@ -24,4 +24,3 @@ Only in english at the moment.
 | Jasmine           | Framework to easily test Angular JavaScript based applications
 | Sparql            | Query language to obtain RDF graphs
 |===
-
