@@ -4,41 +4,46 @@
 
 [role="arc42help"]
 ****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+The architecture of the application is very simple:
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
+Once you launch the applicacion, youll see a login views. That login view will redirect you to the official solid login page.
 
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
+image::images/06_runtime_view_login.JPG[]
 
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
+In the solid login page, you´ll introduce your solid credentials. If your data is correct, you´ll login into your profile and see your solid profile page.
 
-.Form
-There are many notations for describing scenarios, e.g.
+In the navegation bar of the application, you will see 4 labels: 
 
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
+* Profile: The same page. In there you can edit your profile information
 
-****
+* Chat: The chat page. We´ll introduce about it later.
 
-=== <Runtime Scenario 1>
+* Documentation: A documentation page.
+
+* A logout icon: It will redirect to the application login.
 
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
+*The chat page*
 
-=== <Runtime Scenario 2>
+image::images/06_runtime_view_chat.JPG[]
 
-=== ...
+As you can see, the chat page is divided in three layers:
 
-=== <Runtime Scenario n>
+* Friends layer: In this layer you can search between your friends (for those you should add in solid), and start a conversation.
+
+* Conversation layer: Here it will show the different conversations. Your own messages will appear in white colour, and your friends´ will be black.
+
+* Message layer: There you can send a message to your friend. Once you write you can press the button or simply the Enter key to send it. This message will appear as yours in the conversation layer and will be sended to your partner.
+
+
+*Lets see a couple runtimes scenarios*
+
+*Scenario 1*
+Actor 1 wants to send a message to one of his friends, after login in successfully, his runtime would be like this:
+
+image::images/06_runtime_view_scenario1.JPG[]
+
+*Scenario 2*
+Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 and Actor 3 sends a message to Actor 1:
+
+image::images/06_runtime_view_scenario2.JPG[]
