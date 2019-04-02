@@ -1,9 +1,8 @@
 [[section-deployment-view]]
 
 
-== Deployment View
+=== Deployment View
 
-[role="arc42help"]
 ****
 *¿What hardware do you need to use the application?*
 
