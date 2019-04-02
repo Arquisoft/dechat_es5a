@@ -4,7 +4,7 @@ The architecture of the application is very simple:
 
 Once you launch the applicacion, youll see a login views. That login view will redirect you to the official solid login page.
 
-image::images/06_runtime_view_login.JPG[]
+image:06_runtime_view_login.JPG[]
 
 In the solid login page, you´ll introduce your solid credentials. If your data is correct, you´ll login into your profile and see your solid profile page.
 
@@ -21,7 +21,7 @@ In the navegation bar of the application, you will see 4 labels:
 
 *The chat page*
 
-image::images/06_runtime_view_chat.JPG[]
+image:06_runtime_view_chat.JPG[]
 
 As you can see, the chat page is divided in three layers:
 
@@ -37,9 +37,9 @@ As you can see, the chat page is divided in three layers:
 *Scenario 1*
 Actor 1 wants to send a message to one of his friends, after login in successfully, his runtime would be like this:
 
-image::images/06_runtime_view_scenario1.JPG[]
+image:06_runtime_view_scenario1.JPG[]
 
 *Scenario 2*
 Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 and Actor 3 sends a message to Actor 1:
 
-image::images/06_runtime_view_scenario2.JPG[]
+image:06_runtime_view_scenario2.JPG[]
