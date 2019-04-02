@@ -1,7 +1,5 @@
 [[section-quality-scenarios]]
-=== Quality Requirements
-
-****
+== Quality Requirements
 There are some important quality requirements that need to be considered when developing an application, specially when you develop a server-connected one.
 
 The most importants are:
@@ -11,23 +9,14 @@ The most importants are:
 * Fluency: We need a optimized application.
 * Space: This is a forgotten one. This kind of application should be light and easy to convert to an executable file.
 
-****
 
 === Quality Tree
-
-[role="arc42help"]
-****
 Heres a map that allows us to easily get a high quality application:
 
 image::images/10_quality_scenarios.JPG[]
-****
+
 
 === Quality Scenarios
-
-[role="arc42help"]
-****
-
-****
 *Scenario 1 - Security*
 
 When a user tries to access to a private conversation, it should´t be permitted.
