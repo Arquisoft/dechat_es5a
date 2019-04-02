@@ -26,5 +26,8 @@ Only in english at the moment.
 | Stakeholders      | People interested in a proyect
 | Angular           | A framwork for working in typescript
 | Turtle            | Is a syntax for expressing data in RDF
+| Karma             | IDE for testing an application
+| Jasmine           | Framework to easily test Angular JavaScript based applications
+| Sparql            | Query language to obtain RDF graphs
 |===
 
