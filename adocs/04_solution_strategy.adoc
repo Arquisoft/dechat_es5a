@@ -9,7 +9,7 @@ About the IDE, we choose WebStorm due to its power and the fact that, as student
 === Architectural pattern
 The development of our architecture is based on a service system. The main class relies on these services to perform the different operations that it needs throughout the execution of the application.
 
-image::images/04_solution_strategy.JPG[]
+image:04_solution_strategy.JPG[]
 
 === Methodology of work
 We will use Scrum to develope this project. Scrum can provide us an early software development, and more independence when programming. Our project will start implementing the basic functions of a chat and it will grow in complexity (https://en.wikipedia.org/wiki/Scrum_(software_development)).
