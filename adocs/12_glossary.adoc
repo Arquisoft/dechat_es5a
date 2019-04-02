@@ -1,13 +1,10 @@
 [[section-glossary]]
-=== Glossary
-
-****
+== Glossary
 Definition of most important terms every stakeholder should know to understand the documentation.
 
 Order by rarety.
 
 Only in english at the moment.
-****
 
 [options="header"]
 |===
