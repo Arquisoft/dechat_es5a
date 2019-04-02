@@ -1,6 +1,6 @@
 [[section-architecture_constraints]]
 
-== Architecture Constraints
+=== Architecture Constraints
 
 ****
 
