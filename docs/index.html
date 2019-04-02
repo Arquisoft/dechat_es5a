@@ -461,20 +461,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_technology_and_ide">4.1. Technology and IDE</a></li>
 <li><a href="#_architectural_pattern">4.2. Architectural pattern</a></li>
 <li><a href="#_methodology_of_work">4.3. Methodology of work</a></li>
-<li><a href="#section-building-block-view">4.4. Building Block View</a></li>
-<li><a href="#section-runtime-view">4.5. Runtime View</a></li>
-<li><a href="#section-deployment-view">4.6. Deployment View</a></li>
-<li><a href="#section-concepts">4.7. Cross-cutting Concepts</a></li>
-<li><a href="#_important_modules">4.8. Important modules</a></li>
-<li><a href="#_directory_structure_and_required_files">4.9. Directory Structure and Required Files</a></li>
-<li><a href="#section-design-decisions">4.10. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">4.11. Quality Requirements</a></li>
-<li><a href="#_quality_tree">4.12. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">4.13. Quality Scenarios</a></li>
-<li><a href="#section-technical-risks">4.14. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">4.15. Glossary</a></li>
 </ul>
 </li>
+<li><a href="#section-building-block-view">5. Building Block View</a>
+<ul class="sectlevel2">
+<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
+<li><a href="#_components">5.2. Components</a></li>
+<li><a href="#_services">5.3. Services</a></li>
+<li><a href="#_coverage">5.4. Coverage</a></li>
+<li><a href="#_utilities">5.5. Utilities</a></li>
+</ul>
+</li>
+<li><a href="#section-runtime-view">6. Runtime View</a></li>
+<li><a href="#section-deployment-view">7. Deployment View</a></li>
+<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_important_modules">8.1. Important modules</a></li>
+<li><a href="#_directory_structure_and_required_files">8.2. Directory Structure and Required Files</a></li>
+</ul>
+</li>
+<li><a href="#section-design-decisions">9. Design Decisions</a></li>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_quality_tree">10.1. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">10.2. Quality Scenarios</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
+<li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -491,26 +505,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 }
 </style>
 <hr>
-<div class="sidebarblock arc42help">
-<div class="content">
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This version of the template contains some help and explanations.
-It is used for familiarization with arc42 and the understanding of the concepts.
-For documentation of your own system you use better the <em>plain</em> version.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -1010,10 +1004,11 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-building-block-view">4.4. Building Block View</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-building-block-view">5. Building Block View</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Here is a simple scheme that explains the basic organizations of the application components:</p>
 </div>
@@ -1022,18 +1017,14 @@ Through the website, users will enter some small data on the SOLID website to ob
 <img src="./images/images/05_building_block_view.JPG" alt="05 building block view">
 </div>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_whitebox_overall_system">4.4.1. Whitebox Overall System</h4>
+<div class="sect2">
+<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
 <div class="paragraph">
 <p>We will explain some of the application parts functionality:</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_components">4.4.2. Components</h4>
-<div class="sidebarblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_components">5.2. Components</h3>
 <div class="paragraph">
 <p>This are the different components that interact between them. Each one component is divided in some files, but the most important ones are:</p>
 </div>
@@ -1048,44 +1039,30 @@ Through the website, users will enter some small data on the SOLID website to ob
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_services">4.4.3. Services</h4>
-<div class="sidebarblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_services">5.3. Services</h3>
 <div class="paragraph">
 <p>Services are the utilities that our components use to help them improving it´s functionality.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_coverage">4.4.4. Coverage</h4>
-<div class="sidebarblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_coverage">5.4. Coverage</h3>
 <div class="paragraph">
 <p>Represents the code testing. As we said before, tests are executed in Karma, with Jasmine framework. We use Google Chrome to execute the tests.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_utilities">4.4.5. Utilities</h4>
-<div class="sidebarblock">
-<div class="content">
+<div class="sect2">
+<h3 id="_utilities">5.5. Utilities</h3>
 <div class="paragraph">
 <p>It is all theuseful resources. In this case, weve used a core that allows us to interact with some librarys. It contains some useful methods.</p>
-</div>
-</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="section-runtime-view">4.5. Runtime View</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="section-runtime-view">6. Runtime View</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The architecture of the application is very simple:</p>
 </div>
@@ -1164,14 +1141,12 @@ Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 a
 <img src="./images/images/06_runtime_view_scenario2.JPG" alt="06 runtime view scenario2">
 </div>
 </div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-deployment-view">4.6. Deployment View</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="section-deployment-view">7. Deployment View</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p><strong>¿What hardware do you need to use the application?</strong></p>
 </div>
@@ -1212,16 +1187,14 @@ Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 a
 <div class="paragraph">
 <p>It is important to notice that talking about resources <strong>the application consumes the same resources as another app</strong>, because it is launched in a browser.</p>
 </div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-concepts">4.7. Cross-cutting Concepts</h3>
-
 </div>
+<div class="sect1">
+<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_important_modules">4.8. Important modules</h3>
+<h3 id="_important_modules">8.1. Important modules</h3>
 <div class="paragraph">
 <p>As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.</p>
 </div>
@@ -1250,7 +1223,7 @@ More information here:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_directory_structure_and_required_files">4.9. Directory Structure and Required Files</h3>
+<h3 id="_directory_structure_and_required_files">8.2. Directory Structure and Required Files</h3>
 <div class="paragraph">
 <p>This is the directory structure of the source folder:</p>
 </div>
@@ -1287,8 +1260,11 @@ More information here:</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-design-decisions">4.10. Design Decisions</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-design-decisions">9. Design Decisions</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -1319,16 +1295,16 @@ More information here:</p>
 <p>Sparql queries, to access to Turtle files and get resources faster than using plain text.</p>
 </li>
 <li>
-<p>Notificaitons service, that allows us to send a notification to a user when he receives a message.</p>
+<p>Notifications service, that allows us to send a notification to a user when he receives a message.</p>
 </li>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-quality-scenarios">4.11. Quality Requirements</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>There are some important quality requirements that need to be considered when developing an application, specially when you develop a server-connected one.</p>
 </div>
@@ -1351,13 +1327,8 @@ More information here:</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_quality_tree">4.12. Quality Tree</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
+<h3 id="_quality_tree">10.1. Quality Tree</h3>
 <div class="paragraph">
 <p>Heres a map that allows us to easily get a high quality application:</p>
 </div>
@@ -1367,15 +1338,8 @@ More information here:</p>
 </div>
 </div>
 </div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="_quality_scenarios">4.13. Quality Scenarios</h3>
-<div class="sidebarblock arc42help">
-<div class="content">
-
-</div>
-</div>
+<h3 id="_quality_scenarios">10.2. Quality Scenarios</h3>
 <div class="paragraph">
 <p><strong>Scenario 1 - Security</strong></p>
 </div>
@@ -1396,10 +1360,11 @@ More information here:</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-technical-risks">4.14. Risks and Technical Debts</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <div class="title">Contents</div>
 <p>A list of identified technical risks or technical debts, ordered by priority</p>
@@ -1501,14 +1466,12 @@ More information here:</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="section-glossary">4.15. Glossary</h3>
-<div class="sidebarblock">
-<div class="content">
+</div>
+<div class="sect1">
+<h2 id="section-glossary">12. Glossary</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Definition of most important terms every stakeholder should know to understand the documentation.</p>
 </div>
@@ -1517,8 +1480,6 @@ More information here:</p>
 </div>
 <div class="paragraph">
 <p>Only in english at the moment.</p>
-</div>
-</div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1613,10 +1574,9 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-02 19:11:23 UTC
+Last updated 2019-04-02 19:24:57 UTC
 </div>
 </div>
 </body>
