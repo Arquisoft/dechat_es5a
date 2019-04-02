@@ -18,7 +18,6 @@ import { NavbarComponent } from './fragments/navbar/navbar.component';
 import { FooterComponent } from './fragments/footer/footer.component';
 import { HeaderComponent } from './fragments/header/header.component';
 import {FriendsComponent} from './friends/friends.component';
-import {ChatComponent} from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 
 // Services
@@ -40,7 +39,6 @@ import { RdfService } from './services/rdf.service';
     FooterComponent,
     HeaderComponent,
     FriendsComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,
