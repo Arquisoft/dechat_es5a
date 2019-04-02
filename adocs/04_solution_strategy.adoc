@@ -1,5 +1,5 @@
 [[section-solution-strategy]]
-== Solution Strategy
+=== Solution Strategy
 
 === Technology and IDE
 The team had to choose between new technologies for us and technologies already kown but that did not have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose TypeScript, which is a JavaScript-based language, and, more specifically, the Angular Framework.
