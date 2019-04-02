@@ -13,7 +13,7 @@ The most importants are:
 === Quality Tree
 Heres a map that allows us to easily get a high quality application:
 
-image::images/10_quality_scenarios.JPG[]
+image:10_quality_scenarios.JPG[]
 
 
 === Quality Scenarios
