@@ -438,33 +438,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#section-introduction-and-goals">1. Introduction and Goals</a></li>
 <li><a href="#section-architecture_constraints">2. Architecture Constraints</a></li>
-<li><a href="#_technical_constraints">3. Technical Constraints</a></li>
-<li><a href="#_organizational_constraints">4. Organizational Constraints</a></li>
-<li><a href="#_conventions_constraints">5. Conventions Constraints</a></li>
-<li><a href="#section-system-scope-and-context">6. System Scope and Context</a></li>
-<li><a href="#_business_context">7. Business Context</a></li>
-<li><a href="#_technical_context">8. Technical Context</a></li>
-<li><a href="#section-solution-strategy">9. Solution Strategy</a></li>
-<li><a href="#_technology_and_ide">10. Technology and IDE</a></li>
-<li><a href="#_architectural_pattern">11. Architectural pattern</a></li>
-<li><a href="#_methodology_of_work">12. Methodology of work</a></li>
-<li><a href="#section-building-block-view">13. Building Block View</a></li>
-<li><a href="#_whitebox_overall_system">14. Whitebox Overall System</a></li>
-<li><a href="#_components">15. Components</a></li>
-<li><a href="#_services">16. Services</a></li>
-<li><a href="#_coverage">17. Coverage</a></li>
-<li><a href="#_utilities">18. Utilities</a></li>
-<li><a href="#section-runtime-view">19. Runtime View</a></li>
-<li><a href="#section-deployment-view">20. Deployment View</a></li>
-<li><a href="#section-concepts">21. Cross-cutting Concepts</a></li>
-<li><a href="#_important_modules">22. Important modules</a></li>
-<li><a href="#_directory_structure_and_required_files">23. Directory Structure and Required Files</a></li>
-<li><a href="#section-design-decisions">24. Design Decisions</a></li>
-<li><a href="#section-quality-scenarios">25. Quality Requirements</a></li>
-<li><a href="#_quality_tree">26. Quality Tree</a></li>
-<li><a href="#_quality_scenarios">27. Quality Scenarios</a></li>
-<li><a href="#section-technical-risks">28. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">29. Glossary</a></li>
+<li><a href="#section-system-scope-and-context">3. System Scope and Context</a></li>
+<li><a href="#_business_context">4. Business Context</a></li>
+<li><a href="#_technical_context">5. Technical Context</a></li>
+<li><a href="#section-solution-strategy">6. Solution Strategy</a></li>
+<li><a href="#_technology_and_ide">7. Technology and IDE</a></li>
+<li><a href="#_architectural_pattern">8. Architectural pattern</a></li>
+<li><a href="#_methodology_of_work">9. Methodology of work</a></li>
+<li><a href="#section-building-block-view">10. Building Block View</a></li>
+<li><a href="#_whitebox_overall_system">11. Whitebox Overall System</a></li>
+<li><a href="#_components">12. Components</a></li>
+<li><a href="#_services">13. Services</a></li>
+<li><a href="#_coverage">14. Coverage</a></li>
+<li><a href="#_utilities">15. Utilities</a></li>
+<li><a href="#section-runtime-view">16. Runtime View</a></li>
+<li><a href="#section-deployment-view">17. Deployment View</a></li>
+<li><a href="#section-concepts">18. Cross-cutting Concepts</a></li>
+<li><a href="#_important_modules">19. Important modules</a></li>
+<li><a href="#_directory_structure_and_required_files">20. Directory Structure and Required Files</a></li>
+<li><a href="#section-design-decisions">21. Design Decisions</a></li>
+<li><a href="#section-quality-scenarios">22. Quality Requirements</a></li>
+<li><a href="#_quality_tree">23. Quality Tree</a></li>
+<li><a href="#_quality_scenarios">24. Quality Scenarios</a></li>
+<li><a href="#section-technical-risks">25. Risks and Technical Debts</a></li>
+<li><a href="#section-glossary">26. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -652,16 +649,8 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <div class="sect2">
 <h3 id="section-architecture_constraints">2. Architecture Constraints</h3>
-<div class="sidebarblock">
-<div class="content">
-
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_technical_constraints">3. Technical Constraints</h3>
-<div class="sidebarblock">
-<div class="content">
+<div class="sect3">
+<h4 id="_technical_constraints">2.1. Technical Constraints</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -718,138 +707,133 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>|Code |Restricction |Motive
+|OC001  |About Version Control: Git, Tool: Github| Keep a version of the project after making changes
+|OC002 | 6 person group | We didn&#8217;t know each other
+|OC003 |Time schedule | We don&#8217;t have a lot of time for developing the app. Furthermore, we are developing other proyects at the same time.
+|0C004 |Documentation|  <a href="https://arc42.org/">Arc42 model</a>.
+|CC005 |Open source| The project, including source code and documentation.
+|CC005 |Beta version| Limited time to develop the project maximum in May 2019.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_organizational_constraints">4. Organizational Constraints</h3>
-<div class="sidebarblock">
-<div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
+<col style="width: 100%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Restricction</th>
-<th class="tableblock halign-left valign-top">Motive</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OC001</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">About Version Control: Git, Tool: Github</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Keep a version of the project after making changes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">==== Conventions Constraints</p>
+<p class="tableblock">[options="header",cols="1,2,2"]</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OC002</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6 person group</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We didn&#8217;t know each other</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">===</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OC003</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time schedule</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We don&#8217;t have a lot of time for developing the app. Furthermore, we are developing other proyects at the same time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Code</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0C004</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://arc42.org/">Arc42 model</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restricction</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CC005</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Open source</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The project, including source code and documentation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Motive</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CC005</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Beta version</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limited time to develop the project maximum in May 2019.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_conventions_constraints">5. Conventions Constraints</h3>
-<div class="sidebarblock">
-<div class="content">
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Restricction</th>
-<th class="tableblock halign-left valign-top">Motive</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC001</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Language</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">English. The project and the corresponding blog targets an international audience, so English should be used throughout the whole project.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC002</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6 person group</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We didn&#8217;t know each other</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC003</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Time schedule</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We don&#8217;t have a lot of time for developing the app. Furthermore, we are developing other proyects at the same time.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC004</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Non-technical</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Every user should manage the app.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC005</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Data must not be in touch by external devices</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC006</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Privacy</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only own users can manage their own data.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC007</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Intuitive</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Aesthetics and friendliness of the application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC008</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability of technical documentation.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC009</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Originality</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Originality of the solution</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CC010</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Documentation</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">We use AsciiDoc</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="section-system-scope-and-context">6. System Scope and Context</h3>
+<h3 id="section-system-scope-and-context">3. System Scope and Context</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -889,7 +873,7 @@ In this way, we will create a private chat that will have the advantage of being
 </div>
 </div>
 <div class="sect2">
-<h3 id="_business_context">7. Business Context</h3>
+<h3 id="_business_context">4. Business Context</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -962,7 +946,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_technical_context">8. Technical Context</h3>
+<h3 id="_technical_context">5. Technical Context</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -994,11 +978,11 @@ Through the website, users will enter some small data on the SOLID website to ob
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-solution-strategy">9. Solution Strategy</h3>
+<h3 id="section-solution-strategy">6. Solution Strategy</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_technology_and_ide">10. Technology and IDE</h3>
+<h3 id="_technology_and_ide">7. Technology and IDE</h3>
 <div class="paragraph">
 <p>The team had to choose between new technologies for us and technologies already kown but that did not have as much suport to SOLID. Based on what we knew, our first option was to choose Java as programming language, but after reading the SOLID documentation, we decided to choose TypeScript, which is a JavaScript-based language, and, more specifically, the Angular Framework.</p>
 </div>
@@ -1007,7 +991,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_architectural_pattern">11. Architectural pattern</h3>
+<h3 id="_architectural_pattern">8. Architectural pattern</h3>
 <div class="paragraph">
 <p>The development of our architecture is based on a service system. The main class relies on these services to perform the different operations that it needs throughout the execution of the application.</p>
 </div>
@@ -1018,14 +1002,14 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_methodology_of_work">12. Methodology of work</h3>
+<h3 id="_methodology_of_work">9. Methodology of work</h3>
 <div class="paragraph">
 <p>We will use Scrum to develope this project. Scrum can provide us an early software development, and more independence when programming. Our project will start implementing the basic functions of a chat and it will grow in complexity (<a href="https://en.wikipedia.org/wiki/Scrum_(software_development)" class="bare">https://en.wikipedia.org/wiki/Scrum_(software_development)</a>).</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-building-block-view">13. Building Block View</h3>
+<h3 id="section-building-block-view">10. Building Block View</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1040,13 +1024,13 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_whitebox_overall_system">14. Whitebox Overall System</h3>
+<h3 id="_whitebox_overall_system">11. Whitebox Overall System</h3>
 <div class="paragraph">
 <p>We will explain some of the application parts functionality:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_components">15. Components</h3>
+<h3 id="_components">12. Components</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1066,7 +1050,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_services">16. Services</h3>
+<h3 id="_services">13. Services</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1076,7 +1060,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_coverage">17. Coverage</h3>
+<h3 id="_coverage">14. Coverage</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1086,7 +1070,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 </div>
 </div>
 <div class="sect2">
-<h3 id="_utilities">18. Utilities</h3>
+<h3 id="_utilities">15. Utilities</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1097,7 +1081,7 @@ Through the website, users will enter some small data on the SOLID website to ob
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-runtime-view">19. Runtime View</h3>
+<h3 id="section-runtime-view">16. Runtime View</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1183,7 +1167,7 @@ Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 a
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-deployment-view">20. Deployment View</h3>
+<h3 id="section-deployment-view">17. Deployment View</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1231,11 +1215,11 @@ Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 a
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-concepts">21. Cross-cutting Concepts</h3>
+<h3 id="section-concepts">18. Cross-cutting Concepts</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_important_modules">22. Important modules</h3>
+<h3 id="_important_modules">19. Important modules</h3>
 <div class="paragraph">
 <p>As we saw before, the architecture of the application is based on services, like printers, creators and another useful ones.</p>
 </div>
@@ -1264,7 +1248,7 @@ More information here:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_directory_structure_and_required_files">23. Directory Structure and Required Files</h3>
+<h3 id="_directory_structure_and_required_files">20. Directory Structure and Required Files</h3>
 <div class="paragraph">
 <p>This is the directory structure of the source folder:</p>
 </div>
@@ -1302,7 +1286,7 @@ More information here:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-design-decisions">24. Design Decisions</h3>
+<h3 id="section-design-decisions">21. Design Decisions</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1340,7 +1324,7 @@ More information here:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-quality-scenarios">25. Quality Requirements</h3>
+<h3 id="section-quality-scenarios">22. Quality Requirements</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1369,7 +1353,7 @@ More information here:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_tree">26. Quality Tree</h3>
+<h3 id="_quality_tree">23. Quality Tree</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 <div class="paragraph">
@@ -1384,7 +1368,7 @@ More information here:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_quality_scenarios">27. Quality Scenarios</h3>
+<h3 id="_quality_scenarios">24. Quality Scenarios</h3>
 <div class="sidebarblock arc42help">
 <div class="content">
 
@@ -1411,7 +1395,7 @@ More information here:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-technical-risks">28. Risks and Technical Debts</h3>
+<h3 id="section-technical-risks">25. Risks and Technical Debts</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1520,7 +1504,7 @@ More information here:</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="section-glossary">29. Glossary</h3>
+<h3 id="section-glossary">26. Glossary</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1628,7 +1612,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-02 18:36:35 UTC
+Last updated 2019-04-02 18:40:24 UTC
 </div>
 </div>
 </body>
