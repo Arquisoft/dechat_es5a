@@ -1,9 +1,6 @@
 [[section-glossary]]
-== Glossary
+=== Glossary
 
-
-
-[role="arc42help"]
 ****
 Definition of most important terms every stakeholder should know to understand the documentation.
 
