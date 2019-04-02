@@ -1,5 +1,5 @@
 [[section-design-decisions]]
-== Design Decisions
+=== Design Decisions
 
 * First decision is that we are using Git as version control system instead of using mercurial, vsn, etc. and GitHub as source code management instead of using Bitbucket, this decision was imposed by the teachers of the subject.
 * We are using javascript family language(javascript, typescript, node.js, angular, etc) to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.
