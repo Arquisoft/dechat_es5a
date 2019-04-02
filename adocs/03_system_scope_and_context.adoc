@@ -1,5 +1,5 @@
 [[section-system-scope-and-context]]
-== System Scope and Context
+=== System Scope and Context
 
 ****
 The project that we are going to develop aims to communicate two people through different mechanisms:
