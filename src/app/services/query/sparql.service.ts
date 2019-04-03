@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
 import { Message } from '../../models/message.model';
 declare let $rdf;
 @Injectable({

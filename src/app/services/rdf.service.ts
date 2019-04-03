@@ -154,7 +154,7 @@ export class RdfService {
     insertions.push($rdf.st(me, newPredicate, newSubject, why));
   }
 
-  private getUriForField(field, me): string {
+  public getUriForField(field, me): string {
     let uriString: string;
     let uri: any;
 

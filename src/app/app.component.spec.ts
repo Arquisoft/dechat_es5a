@@ -1,5 +1,3 @@
-import { SolidProvider } from './models/solid-provider.model';
-import { SolidSession } from './models/solid-session.model';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FooterComponent } from './fragments/footer/footer.component';
@@ -7,7 +5,6 @@ import { HeaderComponent } from './fragments/header/header.component';
 import { NavbarComponent } from './fragments/navbar/navbar.component';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { RouterOutlet } from '@angular/router';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({

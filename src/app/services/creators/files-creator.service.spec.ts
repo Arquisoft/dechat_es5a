@@ -8,8 +8,6 @@ import { TTLWriterService } from '../printers/ttlwriter.service';
 import { PushNotificationsService } from '../push.notifications.service';
 import { SparqlService } from '../query/sparql.service';
 import { TTLWriterUtil } from '../utils/ttlWriterUtil';
-import { from } from 'rxjs';
-
 
 
 describe('FilesCreatorService', () => {
@@ -64,14 +62,14 @@ describe('FilesCreatorService', () => {
         recipient: senderPerson,
       }
     ]
-
-    const spy = spyOn(service, 'readMessage').and.returnValue(() => {
-      from([messages]);
+    const spy = spyOn(service, 'readMessage').and.callFake(() => {
+     return messages;
     });
 
     //act
-    service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
-
+    let mess = service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
+    expect(mess).toEqual(service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl'));
+    expect(mess[0]['content']).toEqual('Test');
     //assert
     expect(spy).toHaveBeenCalled();
 
@@ -80,34 +78,6 @@ describe('FilesCreatorService', () => {
   it('shyncronize messages', () =>{
     //arrange
     //sender messages
-    const smessages: Message[] = [
-      {
-        content: 'TestSender1',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      },
-      {
-        content: 'TestSender2',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      }
-    ]
-    const rmessages: Message[] = [
-      {
-        content: 'TestRecipient1',
-        date: new Date(),
-        sender: recipientPerson,
-        recipient: senderPerson,
-      },
-      {
-        content: 'TestRecipient2',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      }
-    ]
     const totalMessages: Message[] = [
       {
         content: 'TestSender1',
@@ -136,14 +106,48 @@ describe('FilesCreatorService', () => {
     ]
     
 
-    const spy = spyOn(service, 'synchronizeMessages').and.returnValue(() => {
-      from([totalMessages]);
+    const spy = spyOn(service, 'synchronizeMessages').and.callFake(() => {
+      return totalMessages;
     });
 
     //act
-    service.synchronizeMessages();
+    let totalMess = service.synchronizeMessages();
+    expect(totalMess).toEqual(service.synchronizeMessages());
+    expect(totalMess[0]['sender']['webid']).toEqual(totalMessages[0].sender.webid);
 
     //assert
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should return true after success update ttl', () => {
+    //arrange
+    const spy = spyOn(service, 'updateTTL').and.callFake(() => {
+      return true;
+    });
+
+    //act 
+    let result = service.updateTTL('anyUrl','thisisthenewmessage','text');
+    let verdad = true;
+
+
+    //assert
+    expect(result).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should return false after failed update ttl', () => {
+    //arrange
+    const spy = spyOn(service, 'updateTTL').and.callFake(() => {
+      return false;
+    });
+
+    //act 
+    let result = service.updateTTL('anyUrl','thisisthenewmessage','text');
+    let falso = false;
+
+
+    //assert
+    expect(result).toBeFalsy();
     expect(spy).toHaveBeenCalled();
   });
 

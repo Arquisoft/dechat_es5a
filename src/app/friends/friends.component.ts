@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RdfService } from '../services/rdf.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Friend } from '../models/friend.model';
-import { forEach } from '@angular/router/src/utils/collection';
 import { FilesCreatorService } from '../services/creators/files-creator.service';
 import { Message } from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
-import { async } from 'q';
-import { Observable, from } from 'rxjs';
+
 
 @Component({
     selector: 'app-friends',
@@ -71,7 +69,7 @@ export class FriendsComponent implements OnInit {
     /*
      * This method obtains the username based on his webID
      */
-    private getUserByUrl(ruta: string): string {
+    public getUserByUrl(ruta: string): string {
         return this.fC.getUserByUrl(ruta);
 
     }
