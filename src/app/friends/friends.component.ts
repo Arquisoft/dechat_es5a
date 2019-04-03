@@ -71,7 +71,7 @@ export class FriendsComponent implements OnInit {
     /*
      * This method obtains the username based on his webID
      */
-    private getUserByUrl(ruta: string): string {
+    public getUserByUrl(ruta: string): string {
         return this.fC.getUserByUrl(ruta);
 
     }
