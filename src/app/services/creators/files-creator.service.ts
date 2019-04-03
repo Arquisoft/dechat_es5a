@@ -1,14 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Friend } from "src/app/models/friend.model";
 import { Message } from "src/app/models/message.model";
-import { TXTPrinter } from "../printers/txtprinter.service";
 import { TTLWriterService } from '../printers/ttlwriter.service';
 import { SparqlService } from '../query/sparql.service';
 import { messagesSorter } from "../sorters/messagesSorter";
 import { PushNotificationsService } from '../push.notifications.service';
 import * as $ from 'jquery';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -56,119 +53,7 @@ export class FilesCreatorService {
         });
     }
 
-    /*
-     * Creates a .acl for the file in the path.
-     * This file is only for the owner
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param user:string the /profile/card#me of the user owner of the folder
-     */
-    private createOwnerACL(path: string, user: string) {
-        let file = path + '.acl';
-        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n' +
-            '<#owner>\n' +
-            'a             acl:Authorization;\n' +
-            'acl:agent     <' + this.sessionWebId + '>;\n' +
-            'acl:accessTo  <' + path + '>;\n' +
-            'acl:defaultForNew <./>;' +
-            'acl:mode\n      acl:Read,\n' +
-            'acl:Write,\n' +
-            'acl:Control.'
-
-        this.fileClient.updateFile(file, contenido).then(success => {
-            console.log(`Created acl owner ${file}.`)
-        }, err => console.log(err));
-    }
-
-    /*
-     * Creates a .acl for the file in the path.
-     * This file made for the owner and one reader
-     * Used in p2p chats
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param owner:string the /profile/card#me of the user owner of the folder
-     * @param reader:string the /profile/card#me of the reader of the folder
-     */
-    public createReadForOneACL(path: string, owner: string, reader: string) {
-        let file = path + '.acl';
-        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .' +
-            '<#owner>\n' +
-            'a             acl:Authorization;\n' +
-            'acl:agent     <' + owner + '>;\n' +
-            'acl:accessTo  <' + path + '>;\n' +
-            'acl:defaultForNew <./>;' +
-            'acl:mode\n      acl:Read,\n' +
-            'acl:Write,\n' +
-            'acl:Control.\n' +
-
-            '<#reader>\n' +
-            'a             acl:Authorization;\n' +
-            'acl:agent     <' + reader + '>;\n' +
-            'acl:accessTo  <' + path + '>;\n' +
-            'acl:defaultForNew <./>;\n' +
-            'acl:mode\n      acl:Read.'
-
-        this.fileClient.updateFile(file, contenido).then(success => {
-            console.log(`Created acl one reader ${file}.`)
-        }, err => console.log(err));
-    }
-
-    /*
-     * Creates a .acl for the file in the path.
-     * This file made for the owner and many readers
-     * Used in p2p chats
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param owner:string the /profile/card#me of the user owner of the folder
-     * @param readers:string[] the /profile/card#me of the readers of the folder
-     */
-    public createReadForManyACL(path: string, owner: string, readers: string[]) {
-        let file = path + '.acl';
-        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n' +
-            '<#owner>\n' +
-            'a             acl:Authorization;\n' +
-            'acl:agent     <' + owner + '>\n' +
-            'acl:accessTo  <' + path + '>\n' +
-            'acl:defaultForNew <./>;\n' +
-            'acl:mode      acl:Read,\n' +
-            'acl:Write,\n' +
-            'acl:Control.\n' +
-
-            '<#readers>\n' +
-            'a               acl:Authorization;\n' +
-            'acl:accessTo    <' + path + '>\n' +
-            'acl:defaultForNew <./>;\n' +
-            'acl:mode        acl:Read;\n'
-
-        readers.forEach(function (e, idx, array) {
-            if (idx === array.length - 1) {
-                contenido = contenido + 'acl:agent  <' + e + '>.'
-            } else {
-                contenido = contenido + 'acl:agent  <' + e + '>;\n'
-            }
-        })
-        this.fileClient.updateFile(file, contenido).then(success => {
-            console.log(`Created acl many readers ${file}.`)
-        }, err => console.log(err));
-    }
-    /*
-     * Returns a string with all the readers of a acl, divided by '|'
-     * @param path:string the file or folder to look the readers
-     * In TODO
-     */
-    public getReaders(path: string): string {
-        let file;
-        let list;
-        this.fileClient.readFile(path + '.acl').then(body => {
-            file = body;
-            console.log(`File content is : ${body}.`);
-        }, err => console.log(err));
-
-
-        return list;
-    }
-
-    /*
+/*
  * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
  */
     public createNewFolder(name: string, ruta: string) {
@@ -280,15 +165,6 @@ export class FilesCreatorService {
     }
 
     /*
- * This method creates a file in a folder using the solid-file-client lib
- */
-    private buildFile(solidIdFolderUrl, content) {
-        this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
-
-        }, err => console.log(err));
-    }
-
-    /*
     * This method gets the url of the connection to synchronize the different messages
     */
     public async synchronizeMessages() {
@@ -301,15 +177,9 @@ export class FilesCreatorService {
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
 
         let messageContent = await this.sparqlService.getMessages(url);
-        // if(messageContent != undefined)
-        // {
-        //     messageArray = messageContent.split("\n");
-        // }
+
         let messageContentPropia = await this.sparqlService.getMessages(urlPropia);
-        // if(messageContentPropia != undefined)
-        // {
-        //     messageArrayPropio = messageContentPropia.split("\n");
-        // }
+
         let mess = [];
         messageContent.forEach(msg => mess.push(msg));
         messageContentPropia.forEach(msg => mess.push(msg));
