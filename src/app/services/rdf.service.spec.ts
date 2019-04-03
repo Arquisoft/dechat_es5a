@@ -103,15 +103,5 @@ fdescribe('RDF Service', () => {
         expect(spy).toHaveBeenCalled();
     });
 
-    it('should return phone', () => {
-        //arrange
-        let ph = profile.phone;
-        let spy = spyOn(service, 'getPhone').and.callFake(() => {
-            return ph;
-        });         //act
-        let phone = service.getPhone();
-        //assert
-        expect(phone).toEqual(ph);
-        expect(spy).toHaveBeenCalled();
-    });
+    
 });
