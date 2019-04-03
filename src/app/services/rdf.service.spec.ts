@@ -7,9 +7,9 @@ import { defer } from 'q';
 import { Profile } from 'selenium-webdriver/firefox';
 import { SolidProfile } from '../models/solid-profile.model';
 
-describe('RDF Service', () => {
+fdescribe('RDF Service', () => {
     let service: RdfService;
-    
+
     const friends: Friend[] = [{
         webid: 'https://friend1.solid.community/profile/card/#me'
     },
@@ -22,39 +22,39 @@ describe('RDF Service', () => {
     ]
 
     const profile: SolidProfile =
-        {
-            address: {
-                street: 'valdessalas'
-            },
-            company: 'uniovi',
-            email: 'uo123456@uniovi.es',
-            fn: 'fn',
-            image: 'image',
-            phone: '123456789',
-            role: 'student',
-            organization: 'uniovi',
-        }
+    {
+        address: {
+            street: 'valdessalas'
+        },
+        company: 'uniovi',
+        email: 'uo123456@uniovi.es',
+        fn: 'fn',
+        image: 'image',
+        phone: '123456789',
+        role: 'student',
+        organization: 'uniovi',
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [ ToastrModule.forRoot()],
+            imports: [ToastrModule.forRoot()],
             providers: [RdfService, ToastrService]
         })
             .compileComponents();
     }));
     beforeEach(() => {
         service = TestBed.get(RdfService);
-      });
+    });
 
     it('should return friend list from pod', () => {
         //arrange
         let spy = spyOn(service, 'getFriends').and.callFake(() => {
             return friends;
-        }); 
+        });
 
         //act
-        let ffriends = service.getFriends();       
-        
+        let ffriends = service.getFriends();
+
         //assert
         expect(ffriends).toEqual(service.getFriends());
         expect(ffriends[0]['webid']).toEqual(friends[0].webid);
@@ -101,5 +101,35 @@ describe('RDF Service', () => {
         expect(spy).toHaveBeenCalled();
     });
 
-    
+    it('should return uri for phone', () => {
+        //arrange
+        let uriReturned = 'phone';
+        let spy = spyOn(service, 'getUriForField').and.callFake(() => {
+            return uriReturned;
+        });
+        //act
+        service.getUriForField('phone', 'https://phone.solid.community/profile/card#me');
+
+        //assert
+        expect(uriReturned).toEqual(service.getUriForField('phone', 'https://phone.solid.community/profile/card#me'));
+        expect(uriReturned).toEqual('phone');
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should return uri for email', () => {
+        //arrange
+        let uriReturned = 'email';
+        let spy = spyOn(service, 'getUriForField').and.callFake(() => {
+            return uriReturned;
+        });
+        //act
+        service.getUriForField('email', 'https://email.solid.community/profile/card#me');
+
+        //assert
+        expect(uriReturned).toEqual(service.getUriForField('email', 'https://phone.solid.community/profile/card#me'));
+        expect(uriReturned).toEqual('email');
+        expect(spy).toHaveBeenCalled();
+    });
+
+
 });
