@@ -23,13 +23,15 @@ describe('SPARQL service testing', () => {
             }
         ]
 
-        const spy = spyOn(service, 'getMessages').and.returnValue(() => {
-            from([messages]);
+        const spy = spyOn(service, 'getMessages').and.callFake(() => {
+            return messages;
         });
 
         //act
-        const mess = service.getMessages('https://sender.solid.community/public/dechat5a/recipient.ttl');
-
+        let mess = service.getMessages('https://sender.solid.community/public/dechat5a/recipient.ttl');
+        expect(mess).toEqual(service.getMessages('https://sender.solid.community/public/dechat5a/recipient.ttl'));
+        expect(mess[0]['content']).toEqual(messages[0].content);
+    
         //assert
         //TODO compare with message[] created
         expect(spy).toHaveBeenCalled();

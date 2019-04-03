@@ -12,7 +12,7 @@ import { from } from 'rxjs';
 
 
 
-fdescribe('FilesCreatorService', () => {
+describe('FilesCreatorService', () => {
   let senderPerson: Friend = { webid: 'https://sender.solid.community/profile/card/#me' };
   let recipientPerson: Friend = { webid: 'https://recipient.solid.community/profile/card/#me' }  
   let service: FilesCreatorService = new FilesCreatorService(new TTLWriterService(new TTLWriterUtil()), new PushNotificationsService(), new SparqlService());
@@ -77,7 +77,7 @@ fdescribe('FilesCreatorService', () => {
 
   });
 
-  fit('shyncronize messages', () =>{
+  it('shyncronize messages', () =>{
     //arrange
     //sender messages
     const totalMessages: Message[] = [

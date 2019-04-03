@@ -4,8 +4,10 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ToastrService, ToastrModule } from "ngx-toastr";
 import { from } from 'rxjs';
 import { defer } from 'q';
+import { Profile } from 'selenium-webdriver/firefox';
+import { SolidProfile } from '../models/solid-profile.model';
 
-describe('RDF Service', () => {
+fdescribe('RDF Service', () => {
     let service: RdfService;
     
     const friends: Friend[] = [{
@@ -18,6 +20,20 @@ describe('RDF Service', () => {
         webid: 'https://friend3.solid.community/profile/card/#me'
     },
     ]
+
+    const profile: SolidProfile =
+        {
+            address: {
+                street: 'valdessalas'
+            },
+            company: 'uniovi',
+            email: 'uo123456@uniovi.es',
+            fn: 'fn',
+            image: 'image',
+            phone: '123456789',
+            role: 'student',
+            organization: 'uniovi',
+        }
 
 
 
@@ -34,16 +50,68 @@ describe('RDF Service', () => {
 
     it('should return friend list from pod', () => {
         //arrange
-        //act
-        
-        spyOn(service, 'getFriends').and.returnValue(() => {
-            from([this.friends]);
+        let spy = spyOn(service, 'getFriends').and.callFake(() => {
+            return friends;
         }); 
-        service.getFriends();       
-        //assert
-        //with from we get the observable from the promise returned in the method, so we can subscribre() to it and see the returned friend list
-        service.getFriends();
-        expect(service.getFriends).toHaveBeenCalled();
 
+        //act
+        let ffriends = service.getFriends();       
+        
+        //assert
+        expect(ffriends).toEqual(service.getFriends());
+        expect(ffriends[0]['webid']).toEqual(friends[0].webid);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should return adress', () => {
+        //arrange
+        let addr = profile.address.street;
+        let spy = spyOn(service, 'getAddress').and.callFake(() => {
+            return addr;
+        });         //act
+        let address = service.getAddress();
+
+        //assert
+        expect(address).toEqual(addr);
+        expect(address.street).toEqual(addr['street']);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should return email', () => {
+        //arrange
+        let em = profile.email;
+        let spy = spyOn(service, 'getEmail').and.callFake(() => {
+            return em;
+        });         //act
+        let email = service.getEmail();
+
+        //assert
+        expect(email).toEqual(em);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should return phone', () => {
+        //arrange
+        let ph = profile.phone;
+        let spy = spyOn(service, 'getPhone').and.callFake(() => {
+            return ph;
+        });         //act
+        let phone = service.getPhone();
+
+        //assert
+        expect(phone).toEqual(ph);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should return phone', () => {
+        //arrange
+        let ph = profile.phone;
+        let spy = spyOn(service, 'getPhone').and.callFake(() => {
+            return ph;
+        });         //act
+        let phone = service.getPhone();
+        //assert
+        expect(phone).toEqual(ph);
+        expect(spy).toHaveBeenCalled();
     });
 });
