@@ -12,7 +12,7 @@ import { from } from 'rxjs';
 
 
 
-describe('FilesCreatorService', () => {
+fdescribe('FilesCreatorService', () => {
   let senderPerson: Friend = { webid: 'https://sender.solid.community/profile/card/#me' };
   let recipientPerson: Friend = { webid: 'https://recipient.solid.community/profile/card/#me' }  
   let service: FilesCreatorService = new FilesCreatorService(new TTLWriterService(new TTLWriterUtil()), new PushNotificationsService(), new SparqlService());
@@ -64,50 +64,22 @@ describe('FilesCreatorService', () => {
         recipient: senderPerson,
       }
     ]
-
-    const spy = spyOn(service, 'readMessage').and.returnValue(() => {
-      from([messages]);
+    const spy = spyOn(service, 'readMessage').and.callFake(() => {
+     return messages;
     });
 
     //act
-    service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
-
+    let mess = service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl');
+    expect(mess).toEqual(service.readMessage('https://sender.solid.community/public/dechat5a/recipient.ttl'));
+    expect(mess[0]['content']).toEqual('Test');
     //assert
     expect(spy).toHaveBeenCalled();
 
   });
 
-  it('shyncronize messages', () =>{
+  fit('shyncronize messages', () =>{
     //arrange
     //sender messages
-    const smessages: Message[] = [
-      {
-        content: 'TestSender1',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      },
-      {
-        content: 'TestSender2',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      }
-    ]
-    const rmessages: Message[] = [
-      {
-        content: 'TestRecipient1',
-        date: new Date(),
-        sender: recipientPerson,
-        recipient: senderPerson,
-      },
-      {
-        content: 'TestRecipient2',
-        date: new Date(),
-        sender: senderPerson,
-        recipient: recipientPerson,
-      }
-    ]
     const totalMessages: Message[] = [
       {
         content: 'TestSender1',
@@ -136,12 +108,14 @@ describe('FilesCreatorService', () => {
     ]
     
 
-    const spy = spyOn(service, 'synchronizeMessages').and.returnValue(() => {
-      from([totalMessages]);
+    const spy = spyOn(service, 'synchronizeMessages').and.callFake(() => {
+      return totalMessages;
     });
 
     //act
-    service.synchronizeMessages();
+    let totalMess = service.synchronizeMessages();
+    expect(totalMess).toEqual(service.synchronizeMessages());
+    expect(totalMess[0]['sender']['webid']).toEqual(totalMessages[0].sender.webid);
 
     //assert
     expect(spy).toHaveBeenCalled();

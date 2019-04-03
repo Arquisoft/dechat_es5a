@@ -263,7 +263,7 @@ export class FilesCreatorService {
     /*
     * This methos searches for a message in an url
     */
-    public async readMessage(url) {
+    public async readMessage(url) :Promise<Message> {
         return await this.fileClient.readFile(url).then(body => {
             console.log(`File	content is : ${body}.`);
             return body;
