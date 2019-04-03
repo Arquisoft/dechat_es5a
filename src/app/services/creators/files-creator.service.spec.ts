@@ -8,8 +8,6 @@ import { TTLWriterService } from '../printers/ttlwriter.service';
 import { PushNotificationsService } from '../push.notifications.service';
 import { SparqlService } from '../query/sparql.service';
 import { TTLWriterUtil } from '../utils/ttlWriterUtil';
-import { from } from 'rxjs';
-
 
 
 describe('FilesCreatorService', () => {
@@ -118,6 +116,38 @@ describe('FilesCreatorService', () => {
     expect(totalMess[0]['sender']['webid']).toEqual(totalMessages[0].sender.webid);
 
     //assert
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should return true after success update ttl', () => {
+    //arrange
+    const spy = spyOn(service, 'updateTTL').and.callFake(() => {
+      return true;
+    });
+
+    //act 
+    let result = service.updateTTL('anyUrl','thisisthenewmessage','text');
+    let verdad = true;
+
+
+    //assert
+    expect(result).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should return false after failed update ttl', () => {
+    //arrange
+    const spy = spyOn(service, 'updateTTL').and.callFake(() => {
+      return false;
+    });
+
+    //act 
+    let result = service.updateTTL('anyUrl','thisisthenewmessage','text');
+    let falso = false;
+
+
+    //assert
+    expect(result).toBeFalsy();
     expect(spy).toHaveBeenCalled();
   });
 

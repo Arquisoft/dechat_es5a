@@ -244,19 +244,26 @@ export class FilesCreatorService {
     /*
     * This methos updates the TTL file with the new content
     */
-    private updateTTL(url, newContent, contentType?) {
+    public updateTTL(url, newContent, contentType?) {
         console.log("NEW CONTENT-->" + newContent);
         console.log("ContentTYpe-->" + contentType);
         if (contentType) {
             let newTtl = this.ttlwriter;
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
                 console.log(`Updated ${url}.`)
-            }, err => console.log(err));
+                return true;
+            }, (err) => {
+                console.log(err);
+                return false;
+            });
         }
         else {
             this.fileClient.updateFile(url, newContent).then(success => {
                 console.log(`Updated ${url}.`)
-            }, err => console.log(err));
+                return true;
+            }, err => {console.log(err);
+                return false;
+            });
         }
     }
 
