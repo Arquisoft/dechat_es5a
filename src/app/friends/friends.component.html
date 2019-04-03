@@ -1,13 +1,65 @@
 <!doctype html>
 <html lang="en">
 <body>
-<div class="grid-rows">
-    <div class="row">
-        <ul class="fas fa-user" style="font-size: 20px; color: #7C55FB " *ngFor="let item of friends">
-             <a [routerLink] = "['/chat',item.webid.toString()]"> {{ item.webid}} </a>
-        </ul>
-</div>
+<div id="frame">
+    <div id="sidepanel">
+        <div id="profile">
+            <div class="wrap">
+                <img id="profile-img" src="https://image.flaticon.com/icons/svg/206/206887.svg" class="online" alt=""/>
+                <p>{{myUser}}</p>
+            </div>
+        </div>
+        <div id="search">
+            <label><i class="fa fa-search" aria-hidden="true"></i></label>
+            <input id="searchText" type="text" placeholder="Search contacts..." (keyup.enter)="searchFriend()"/>
+        </div>
+        <div id="contacts" style="margin-bottom: 20%;" >
+            <ul *ngFor="let item of friends"  id="friend">
+                <li class="contact" id="listaFriends" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">
+                    <div class="wrap" >
+                        <img src=" https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
+                        <div class="meta" style="margin-left: 20%;"  >
+                            <p class="name">  {{getUserByUrl(item.webid.toString())}} </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="bottom-bar">
+            <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="contact-profile" id="chat">
+            <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+            <p>{{names}}</p>
+        </div>
+        <div class="messages" id="scroll">
+            <ul id="lista" *ngFor="let message of messages">
+                <li [ngClass]="message.recipient == emisor ? 'sent': 'replies' ">
+                    <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+                    <p class="mscontent">
+                        {{message.content}} <br/>
+                        {{getDate(message.date)}}
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+        <div class="message-input">
+            <div class="wrap" id="writemessage">
+                <input name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
+                       placeholder="Write your message..."/>
+                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                <button (click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
+                                                                                             aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-

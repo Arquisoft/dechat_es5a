@@ -2,25 +2,32 @@ sudo: required
 
 language: bash
 
+cache:
+  directories:
+    - $CACHE_DIR
+
+env:
+  global:
+    - CACHE_DIR=$HOME/.cache/docker
+    - CACHE_FILE_NODE=$CACHE_DIR/node.tar.gz
 jobs:
   include:
     - stage: deploy documentation
       if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
       before_script:
         - mkdir -p output
-      
       script:
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -a toc=left -D /documents/output adocs/*.adoc
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output adocs/*.adoc
-      
+
       after_error:
         - docker logs asciidoc-to-html
         - docker logs asciidoc-to-pdf
-      
+
       after_failure:
         - docker logs asciidoc-to-html
         - docker logs asciidoc-to-pdf
-      
+
       after_success:
         - cd output
         - cp -R ../adocs/images/ images
@@ -34,10 +41,17 @@ jobs:
         - git add .
         - git commit -m "Deploy documentation to GitHub Pages"
         - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master
-        
+
     - stage: tests
       if: commit_message != "Deploy documentation to GitHub Pages"
-      script: echo "Implementar tests"
-      
+      before_script:
+        - if [ -f ${CACHE_FILE_NODE} ]; then docker load < ${CACHE_FILE_NODE}; fi
+
+      script:
+        - docker-compose -f docker-compose.test.yml up
+        - mkdir -p $CACHE_DIR
+        - if [ ! -f ${CACHE_FILE_NODE} ]; then docker save node:11.9.0-alpine > ${CACHE_FILE_NODE}; fi
+
       after_success:
-        - bash <(curl -s https://codecov.io/bash) 
+        - bash <(curl -s https://codecov.io/bash)
+        - docker-compose -f docker-compose.test.yml down

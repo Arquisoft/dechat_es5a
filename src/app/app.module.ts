@@ -18,14 +18,14 @@ import { NavbarComponent } from './fragments/navbar/navbar.component';
 import { FooterComponent } from './fragments/footer/footer.component';
 import { HeaderComponent } from './fragments/header/header.component';
 import {FriendsComponent} from './friends/friends.component';
-import {ChatComponent} from './chat/chat.component';
 import { RegisterComponent } from './register/register.component';
 
 // Services
 import { AuthService } from './services/solid.auth.service';
 import { AuthGuard } from './services/auth.guard.service';
-
-
+import { TTLWriterService } from './services/printers/ttlwriter.service';
+import {SparqlService} from './services/query/sparql.service';
+import { RdfService } from './services/rdf.service';
 
 @NgModule({
   declarations: [
@@ -39,18 +39,21 @@ import { AuthGuard } from './services/auth.guard.service';
     FooterComponent,
     HeaderComponent,
     FriendsComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     APP_ROUTING,
+    RouterModule,
     NgSelectModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule // required for toastr
+   // BrowserAnimationsModule // required for toastr
   ],
   providers: [
-    AuthService],
+    AuthService,
+    TTLWriterService,
+    SparqlService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
