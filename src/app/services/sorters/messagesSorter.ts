@@ -8,8 +8,8 @@ export class messagesSorter {
     public order( mess : Message[] )
     {
        return mess.sort(function(a, b) {
-            let date1 =a.date;
-            let date2 = b.date;
+            let date1 =a.date.getTime();
+            let date2 = b.date.getTime();
             return date2>date1 ? -1 : date2<date1 ? 1 : 0;
         });
     }
