@@ -7,7 +7,7 @@ import { defer } from 'q';
 import { Profile } from 'selenium-webdriver/firefox';
 import { SolidProfile } from '../models/solid-profile.model';
 
-fdescribe('RDF Service', () => {
+describe('RDF Service', () => {
     let service: RdfService;
 
     const friends: Friend[] = [{

@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:docker": "ng serve --host 0.0.0.0",
     "build": "ng build",
-    "test": "ng test",
+    "build:docker": "ng build --prod",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:karma": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",

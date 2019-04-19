@@ -4,7 +4,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
 
-fdescribe('Friends Component', () => {
+describe('Friends Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, ToastrModule.forRoot()],
@@ -19,7 +19,7 @@ fdescribe('Friends Component', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  fit('should return name from url', () => {
+  it('should return name from url', () => {
     //arrange
     const fixture = TestBed.createComponent(FriendsComponent);
 
@@ -30,7 +30,7 @@ fdescribe('Friends Component', () => {
     expect(username).toContain('username');
   });
 
-  fit('should return friend list', () => {
+  it('should return friend list', () => {
     //arrange
     const fixture = TestBed.createComponent(FriendsComponent);
     const friends: Friend[] = [{
