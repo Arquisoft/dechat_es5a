@@ -47,7 +47,7 @@ import { RdfService } from './services/rdf.service';
     RouterModule,
     NgSelectModule,
     ToastrModule.forRoot(),
-   // BrowserAnimationsModule // required for toastr
+    BrowserAnimationsModule // required for toastr
   ],
   providers: [
     AuthService,
