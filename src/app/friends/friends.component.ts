@@ -9,6 +9,8 @@ import { Message } from '../models/message.model';
 import * as $ from 'jquery';
 import { async } from 'q';
 import { Observable, from } from 'rxjs';
+import { IComunicator } from '../models/IComunicator.model';
+import { Group } from '../models/group.model';
 
 @Component({
     selector: 'app-friends',
@@ -23,7 +25,8 @@ export class FriendsComponent implements OnInit {
     messages: Message[] = [];
     names: string;
     emisor: string;
-    friends: Friend[];
+    friends: IComunicator[];
+    groupNames: string[] = [];
     value: Friend[];
     myUser: string;
 
@@ -66,6 +69,25 @@ export class FriendsComponent implements OnInit {
 
         this.names = this.getUserByUrl(ruta);
     }
+
+    async addGroup(){
+        clearInterval(this.timer);
+
+        this.fileClient = require('solid-file-client');
+        this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+        this.emisor = this.rdf.session.webId;
+        this.fC.createNewFolder('dechat5a', '/public/');
+        let groupName = (document.getElementById("groupName") as HTMLInputElement).value;
+
+        let rand= Math.floor(Math.random() * (100000 - 0 + 1)) + 0;
+        groupName= groupName + '@@@' + rand;
+        this.fC.createNewFolder(groupName, '/public/dechat5a/');
+        this.groupNames.push(groupName);
+        this.loadFriends();
+
+        this.fC.syncGroupMessages();
+    }
+
 
 
     /*
@@ -119,14 +141,15 @@ export class FriendsComponent implements OnInit {
 
     async loadFriends() {
         try {
-            const list_friends = await this.rdf.getFriends();
+            const list_friends:IComunicator[] = await this.rdf.getFriends();
             if (list_friends) {
                 this.friends = list_friends;
                 this.value = list_friends;
+                for(var grupo in this.groupNames){
+                    this.friends.push({webid: this.groupNames[grupo]});
+                }
                 return list_friends;
             }
-
-
         } catch (error) {
             console.log(`Error: ${error}`);
         }

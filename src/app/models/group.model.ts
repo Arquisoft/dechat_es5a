@@ -5,5 +5,5 @@ import { IComunicator } from "./IComunicator.model";
  * @see FOAF
  * @see VCARD
  */
-export class Friend extends IComunicator{
-}
+export class Group extends IComunicator{
+     }

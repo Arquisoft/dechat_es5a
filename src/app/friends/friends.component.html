@@ -13,6 +13,12 @@
             <label><i class="fa fa-search" aria-hidden="true"></i></label>
             <input id="searchText" type="text" placeholder="Search contacts..." (keyup.enter)="searchFriend()"/>
         </div>
+        <div class="groupName-input">
+            <div class="wrap" id="groupNameInput">
+                <input name="groupName" type="text" id="groupName" (keyup.enter)="addGroup()"
+                       placeholder="Create or join a group"/>
+            </div>
+        </div>
         <div id="contacts" style="margin-bottom: 20%;" >
             <ul *ngFor="let item of friends"  id="friend">
                 <li class="contact" id="listaFriends" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">

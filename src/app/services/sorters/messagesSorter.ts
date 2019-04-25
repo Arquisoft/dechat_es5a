@@ -8,8 +8,8 @@ export class messagesSorter {
     public order( mess : Message[] )
     {
        return mess.sort(function(a, b) {
-            let date1 =a.date.getTime();
-            let date2 = b.date.getTime();
+            let date1 =new Date(a.date).getTime();
+            let date2 = new Date(b.date).getTime();
             return date2>date1 ? -1 : date2<date1 ? 1 : 0;
         });
     }
@@ -22,7 +22,7 @@ export class messagesSorter {
          let idx=0
          let minor:Message = aux[idx];
          for(let i=0; i<aux.length; i++){
-           if(aux[i].date< minor.date){
+           if(new Date(aux[i].date).getTime()< new Date(minor.date).getTime()){
              idx=i;
              minor= aux[idx];
            }
