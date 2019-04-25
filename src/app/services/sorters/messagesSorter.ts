@@ -22,7 +22,7 @@ export class messagesSorter {
          let idx=0
          let minor:Message = aux[idx];
          for(let i=0; i<aux.length; i++){
-           if(new Date(aux[i].date).getDate()< new Date(minor.date).getDate()){
+           if(new Date(aux[i].date).getTime()< new Date(minor.date).getTime()){
              idx=i;
              minor= aux[idx];
            }
