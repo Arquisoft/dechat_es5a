@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { SolidSession } from '../models/solid-session.model';
 declare let solid: any;
 
-
-import * as $rdf from 'rdflib'
+declare let $rdf: any;
+//import * as $rdf from 'rdflib'
 
 
 // TODO: Remove any UI interaction from this service
@@ -57,11 +57,11 @@ export class RdfService {
    * Fetches the session from Solid, and store results in localStorage
    */
   getSession = async () => {
-    if (typeof solid.auth === "undefined") {
+    /*if (typeof solid.auth === "undefined") {
     }
-    else{
+    else{*/
       this.session = await solid.auth.currentSession(localStorage);
-    }
+    //}
   }
 
   /**
