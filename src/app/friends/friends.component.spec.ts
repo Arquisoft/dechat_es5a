@@ -58,4 +58,32 @@ describe('Friends Component', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should return user friends list', () => {
+    //arrange
+    const fixture = TestBed.createComponent(FriendsComponent);
+    const friends: Friend[] = [{
+        webid: 'https://friend1.solid.community/profile/card/#me'
+    },
+    {
+        webid: 'https://friend2.solid.community/profile/card/#me'
+    },
+    {
+        webid: 'https://friend3.solid.community/profile/card/#me'
+    },
+    ]
+
+    const spy = spyOn(fixture.componentInstance, 'loadFriends').and.callFake(() => {
+        return friends;
+      });
+
+
+    //act
+    const ffriends = fixture.componentInstance.loadFriends();
+
+    //assert
+    expect(ffriends).toEqual(fixture.componentInstance.loadFriends());
+    expect(ffriends[0]['webid']).toEqual(friends[0].webid);
+    expect(spy).toHaveBeenCalled();
+    });
+
 });
