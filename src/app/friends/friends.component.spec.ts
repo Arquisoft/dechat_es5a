@@ -86,4 +86,23 @@ describe('Friends Component', () => {
     expect(spy).toHaveBeenCalled();
     });
 
+    it('should return empty list if no friends', () => {
+      //arrange
+    const fixture = TestBed.createComponent(FriendsComponent);
+    const friends: Friend[] = [
+    ]
+
+    const spy = spyOn(fixture.componentInstance, 'loadFriends').and.callFake(() => {
+        return friends;
+      });
+
+
+    //act
+    const ffriends = fixture.componentInstance.loadFriends();
+
+    //assert
+    expect(ffriends).toEqual(fixture.componentInstance.loadFriends());
+    expect(ffriends[0]).toBeUndefined;
+    expect(spy).toHaveBeenCalled();
+    });
 });
