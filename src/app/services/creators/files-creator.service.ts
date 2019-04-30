@@ -252,7 +252,10 @@ export class FilesCreatorService {
         }
         else {
             //this is URL from group creator file in his pod
-            var readURL = "https://" + chatName.split("@@@")[2].replace("profile/card#me","") + "/public/dechat5a/" + chatName + "/Conversation.ttl";
+            var readURL = chatName.split("@@@")[2].replace("profile/card#me","") + "/public/dechat5a/" + chatName + "/Conversation.ttl";
+            if(!readURL.includes("https://")){ 
+                readURL = "https://" +  readURL;
+            }
 
             var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
             messageContent = this.getUserByUrl(this.sessionWebId) + ': ' + messageContent;
@@ -400,7 +403,13 @@ export class FilesCreatorService {
     public async syncGroupMessages(ruta: string) {
         
         var urlArray = this.sessionWebId.split("/");
-        let url = "https://" + ruta.split('@@@')[2] + '/public/dechat5a/' + ruta + "/Conversation.ttl";
+        let url="";
+        if(!ruta.includes('/public/dechat5a/')){
+            url = "https://" + ruta.split('@@@')[2] + '/public/dechat5a/' + ruta + "/Conversation.ttl";
+        }
+        else{
+            url = "https://" + ruta + "/Conversation.ttl";
+        }
         console.log("-----------" + url);
         let messageContent = await this.sparqlService.getMessages(url);
 
