@@ -49,25 +49,77 @@ export class FriendsComponent implements OnInit {
     }
 
     async addChat(ruta: string){
-        clearInterval(this.timer);
+        let array= ruta.split("@@@")
+        // If its a 1p1 conversation
+        if(array.length==0){
+            clearInterval(this.timer);
 
-        this.fC.primera = true;
-        this.messages = [];
-        this.ruta_seleccionada = ruta;
-        this.fileClient = require('solid-file-client');
-        this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
-        this.emisor = this.rdf.session.webId;
-        this.fC.createNewFolder('dechat5a', '/public/');
-        let name = this.getUserByUrl(ruta);
-        this.fC.createNewFolder(name, '/public/dechat5a/');
-        this.fC.synchronizeMessages();
-        this.messages = this.fC.messages;
-        this.timer = setInterval(() => {
+            this.fC.primera = true;
+            this.messages = [];
+            this.ruta_seleccionada = ruta;
+            this.fileClient = require('solid-file-client');
+            this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+            this.emisor = this.rdf.session.webId;
+            this.fC.createNewFolder('dechat5a', '/public/');
+            let name = this.getUserByUrl(ruta);
+            this.fC.createNewFolder(name, '/public/dechat5a/');
             this.fC.synchronizeMessages();
             this.messages = this.fC.messages;
-        }, 1000);
+            this.timer = setInterval(() => {
+                this.fC.synchronizeMessages();
+                this.messages = this.fC.messages;
+            }, 1000);
 
-        this.names = this.getUserByUrl(ruta);
+            this.names = this.getUserByUrl(ruta);
+        }
+        // If its a group
+        else{
+            let stringToDelete= 'https://'
+            let stringToDelete2= '/profile/card#me'
+            
+            let thisWEBID= this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
+            if(array[2]==thisWEBID){
+                //chatowner
+                clearInterval(this.timer);
+
+                this.fC.primera = true;
+                this.messages = [];
+                this.ruta_seleccionada = ruta;
+                this.fileClient = require('solid-file-client');
+                this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+                this.emisor = this.rdf.session.webId;
+                this.fC.syncGroupMessages(ruta);
+                this.messages = this.fC.messages;
+                this.timer = setInterval(() => {
+                    this.fC.syncGroupMessages(ruta);
+                    this.messages = this.fC.messages;
+                }, 1000);
+    
+                this.names = this.getUserByUrl(ruta)
+            }
+            else{
+                //guest
+                clearInterval(this.timer);
+                let array= ruta.split('@@@');
+                let stringToDelete= '/profile/card#me';
+                let profileOwnerUrl= array[2].replace(stringToDelete,'') + 'public/dechat5a/' + ruta;
+
+                this.fC.primera = true;
+                this.messages = [];
+                this.ruta_seleccionada = ruta;
+                this.fileClient = require('solid-file-client');
+                this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
+                this.emisor = this.rdf.session.webId;
+                this.fC.syncGroupMessages(profileOwnerUrl);
+                this.messages = this.fC.messages;
+                this.timer = setInterval(() => {
+                    this.fC.syncGroupMessages(profileOwnerUrl);
+                    this.messages = this.fC.messages;
+                }, 1000);
+    
+                this.names = this.getUserByUrl(ruta)
+            }
+        }
     }
 
     async addGroup(){
@@ -80,12 +132,15 @@ export class FriendsComponent implements OnInit {
         let groupName = (document.getElementById("groupName") as HTMLInputElement).value;
 
         let rand= Math.floor(Math.random() * (100000 - 0 + 1)) + 0;
-        groupName= groupName + '@@@' + rand;
+
+        let stringToDelete= 'https://'
+        let stringToDelete2= '/profile/card#me'
+
+    
+        groupName= groupName + '@@@' + rand + '@@@' + this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
         this.fC.createNewFolder(groupName, '/public/dechat5a/');
         this.groupNames.push(groupName);
         this.loadFriends();
-
-        this.fC.syncGroupMessages();
     }
 
 

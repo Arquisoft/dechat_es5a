@@ -191,8 +191,13 @@ export class FilesCreatorService {
  * This method obtains the username based on his webID
  */
     public getUserByUrl(ruta: string): string {
+
         let sinhttp;
         sinhttp = ruta.replace('https://', '');
+        let array= sinhttp.split('@@@');
+        if(array[1]){
+            return sinhttp;
+        }
         const user = sinhttp.split('.')[0];
         return user;
 
@@ -224,7 +229,7 @@ export class FilesCreatorService {
             this.messages.push(messageToSend);
             let stringToChange = '/profile/card#me';
             let path = '/public/dechat5a/' + user + '/Conversation.ttl';
-
+console.log('PATH AQUIII: ' + path)
             senderId = senderId.replace(stringToChange, path);
 
             let message = await this.readMessage(senderId);
@@ -348,57 +353,30 @@ export class FilesCreatorService {
     /*
     * This method gets the url of the connection to synchronize the different messages
     */
-   public async syncGroupMessages() {
-    this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
-    $("#scroll").animate({ scrollTop: $('#scroll')[0].scrollHeight }, 200);
-    var urlArray = this.recipientWebId.split("/");
-    let groupName = (document.getElementById("groupName") as HTMLInputElement).value;
-    let url = "https://" + urlArray[2] + "/public/dechat5a/" + groupName + "/Conversation.ttl";
-    
-    var urlArrayPropio = this.sessionWebId.split("/");
-    let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
-
+   public async syncGroupMessages(ruta:string) {
+    var urlArray = this.sessionWebId.split("/");
+    let url = ruta + "/Conversation.ttl";
     let messageContent = await this.sparqlService.getMessages(url);
-    // if(messageContent != undefined)
-    // {
-    //     messageArray = messageContent.split("\n");
-    // }
-    let messageContentPropia = await this.sparqlService.getMessages(urlPropia);
-    // if(messageContentPropia != undefined)
-    // {
-    //     messageArrayPropio = messageContentPropia.split("\n");
-    // }
+
     let mess = [];
     messageContent.forEach(msg => mess.push(msg));
-    messageContentPropia.forEach(msg => mess.push(msg));
 
     mess = new messagesSorter().order(mess);
 
+
     if (mess.length > this.messages.length) {
         for (var i = this.messages.length; i < mess.length; i++) {
-
-            console.log("Entra al bucle");
-            console.log("Emisor: "+ mess[i].sender);
-            console.log("Receptor: "+ this.recipientWebId);
-
-            if((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
-            (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId))
-            {
               console.log("entra al if");
               this.messages.push(mess[i]);
-
               if (!this.primera) {
                   let data: Array<any> = [];
                   data.push({
-                      'title': 'Nuevo Mensaje de: ' + mess[i].sender,
+                      'title': 'Nuevo Mensaje de: ' + ruta,
                       'alertContent': mess[i].content
                   });
                   this.notificationService.generateNotification(data);
               }
-            }
-
         }
-
     }
     this.primera = false;
 }
