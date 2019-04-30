@@ -10,6 +10,7 @@ import { PushNotificationsService } from '../push.notifications.service';
 import * as $ from 'jquery';
 import { Observable, of } from 'rxjs';
 import { Group } from 'src/app/models/group.model';
+import { read } from 'fs';
 
 @Injectable({
     providedIn: 'root'
@@ -251,9 +252,10 @@ export class FilesCreatorService {
         }
         else {
             //this is URL from group creator file in his pod
-            var readURL = "https://" + chatName.split("@@@")[2] + "/public/dechat5a/" + chatName + "/Conversation.ttl";
+            var readURL = "https://" + chatName.split("@@@")[2].replace("profile/card#me","") + "/public/dechat5a/" + chatName + "/Conversation.ttl";
 
             var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
+            messageContent = this.getUserByUrl(this.sessionWebId) + ': ' + messageContent;
             (document.getElementById("usermsg") as HTMLInputElement).value = "";
 
             var messageString = messageContent.replace(/\s/g, '');
@@ -272,13 +274,12 @@ export class FilesCreatorService {
 
                 if (message != null) {
                     let content = message + this.ttlwriter.writteData(messageToSend);
-                    this.updateTTL(senderId, content);
+                    this.updateTTL(readURL, content);
                 } else {
                     let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
                     content = content + this.ttlwriter.writteData(messageToSend);
-                    this.updateTTL(senderId, content);
+                    this.updateTTL(readURL, content);
                 }
-
                 this.syncGroupMessages(readURL.replace("/Conversation.ttl", ""));
 
             }
