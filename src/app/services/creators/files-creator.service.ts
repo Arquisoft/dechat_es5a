@@ -345,6 +345,7 @@ export class FilesCreatorService {
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
 
+
         let messageContent = await this.sparqlService.getMessages(url);
         // if(messageContent != undefined)
         // {
@@ -368,9 +369,11 @@ export class FilesCreatorService {
                 console.log("Emisor: " + mess[i].sender);
                 console.log("Receptor: " + this.recipientWebId);
 
+                /*
                 if ((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
                     (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId)) {
                     console.log("entra al if");
+                    */
                     this.messages.push(mess[i]);
 
                     if (!this.primera) {
@@ -381,8 +384,8 @@ export class FilesCreatorService {
                         });
                         this.notificationService.generateNotification(data);
                     }
-                }
-
+                    /*
+                }*/
             }
 
         }
