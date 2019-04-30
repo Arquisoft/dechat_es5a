@@ -346,7 +346,8 @@ export class FilesCreatorService {
         var urlArrayPropio = this.sessionWebId.split("/");
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
 
-
+        console.log("URLREMOTA: " + url)
+        console.log("MIURL: " + urlPropia)
         let messageContent = await this.sparqlService.getMessages(url);
         // if(messageContent != undefined)
         // {
@@ -397,8 +398,9 @@ export class FilesCreatorService {
     * This method gets the url of the connection to synchronize the different messages
     */
     public async syncGroupMessages(ruta: string) {
+        
         var urlArray = this.sessionWebId.split("/");
-        let url = ruta + "/Conversation.ttl";
+        let url = "https://" + ruta.split('@@@')[2] + '/public/dechat5a/' + ruta + "/Conversation.ttl";
         console.log("-----------" + url);
         let messageContent = await this.sparqlService.getMessages(url);
 
