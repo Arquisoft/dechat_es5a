@@ -9,6 +9,7 @@ import { messagesSorter } from "../sorters/messagesSorter";
 import { PushNotificationsService } from '../push.notifications.service';
 import * as $ from 'jquery';
 import { Observable, of } from 'rxjs';
+import { Group } from 'src/app/models/group.model';
 
 @Injectable({
     providedIn: 'root'
@@ -194,8 +195,8 @@ export class FilesCreatorService {
 
         let sinhttp;
         sinhttp = ruta.replace('https://', '');
-        let array= sinhttp.split('@@@');
-        if(array[1]){
+        let array = sinhttp.split('@@@');
+        if (array[1]) {
             return sinhttp;
         }
         const user = sinhttp.split('.')[0];
@@ -210,40 +211,78 @@ export class FilesCreatorService {
      */
     public async createNewMessage() {
 
-        //getting message from DOM
-        let myUser = this.getUserByUrl(this.sessionWebId);
-        let user = this.getUserByUrl(this.recipientWebId);
-        var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
-        (document.getElementById("usermsg") as HTMLInputElement).value = "";
+        var chatName = this.recipientWebId;
+        if (!chatName.includes("@@@")) {
+            //getting message from DOM
+            let myUser = this.getUserByUrl(this.sessionWebId);
+            let user = this.getUserByUrl(this.recipientWebId);
+            var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
+            (document.getElementById("usermsg") as HTMLInputElement).value = "";
 
-        var messageString= messageContent.replace(/\s/g,'');
-        if(messageString!=""){
-            //Sender WebID
-            let senderId = this.sessionWebId;
-            let senderPerson: Friend = { webid: senderId };
+            var messageString = messageContent.replace(/\s/g, '');
+            if (messageString != "") {
+                //Sender WebID
+                let senderId = this.sessionWebId;
+                let senderPerson: Friend = { webid: senderId };
 
-            //Receiver WebId
-            let recipientPerson: Friend = { webid: this.recipientWebId }
+                //Receiver WebId
+                let recipientPerson: Friend = { webid: this.recipientWebId }
 
-            let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
-            this.messages.push(messageToSend);
-            let stringToChange = '/profile/card#me';
-            let path = '/public/dechat5a/' + user + '/Conversation.ttl';
-console.log('PATH AQUIII: ' + path)
-            senderId = senderId.replace(stringToChange, path);
+                let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+                this.messages.push(messageToSend);
+                let stringToChange = '/profile/card#me';
+                let path = '/public/dechat5a/' + user + '/Conversation.ttl';
+                console.log('PATH AQUIII: ' + path)
+                senderId = senderId.replace(stringToChange, path);
 
-            let message = await this.readMessage(senderId);
+                let message = await this.readMessage(senderId);
 
-            if (message != null) {
-                let content = message + this.ttlwriter.writteData(messageToSend);
-                this.updateTTL(senderId, content);
-            } else {
-                let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
-                content = content + this.ttlwriter.writteData(messageToSend);
-                this.updateTTL(senderId, content);
+                if (message != null) {
+                    let content = message + this.ttlwriter.writteData(messageToSend);
+                    this.updateTTL(senderId, content);
+                } else {
+                    let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
+                    content = content + this.ttlwriter.writteData(messageToSend);
+                    this.updateTTL(senderId, content);
+                }
+
+                this.synchronizeMessages();
             }
+        }
+        else {
+            //this is URL from group creator file in his pod
+            var readURL = "https://" + chatName.split("@@@")[2] + "/public/dechat5a/" + chatName + "/Conversation.ttl";
 
-            this.synchronizeMessages();}
+            var messageContent = (document.getElementById("usermsg") as HTMLInputElement).value;
+            (document.getElementById("usermsg") as HTMLInputElement).value = "";
+
+            var messageString = messageContent.replace(/\s/g, '');
+            if (messageString != "") {
+                //Sender WebID
+                let senderId = this.sessionWebId;
+                let senderPerson: Friend = { webid: senderId };
+
+                //Receiver WebId
+                let recipientPerson: Group = { webid: chatName }
+
+                let messageToSend: Message = { content: messageContent, date: new Date(Date.now()), sender: senderPerson, recipient: recipientPerson }
+                this.messages.push(messageToSend);
+
+                let message = await this.readMessage(readURL);
+
+                if (message != null) {
+                    let content = message + this.ttlwriter.writteData(messageToSend);
+                    this.updateTTL(senderId, content);
+                } else {
+                    let content = this.ttlwriter.initService(this.sessionWebId, this.recipientWebId);
+                    content = content + this.ttlwriter.writteData(messageToSend);
+                    this.updateTTL(senderId, content);
+                }
+
+                this.syncGroupMessages(readURL.replace("/Conversation.ttl", ""));
+
+            }
+        }
     }
 
     /*
@@ -266,7 +305,8 @@ console.log('PATH AQUIII: ' + path)
             this.fileClient.updateFile(url, newContent).then(success => {
                 console.log(`Updated ${url}.`)
                 return true;
-            }, err => {console.log(err);
+            }, err => {
+                console.log(err);
                 return false;
             });
         }
@@ -275,7 +315,7 @@ console.log('PATH AQUIII: ' + path)
     /*
     * This methos searches for a message in an url
     */
-    public async readMessage(url) :Promise<Message> {
+    public async readMessage(url): Promise<Message> {
         return await this.fileClient.readFile(url).then(body => {
             console.log(`File	content is : ${body}.`);
             return body;
@@ -325,23 +365,22 @@ console.log('PATH AQUIII: ' + path)
             for (var i = this.messages.length; i < mess.length; i++) {
 
                 console.log("Entra al bucle");
-                console.log("Emisor: "+ mess[i].sender);
-                console.log("Receptor: "+ this.recipientWebId);
+                console.log("Emisor: " + mess[i].sender);
+                console.log("Receptor: " + this.recipientWebId);
 
-                if((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
-                (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId))
-                {
-                  console.log("entra al if");
-                  this.messages.push(mess[i]);
+                if ((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
+                    (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId)) {
+                    console.log("entra al if");
+                    this.messages.push(mess[i]);
 
-                  if (!this.primera) {
-                      let data: Array<any> = [];
-                      data.push({
-                          'title': 'Nuevo Mensaje de: ' + mess[i].sender,
-                          'alertContent': mess[i].content
-                      });
-                      this.notificationService.generateNotification(data);
-                  }
+                    if (!this.primera) {
+                        let data: Array<any> = [];
+                        data.push({
+                            'title': 'Nuevo Mensaje de: ' + mess[i].sender,
+                            'alertContent': mess[i].content
+                        });
+                        this.notificationService.generateNotification(data);
+                    }
                 }
 
             }
@@ -353,31 +392,32 @@ console.log('PATH AQUIII: ' + path)
     /*
     * This method gets the url of the connection to synchronize the different messages
     */
-   public async syncGroupMessages(ruta:string) {
-    var urlArray = this.sessionWebId.split("/");
-    let url = ruta + "/Conversation.ttl";
-    let messageContent = await this.sparqlService.getMessages(url);
+    public async syncGroupMessages(ruta: string) {
+        var urlArray = this.sessionWebId.split("/");
+        let url = ruta + "/Conversation.ttl";
+        console.log("-----------" + url);
+        let messageContent = await this.sparqlService.getMessages(url);
 
-    let mess = [];
-    messageContent.forEach(msg => mess.push(msg));
+        let mess = [];
+        messageContent.forEach(msg => mess.push(msg));
 
-    mess = new messagesSorter().order(mess);
+        mess = new messagesSorter().order(mess);
 
 
-    if (mess.length > this.messages.length) {
-        for (var i = this.messages.length; i < mess.length; i++) {
-              console.log("entra al if");
-              this.messages.push(mess[i]);
-              if (!this.primera) {
-                  let data: Array<any> = [];
-                  data.push({
-                      'title': 'Nuevo Mensaje de: ' + ruta,
-                      'alertContent': mess[i].content
-                  });
-                  this.notificationService.generateNotification(data);
-              }
+        if (mess.length > this.messages.length) {
+            for (var i = this.messages.length; i < mess.length; i++) {
+                console.log("entra al if");
+                this.messages.push(mess[i]);
+                if (!this.primera) {
+                    let data: Array<any> = [];
+                    data.push({
+                        'title': 'Nuevo Mensaje de: ' + ruta,
+                        'alertContent': mess[i].content
+                    });
+                    this.notificationService.generateNotification(data);
+                }
+            }
         }
+        this.primera = false;
     }
-    this.primera = false;
-}
 }

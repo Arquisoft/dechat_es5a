@@ -48,12 +48,12 @@ export class FriendsComponent implements OnInit {
 
     }
 
-    async addChat(ruta: string){
-        let array= ruta.split("@@@")
-        // If its a 1p1 conversation
-        if(array.length==0){
-            clearInterval(this.timer);
 
+    //when you click on the chat you want to have a conversation with
+    async addChat(ruta: string){
+        // If its a 1p1 conversation
+        if (!ruta.includes("@@@")){
+            clearInterval(this.timer);
             this.fC.primera = true;
             this.messages = [];
             this.ruta_seleccionada = ruta;
@@ -78,8 +78,13 @@ export class FriendsComponent implements OnInit {
             let stringToDelete2= '/profile/card#me'
             
             let thisWEBID= this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
-            if(array[2]==thisWEBID){
+            let array= ruta.split("@@@")
+            console.log("------------------------" + ruta + "--------------");
+            console.log("....." + array[2]);
+            console.log("***" + thisWEBID);
+            if(array[2].includes(thisWEBID)){
                 //chatowner
+                console.log("LOLAZO");
                 clearInterval(this.timer);
 
                 this.fC.primera = true;
@@ -102,7 +107,7 @@ export class FriendsComponent implements OnInit {
                 clearInterval(this.timer);
                 let array= ruta.split('@@@');
                 let stringToDelete= '/profile/card#me';
-                let profileOwnerUrl= array[2].replace(stringToDelete,'') + 'public/dechat5a/' + ruta;
+                let profileOwnerUrl= array[2].replace(stringToDelete,'') + '/public/dechat5a/' + ruta;
 
                 this.fC.primera = true;
                 this.messages = [];
@@ -136,8 +141,9 @@ export class FriendsComponent implements OnInit {
         let stringToDelete= 'https://'
         let stringToDelete2= '/profile/card#me'
 
-    
-        groupName= groupName + '@@@' + rand + '@@@' + this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
+        if (!groupName.includes("@@@")){
+            groupName= groupName + '@@@' + rand + '@@@' + this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
+        }
         this.fC.createNewFolder(groupName, '/public/dechat5a/');
         this.groupNames.push(groupName);
         this.loadFriends();

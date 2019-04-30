@@ -23,12 +23,15 @@ export class CardComponent implements OnInit  {
     private route: ActivatedRoute, private auth: AuthService) {}
 
   ngOnInit() {
+    
+    localStorage.removeItem('oldProfileData');
+
     this.loadingProfile = true;
     this.loadProfile();
 
     // Clear cached profile data
     // TODO: Remove this code and find a better way to get the old data
-    localStorage.removeItem('oldProfileData');
+    //localStorage.removeItem('oldProfileData');
   }
 
   // Loads the profile from the rdf service and handles the response

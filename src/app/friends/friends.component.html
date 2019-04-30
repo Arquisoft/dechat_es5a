@@ -25,7 +25,7 @@
                     <div class="wrap" >
                         <img src=" https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
                         <div class="meta" style="margin-left: 20%;"  >
-                            <p class="name">  {{getUserByUrl(item.webid.toString())}} </p>
+                            <p  class="name">  {{getUserByUrl(item.webid.toString())}} </p>
                         </div>
                     </div>
                 </li>
@@ -41,7 +41,7 @@
     <div class="content">
         <div class="contact-profile" id="chat">
             <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
-            <p>{{names}}</p>
+            <p id ="chatName">{{names}}</p>
         </div>
         <div class="messages" id="scroll">
             <ul id="lista" *ngFor="let message of messages">

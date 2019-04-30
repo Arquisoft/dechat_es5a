@@ -17,6 +17,9 @@ export class SparqlService {
   async getMessages( url :string ){
     let messages:Message[] = [];
     try{
+      if (!url.includes("http")){
+        url = "https://" + url;
+      }
       let doc = $rdf.sym(url);
       let store = $rdf.graph();
       let e=  await this.searchMessage(doc.value);
