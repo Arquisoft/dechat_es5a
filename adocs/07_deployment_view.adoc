@@ -40,6 +40,8 @@ We can deploy it using docker. For that there are 8 files we have to take a look
 
 ** entrypoint.sh: this script is needed because we are going to deploy it on Heroku and we don't know which port will be assigned so this allow us to communicate the container with the outere.
 
+Another way of deploying the app is cloning the github repository and running it as localhost
+
 
 
 
