@@ -15,6 +15,8 @@ import * as $ from 'jquery';
 })
 export class FriendsComponent implements OnInit {
 
+  showEmojiPicker = false;
+
     timer: NodeJS.Timer;
     fileClient: any;
     ruta_seleccionada: string;
@@ -24,6 +26,7 @@ export class FriendsComponent implements OnInit {
     friends: Friend[];
     value: Friend[];
     myUser: string;
+    imageProfile:string;
 
     /*
      * Constuctor
@@ -40,6 +43,19 @@ export class FriendsComponent implements OnInit {
         this.fileClient = require('solid-file-client');
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
+        this.loadImage();
+    }
+
+    isLogged() {
+        if (localStorage.getItem('solid-auth-client')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    toggleEmojiPicker() {
+      this.showEmojiPicker = !this.showEmojiPicker;
 
     }
 
@@ -101,7 +117,7 @@ export class FriendsComponent implements OnInit {
             await this.loadFriends();
             let friendsList = this.friends;
             for (var f in friendsList) {
-                let friend = friendsList[f];
+                let friend:Friend = friendsList[f];
                 let logWeb = friend.webid;
                 if (logWeb.includes(searchText)) {
                     output.push(friend);
@@ -130,8 +146,26 @@ export class FriendsComponent implements OnInit {
         }
     }
 
-    ngOnDestroy() {
-        clearInterval(this.timer);
+    async loadImage(){
+      try{
+        const profile = await this.rdf.getProfile();
+        if(profile) {
+          this.imageProfile= profile.image? profile.image: '/assets/images/profile.png';
+        }
+      } catch (error){
+        console.log(`Error: ${error}`);
+      }
     }
+
+    addEmoji(event) {
+        const message = (document.getElementById("usermsg") as HTMLInputElement).value;
+        const text = `${message}${event.emoji.native}`;
+       (document.getElementById("usermsg") as HTMLInputElement).value = text;
+
+  }
+
+  ngOnDestroy() {
+      clearInterval(this.timer);
+  }
 
 }

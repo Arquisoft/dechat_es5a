@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 
 language: bash
 
@@ -10,12 +10,15 @@ env:
   global:
     - CACHE_DIR=$HOME/.cache/docker
     - CACHE_FILE_NODE=$CACHE_DIR/node.tar.gz
+    - CACHE_FILE_NGINX=$CACHE_DIR/nginx.tar.gz
+
 jobs:
   include:
     - stage: deploy documentation
       if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
       before_script:
         - mkdir -p output
+
       script:
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-html asciidoctor/docker-asciidoctor asciidoctor -a toc=left -D /documents/output adocs/*.adoc
         - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-pdf asciidoctor/docker-asciidoctor asciidoctor-pdf -D /documents/output adocs/*.adoc
@@ -45,13 +48,33 @@ jobs:
     - stage: tests
       if: commit_message != "Deploy documentation to GitHub Pages"
       before_script:
-        - if [ -f ${CACHE_FILE_NODE} ]; then docker load < ${CACHE_FILE_NODE}; fi
+        - docker pull lamasape/dechat-app.test:latest
+        - docker build -f Dockerfile.test --cache-from lamasape/dechat-app.test:latest -t lamasape/dechat-app.test:latest .
 
       script:
         - docker-compose -f docker-compose.test.yml up
-        - mkdir -p $CACHE_DIR
-        - if [ ! -f ${CACHE_FILE_NODE} ]; then docker save node:11.9.0-alpine > ${CACHE_FILE_NODE}; fi
 
       after_success:
         - bash <(curl -s https://codecov.io/bash)
         - docker-compose -f docker-compose.test.yml down
+        - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        - docker push lamasape/dechat-app.test
+
+    - stage: deploy to prod
+      if: branch = master AND commit_message != "Deploy documentation to GitHub Pages"
+      before_script:
+        - if [ -f ${CACHE_FILE_NODE} ]; then docker load < ${CACHE_FILE_NODE}; fi
+        - if [ -f ${CACHE_FILE_NGINX} ]; then docker load < ${CACHE_FILE_NGINX}; fi
+
+      script:
+        - docker-compose -f docker-compose.prod.yml up -d
+        - mkdir -p $CACHE_DIR
+        - if [ ! -f ${CACHE_FILE_NODE} ]; then docker save node:11.9.0-alpine > ${CACHE_FILE_NODE}; fi
+        - if [ ! -f ${CACHE_FILE_NGINX} ]; then docker save nginx:alpine > ${CACHE_FILE_NGINX}; fi
+
+      after_success:
+        - docker login --username $HEROKU_USERNAME --password $HEROKU_TOKEN registry.heroku.com
+        - docker tag dechat-app.prod:latest registry.heroku.com/$HEROKU_APP_NAME/web
+        - docker push registry.heroku.com/$HEROKU_APP_NAME/web
+        - docker-compose -f docker-compose.prod.yml down
+        - ./heroku-container-release.sh

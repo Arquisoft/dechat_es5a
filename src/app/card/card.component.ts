@@ -40,7 +40,6 @@ export class CardComponent implements OnInit  {
         this.profile = profile;
         this.auth.saveOldUserData(profile);
       }
-
       this.loadingProfile = false;
       this.setupProfileData();
     } catch (error) {

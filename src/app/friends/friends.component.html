@@ -4,8 +4,8 @@
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
-            <div class="wrap">
-                <img id="profile-img" src="https://image.flaticon.com/icons/svg/206/206887.svg" class="online" alt=""/>
+            <div class="wrap" routerLink="/card">
+                <img id="profile-img" [src]="imageProfile" class="online" alt=""/>
                 <p>{{myUser}}</p>
             </div>
         </div>
@@ -17,8 +17,8 @@
             <ul *ngFor="let item of friends"  id="friend">
                 <li class="contact" id="listaFriends" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">
                     <div class="wrap" >
-                        <img src=" https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
-                        <div class="meta" style="margin-left: 20%;"  >
+                        <img src=" https://image.flaticon.com/icons/svg/206/206861.svg"   alt=""/>
+                        <div class="meta" style="margin-left: 20%;"   >
                             <p class="name">  {{getUserByUrl(item.webid.toString())}} </p>
                         </div>
                     </div>
@@ -27,12 +27,11 @@
         </div>
 
         <div id="bottom-bar">
-            <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span>
-            </button>
+
         </div>
     </div>
 
-    <div class="content">
+    <div class="content" style="background-color: #95a5a6">
         <div class="contact-profile" id="chat">
             <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
             <p>{{names}}</p>
@@ -40,7 +39,9 @@
         <div class="messages" id="scroll">
             <ul id="lista" *ngFor="let message of messages">
                 <li [ngClass]="message.recipient == emisor ? 'sent': 'replies' ">
-                    <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+                    <div *ngIf="message.recipient!=emisor" ><img [src]=imageProfile alt=""/>
+                    </div><div *ngIf="message.recipient==emisor" ><img  src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png"  alt=""/>
+                    </div>
                     <p class="mscontent">
                         {{message.content}} <br/>
                         {{getDate(message.date)}}
@@ -49,12 +50,14 @@
             </ul>
 
         </div>
-        <div class="message-input">
+        <emoji-mart class="emoji-mart" set="emojione" (emojiSelect)="addEmoji($event)" *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
+        <div class="message-input" style="margin-right: 0%; width: 98%">
             <div class="wrap" id="writemessage">
-                <input name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
+                <input style=" width: 89%; height: 90%; padding-right: 0%" name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
                        placeholder="Write your message..."/>
-                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                <button (click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
+                <button id="emoji" type="button" class="toggle-emoji" (click)="toggleEmojiPicker()" >
+                    <i-feather name="smile"></i-feather></button>
+                <button  id="emoji"(click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
                                                                                              aria-hidden="true"></i>
                 </button>
             </div>

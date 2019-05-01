@@ -26,6 +26,12 @@ import { AuthGuard } from './services/auth.guard.service';
 import { TTLWriterService } from './services/printers/ttlwriter.service';
 import {SparqlService} from './services/query/sparql.service';
 import { RdfService } from './services/rdf.service';
+import {AboutComponent} from './about/about.component';
+
+
+import { IconsModule } from './icons/icons.module';
+  import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +45,7 @@ import { RdfService } from './services/rdf.service';
     FooterComponent,
     HeaderComponent,
     FriendsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,9 @@ import { RdfService } from './services/rdf.service';
     RouterModule,
     NgSelectModule,
     ToastrModule.forRoot(),
-   // BrowserAnimationsModule // required for toastr
+    IconsModule,
+    PickerModule, 
+    BrowserAnimationsModule // required for toastr
   ],
   providers: [
     AuthService,
