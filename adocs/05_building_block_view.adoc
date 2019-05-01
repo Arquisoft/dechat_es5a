@@ -4,6 +4,11 @@ Here is a simple scheme that explains the basic organizations of the application
 
 image:05_building_block_view.JPG[]
 
+Red: Components of the chat
+
+Light Blue: Coverage Tests and different Utilities
+
+Orange: Services.
 
 === Whitebox Overall System
 We will explain some of the application parts functionality:
