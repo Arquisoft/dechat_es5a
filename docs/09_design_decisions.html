@@ -454,25 +454,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>First decision is that we are using Git as version control system instead of using mercurial, vsn, etc. and GitHub as source code management instead of using Bitbucket, this decision was imposed by the teachers of the subject.</p>
 </li>
 <li>
+<p>The advantages of GitHub is that this plattform allows us to easily share and deploy our code.</p>
+</li>
+<li>
+<p>One important feature of GitHub is the control versions. If we lose our code, we`ll be able to retrieve it easily.</p>
+</li>
+<li>
 <p>We are using javascript family language(javascript, typescript, node.js, angular, etc) to build the application as the main programming language. As we understand, javascript is the easiest way to make a SOLID application.</p>
 </li>
 <li>
-<p>We are also using basic languages for the web such as html, css, etc.</p>
+<p>The concrete language we are using is TypeScript. It is synchronized with Angular framework, and it`s usage is the same as if we were working with JavaScript. We are also using basic languages for the web such as html, css, etc as complements for the TypeScript code. When working with Angular, and you create a chat component, this tool will generate automatically a new folder with the component`s name, with a personalyzed css, ts and html.</p>
 </li>
 <li>
 <p>Social linked data(SOLID) based application. A must decision we have to follow if we want to make a decentralized application. This means following several important constraints to build the application. One of them is storing date in PODS, so the user is the owner of their data.</p>
 </li>
 <li>
-<p>Using a Service architecture that helps us to easily separate responsabilities. This services are used from the main app to obtain extra-functionality.</p>
+<p>Using a Service architecture that helps us to easily separate responsabilities. This services are used from the main app to obtain extra-functionality. There is a lot of different services, such as writers, sorters and queries services.</p>
 </li>
 <li>
-<p>Following Angular components structure, so we can build a high cohesion and low coupling app. Our main component is FriendComponent and it represents the chat page where we can select chats and send messages to our Solid friends. We decided to have all chat functionality in the same page because we though it was better for the final user as it will be able to move in our app with just a few clicks.</p>
+<p>Following Angular components structure, so we can build a high cohesion and low coupling app. Our main component is FriendComponent and it represents the chat page where we can select chats and send messages to our Solid friends. We decided to have all chat functionality in the same page because we though it was better for the final user as it will be able to move in our app with just a few clicks. The most importan feature of Angular is that you can build Single Pages Applications.</p>
+</li>
+<li>
+<p>Single pages applications means that the whole application works on a single page. This page updates itself dinamically, and allows you to exchange information between tha app parts easily and faster.</p>
 </li>
 <li>
 <p>We use the known Karma-Jasmine framework for implementing unit test, a tool that allow us to easily test code on Angular, it helps us separating test code from the application code, it is also useful and easy to learn how to test. We though about using Mocha.js for tests but we had a few tests done yet so we decide to keep on with Karma-Jasmine.</p>
 </li>
 <li>
-<p>At the beginning we used a simple text file to keep message info. Later on we decide to store messages in a ttl file. We stored message content and metadata in Turtle language (.ttl). The main reason to store data in rdf is that we can communicate with other applications that have the same ontology.</p>
+<p>At the beginning we used a simple text file to keep message info. Later on we decide to store messages in a ttl file. We stored message content and metadata in Turtle language (.ttl). The main reason to store data in rdf is that we can communicate with other applications that have the same ontology. It is useful to store the information in Turtle language because when trying to obtain pod`s information, you will be able to obtain it faster when working with Sparql queries.</p>
 </li>
 <li>
 <p>As we store message data in ttl format, we need a tool for getting that ttl info. The way we recover that info is with Sparql queries, We create queries to access the Turtle files and get resources faster than using plain text.</p>
@@ -481,7 +490,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>We have a notifications service that works in every browser and allows us to send a notification to a user when he receives a message. We decide to use this notification service because we think it&#8217;s relevant in a real time chat application.</p>
 </li>
 <li>
-<p>Group chat develop is in a alpha version, we have decided to store all the conversation in group creators/owner pod.</p>
+<p>Group chat develop is in a alpha version, we have decided to store all the conversation in group creators/owner pod. The main difference between group and single chats is that in group chats messages store in thw group owner`s pod, but in single conversations, information stores in the mmessage writer`s pod.</p>
+</li>
+<li>
+<p>When trying to store information in another user`s pod, you will not have edit permissions, so you need an acl (Access Control List) to control the permissions.</p>
 </li>
 </ul>
 </div>
@@ -490,7 +502,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-01 21:39:51 UTC
+Last updated 2019-05-01 22:32:21 UTC
 </div>
 </div>
 </body>

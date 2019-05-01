@@ -488,12 +488,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>It is important to notice that talking about resources <strong>the application consumes the same resources as another app</strong>, because it is launched in a browser.</p>
 </div>
+<div class="paragraph">
+<p>There are other ways of deploying our app.
+We can deploy it using docker. For that there are 8 files we have to take a look into it.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In Dockerfile we chooser how our image will be and how to create the docker container. To run a file type "docker-compose -f Dockerfile.XXX up" and "docker-compose -f Dockerfile.XXX down"</p>
+</li>
+<li>
+<p>Dockerfile.dev and docker-compose.dev: those files make our application run in a container during develop phase, we can access to the container through 4200 port.</p>
+</li>
+<li>
+<p>Dockerfile.test and docker-compose.test: those files allow karma and e2e tests run inside container. To make this possible we had to configure ChromeHeadless.</p>
+</li>
+<li>
+<p>Dockerfile.prod and docker-compose.prod: those files allow running the app on a server. An important feature is that the app run in a Nginx server web, unlike running our app in other server(github project). To make this possible we need other files</p>
+</li>
+<li>
+<p>nginx.conf: this file allow us to configure the web server. It is a standard file that we need even we are not running it o a web server.</p>
+</li>
+<li>
+<p>entrypoint.sh: this script is needed because we are going to deploy it on Heroku and we don&#8217;t know which port will be assigned so this allow us to communicate the container with the outere.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-01 21:39:51 UTC
+Last updated 2019-05-01 22:32:21 UTC
 </div>
 </div>
 </body>
