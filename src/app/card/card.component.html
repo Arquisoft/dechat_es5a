@@ -8,7 +8,7 @@
 
   <!-- MAIN PROFILE -->
   <div class="profile-fields-container" *ngIf="!loadingProfile">
-    <div class="profile-image-container" style="background-color: #C786A6">
+    <div class="profile-image-container" style="background-color: #656E75">
       <img [src]="profileImage" />
     </div>
     <form style="padding-top: 26px;" #f="ngForm" (submit)="onSubmit()">
@@ -18,7 +18,6 @@
         <div class="pure-u-1-1 pure-u-md-1-2 form-group">
           <i class="fas fa-user"></i> <input type="text" class="field-text form-control" name="fn" placeholder="NAME"  [(ngModel)]="profile.fn" />
         </div>
-
         <!-- PHONE -->
         <div class="pure-u-1-1 pure-u-md-1-2 form-group">
           <i class="fas fa-phone"></i><input type="text" class="field-text form-control" name="phone" placeholder="PHONE" [(ngModel)]="profile.phone" />
