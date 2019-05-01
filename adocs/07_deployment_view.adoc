@@ -24,3 +24,22 @@ The relationship between software and hardware is very simple, there are three m
 * Server: Automatically synchronizes with solid server.
 
 It is important to notice that talking about resources *the application consumes the same resources as another app*, because it is launched in a browser.
+
+There are other ways of deploying our app.
+We can deploy it using docker. For that there are 8 files we have to take a look into it.
+
+** In Dockerfile we chooser how our image will be and how to create the docker container. To run a file type "docker-compose -f Dockerfile.XXX up" and "docker-compose -f Dockerfile.XXX down" 
+
+** Dockerfile.dev and docker-compose.dev: those files make our application run in a container during develop phase, we can access to the container through 4200 port.
+
+** Dockerfile.test and docker-compose.test: those files allow karma and e2e tests run inside container. To make this possible we had to configure ChromeHeadless.
+
+** Dockerfile.prod and docker-compose.prod: those files allow running the app on a server. An important feature is that the app run in a Nginx server web, unlike running our app in other server(github project). To make this possible we need other files
+
+** nginx.conf: this file allow us to configure the web server. It is a standard file that we need even we are not running it o a web server.
+
+** entrypoint.sh: this script is needed because we are going to deploy it on Heroku and we don't know which port will be assigned so this allow us to communicate the container with the outere.
+
+
+
+
