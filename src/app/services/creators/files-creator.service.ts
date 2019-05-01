@@ -71,18 +71,12 @@ export class FilesCreatorService {
  * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
  */
     public createNewFolder(name: string, ruta: string) {
-        //Para crear la carpeta necesito una ruta que incluya el nombre de la misma.
-        //Obtengo el ID del usuario y sustituyo  lo irrelevante por la ruta de public/NombreCarpeta
+        //For creating a folder we need the route with the id, we remove irrelevant 
         let stringToChange = '/profile/card#me';
         let path = ruta + name;
         let solidId = this.sessionWebId;
-        console.log("SOLID ID" + solidId);
-        console.log(stringToChange);
-        console.log(path);
         solidId = solidId.replace(stringToChange, path);
-        //Necesito logearme en el cliente para que me de permiso, sino me dara un error al intentar
-        //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
-        // que se ejecuta correctamente.
+        // We need to be logged to get permisses. 
         this.buildFolder(solidId);
     }
 
@@ -144,47 +138,42 @@ export class FilesCreatorService {
     * This methos updates the TTL file with the new content
     */
     public updateTTL(url, newContent, contentType?) {
-        console.log("NEW CONTENT-->" + newContent);
-        console.log("ContentTYpe-->" + contentType);
         if (contentType) {
             let newTtl = this.ttlwriter;
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
-                console.log(`Updated ${url}.`)
                 return true;
             }, (err) => {
-                console.log(err);
+                console.log('Error updating ttl file');
                 return false;
             });
         }
         else {
             this.fileClient.updateFile(url, newContent).then(success => {
-                console.log(`Updated ${url}.`)
                 return true;
-            }, err => {console.log(err);
+            }, err => {console.log('Error updating file');
                 return false;
             });
         }
     }
 
     /*
-    * This methos searches for a message in an url
+    * This method searches for a message in an url
     */
     public async readMessage(url) :Promise<Message> {
         return await this.fileClient.readFile(url).then(body => {
-            console.log(`File	content is : ${body}.`);
             return body;
         }, err => {
-            console.log(err);
+            console.log('Error reading messages');
         });
     }
 
     /*
- * This method creates a file in a folder using the solid-file-client lib
- */
+    * This method creates a file in a folder using the solid-file-client lib
+    */
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
 
-        }, err => console.log(err));
+        }, err => console.log('Error creating folder'));
     }
 
     /*
@@ -200,15 +189,7 @@ export class FilesCreatorService {
         let urlPropia = "https://" + urlArrayPropio[2] + "/public/dechat5a/" + this.getUserByUrl(this.recipientWebId) + "/Conversation.ttl";
 
         let messageContent = await this.sparqlService.getMessages(url);
-        // if(messageContent != undefined)
-        // {
-        //     messageArray = messageContent.split("\n");
-        // }
         let messageContentPropia = await this.sparqlService.getMessages(urlPropia);
-        // if(messageContentPropia != undefined)
-        // {
-        //     messageArrayPropio = messageContentPropia.split("\n");
-        // }
         let mess = [];
         messageContent.forEach(msg => mess.push(msg));
         messageContentPropia.forEach(msg => mess.push(msg));
@@ -218,14 +199,9 @@ export class FilesCreatorService {
         if (mess.length > this.messages.length) {
             for (var i = this.messages.length; i < mess.length; i++) {
 
-                console.log("Entra al bucle");
-                console.log("Emisor: "+ mess[i].sender);
-                console.log("Receptor: "+ this.recipientWebId);
-
                 if((mess[i].sender === this.recipientWebId && mess[i].recipient === this.sessionWebId) ||
                 (mess[i].sender === this.sessionWebId && mess[i].recipient === this.recipientWebId))
                 {
-                  console.log("entra al if");
                   this.messages.push(mess[i]);
 
                   if (!this.primera) {

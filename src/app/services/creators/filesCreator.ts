@@ -33,110 +33,11 @@ export class filesCreator {
     //method that creates the folder using the solid-file-client lib
     private buildFolder(solidId) {
         this.fileClient.readFolder(solidId).then(folder => {
-
         }, err => {
-            //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
             this.fileClient.createFolder(solidId).then(success => {
-
-            }, err1 => console.log(err1));
+            }, err1 => console.log('Error creating folder'));
 
         });
-    }
-
-    /*
-     * Creates a .acl for the file in the path.
-     * This file is only for the owner
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param user:string the /profile/card#me of the user owner of the folder
-     */
-    private createOwnerACL(path:string, user:string) {
-        let file = path+'.acl';
-        let contenido = '@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+this.sessionWebId+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode\n      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.'
-
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl owner ${file}.`)
-        }, err => console.log(err));
-    }
-
-    /*
-     * Creates a .acl for the file in the path.
-     * This file made for the owner and one reader
-     * Used in p2p chats
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param owner:string the /profile/card#me of the user owner of the folder
-     * @param reader:string the /profile/card#me of the reader of the folder
-     */
-    public createReadForOneACL(path: string, owner: string, reader:string) {
-        let file = path + '.acl';
-        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+owner+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;'+
-            'acl:mode\n      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.\n'+
-
-            '<#reader>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+reader+'>;\n'+
-            'acl:accessTo  <'+path+'>;\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode\n      acl:Read.'
-
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl one reader ${file}.`)
-        }, err => console.log(err));
-    }
-
-    /*
-     * Creates a .acl for the file in the path.
-     * This file made for the owner and many readers
-     * Used in p2p chats
-     * path must have the / at the end of the folder
-     * @param path:string the file for the .acl
-     * @param owner:string the /profile/card#me of the user owner of the folder
-     * @param readers:string[] the /profile/card#me of the readers of the folder
-     */
-    public createReadForManyACL(path: string, owner:string, readers: string[]) {
-        let file = path + '.acl';
-        let contenido ='@prefix  acl:  <http://www.w3.org/ns/auth/acl#>  .\n'+
-            '<#owner>\n'+
-            'a             acl:Authorization;\n'+
-            'acl:agent     <'+owner+'>\n'+
-            'acl:accessTo  <'+path+'>\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode      acl:Read,\n'+
-            'acl:Write,\n'+
-            'acl:Control.\n'+
-
-            '<#readers>\n'+
-            'a               acl:Authorization;\n'+
-            'acl:accessTo    <'+path+'>\n'+
-            'acl:defaultForNew <./>;\n'+
-            'acl:mode        acl:Read;\n'
-
-        readers.forEach(function (e, idx, array) {
-            if (idx === array.length - 1){
-                contenido = contenido + 'acl:agent  <'+e+'>.'
-            } else {
-                contenido = contenido + 'acl:agent  <'+e+'>;\n'
-            }
-        })
-        this.fileClient.updateFile(file,contenido).then(success => {
-            console.log(`Created acl many readers ${file}.`)
-        }, err => console.log(err));
     }
     /*
      * Returns a string with all the readers of a acl, divided by '|'
@@ -148,8 +49,7 @@ export class filesCreator {
         let list;
         this.fileClient.readFile(path+'.acl').then(  body => {
             file= body;
-            console.log(`File content is : ${body}.`);
-        }, err => console.log(err) );
+        }, err => console.log('Error getting readers'));
 
 
         return  list;
@@ -239,13 +139,11 @@ export class filesCreator {
     private updateTTL(url, newContent, contentType?) {
         if (contentType) {
             this.fileClient.updateFile(url, newContent, contentType).then(success => {
-
-            }, err => console.log(err));
+            }, err => console.log('Error updating ttl file'));
         }
         else {
             this.fileClient.updateFile(url, newContent).then(success => {
-
-            }, err => console.log(err));
+            }, err => console.log('Error updating ttl file'));
         }
     }
 
