@@ -163,7 +163,7 @@ export class filesCreator {
         return await this.fileClient.readFile(url).then(body => {
 
             return body;
-        }, err => console.log(err));
+        }, err => console.log('Error searching messages'));
 
     }
 
@@ -173,7 +173,7 @@ export class filesCreator {
     private buildFile(solidIdFolderUrl, content) {
         this.fileClient.createFile(solidIdFolderUrl, content, "text/plain").then(fileCreated => {
 
-        }, err => console.log(err));
+        }, err => console.log('Error building file'));
     }
 
      /*

@@ -27,8 +27,7 @@ export class SparqlService {
         messages.push(this.getMessage(quads, i));
       }
     }catch (err){
-      console.log("No debe haber nada en la uri-->" + url);
-      console.log("ERROR TYPE: "+err)
+      console.log("Error getting messages");
     }
     return messages;
    }
@@ -50,7 +49,7 @@ export class SparqlService {
    private async searchMessage(url) {
        return await this.fileClient.readFile(url).then(body => body
          , err => {
-           console.log("ERROR: " + err)
+           console.log("Error searchign messages");
          return []
        });
 

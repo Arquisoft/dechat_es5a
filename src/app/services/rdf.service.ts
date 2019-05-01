@@ -310,7 +310,7 @@ export class RdfService {
       }
       return list_friends;
     } catch (error) {
-      console.log(`Error fetching data: ${error}`);
+      console.log("Error getting friends");
     }
   }
 
@@ -325,7 +325,7 @@ export class RdfService {
       }
       return list_friends;
     } catch (error) {
-      console.log(`Error fetching data: ${error}`);
+      console.log("Error getting friend names");
     }
   }
   getProfile = async () => {
@@ -348,7 +348,7 @@ export class RdfService {
         note: this.getValueFromVcard('note'),
       };
     } catch (error) {
-      console.log(`Error fetching data: ${error}`);
+      console.log("Error getting profile personal values");
     }
   }
 
