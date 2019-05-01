@@ -7,7 +7,7 @@ image:https://img.shields.io/badge/documentation-AsciiDoc-FF69A4.svg[link="https
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
-You can find a live demo in https://dechat5a.ddns.net
+You can find a live demo in https://dechat-es5a.herokuapp.com
 
 ## Development server
 
