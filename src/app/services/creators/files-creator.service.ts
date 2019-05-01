@@ -177,15 +177,15 @@ export class FilesCreatorService {
 
     public groupACL(path:string,  ){
         let file = path;
-        let contenido = 
+        let contenido =
             `@prefix  : <#>.
              @prefix  n0: <http://www.w3.org/ns/auth/acl#>.
              @prefix Prueb: <./>.
              @prefix c: </profile/card#>.
              @prefix n1: <http://xmlns.com/foaf/0.1/>.
-            
+
              :ControlReadWrite
-             \t a n0:Authorization; 
+             \t a n0:Authorization;
              \t n0:accessTo Prueb:;
              \t n0:agent c:me;
              \t n0:agentClass n1:Agent;
@@ -195,8 +195,8 @@ export class FilesCreatorService {
              \t a n0:Authorization;
              \t n0:accessTo Prueb:;
              \t n0:defaultForNew Prueb:;
-             \t n0:mode n0:Read, n0:Write.`    
-            
+             \t n0:mode n0:Read, n0:Write.`
+
             console.log("Ruta acl" + file + "/.acl");
         this.fileClient.createFile(file + "/.acl", contenido).then(success => {
            console.log(` ESTA MIERDA FUNCIONA ()Created acl one reader ${file}.`)
@@ -314,7 +314,8 @@ export class FilesCreatorService {
                     content = content + this.ttlwriter.writteData(messageToSend);
                     this.updateTTL(readURL, content);
                 }
-                this.syncGroupMessages(readURL.replace("/Conversation.ttl", ""));
+                console.log("ESTO ES FILESCREATOR-- CREATENEW MESSAGEL!");
+                this.syncGroupMessages(chatName);
 
             }
         }
@@ -432,10 +433,11 @@ export class FilesCreatorService {
     * This method gets the url of the connection to synchronize the different messages
     */
     public async syncGroupMessages(ruta: string) {
-        
+
         var urlArray = this.sessionWebId.split("/");
+        console.log("FILESCREATOR-->"+ ruta);
         let url = "https://" + ruta.split('@@@')[2] + '/public/dechat5a/' + ruta + "/Conversation.ttl";
-        console.log("-----------" + url);
+        console.log("-----FILESCREATORSERVICE!!!------" + url);
         let messageContent = await this.sparqlService.getMessages(url);
 
         let mess = [];

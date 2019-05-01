@@ -76,7 +76,7 @@ export class FriendsComponent implements OnInit {
         else{
             let stringToDelete= 'https://'
             let stringToDelete2= '/profile/card#me'
-            
+
             let thisWEBID= this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
             let array= ruta.split("@@@")
             console.log("------------------------" + ruta + "--------------");
@@ -93,13 +93,15 @@ export class FriendsComponent implements OnInit {
                 this.fileClient = require('solid-file-client');
                 this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
                 this.emisor = this.rdf.session.webId;
+                console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--DUEÑO");
                 this.fC.syncGroupMessages(ruta);
                 this.messages = this.fC.messages;
                 this.timer = setInterval(() => {
+                    console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--DUEÑO--INTERVAL!");
                     this.fC.syncGroupMessages(ruta);
                     this.messages = this.fC.messages;
                 }, 1000);
-    
+
                 this.names = this.getUserByUrl(ruta)
             }
             else{
@@ -115,13 +117,15 @@ export class FriendsComponent implements OnInit {
                 this.fileClient = require('solid-file-client');
                 this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
                 this.emisor = this.rdf.session.webId;
-                this.fC.syncGroupMessages(profileOwnerUrl);
+                console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--cliente--INTERVAL!");
+                this.fC.syncGroupMessages(ruta);
                 this.messages = this.fC.messages;
                 this.timer = setInterval(() => {
-                    this.fC.syncGroupMessages(profileOwnerUrl);
+                  console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--cliente--INTERVAL!");
+                    this.fC.syncGroupMessages(ruta);
                     this.messages = this.fC.messages;
                 }, 1000);
-    
+
                 this.names = this.getUserByUrl(ruta)
             }
         }
