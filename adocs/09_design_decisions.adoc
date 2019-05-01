@@ -16,3 +16,5 @@
 * Group chat develop is in a alpha version, we have decided to store all the conversation in group creators/owner pod. The main difference between group and single chats is that in group chats messages store in thw group owner`s pod, but in single conversations, information stores in the mmessage writer`s pod.
 * When trying to store information in another user`s pod, you will not have edit permissions, so you need an acl (Access Control List) to control the permissions.
 
+image::arc42-logo.png[]
+
