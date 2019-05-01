@@ -15,6 +15,8 @@ import * as $ from 'jquery';
 })
 export class FriendsComponent implements OnInit {
 
+  showEmojiPicker = false;
+
     timer: NodeJS.Timer;
     fileClient: any;
     ruta_seleccionada: string;
@@ -43,12 +45,17 @@ export class FriendsComponent implements OnInit {
 
     }
 
-    isLogged(){
-        if(localStorage.getItem('solid-auth-client')){
+    isLogged() {
+        if (localStorage.getItem('solid-auth-client')) {
             return true;
-        } else{
+        } else {
             return false;
         }
+    }
+
+    toggleEmojiPicker() {
+      this.showEmojiPicker = !this.showEmojiPicker;
+
     }
 
     async addChat(ruta: string){
@@ -141,5 +148,12 @@ export class FriendsComponent implements OnInit {
     ngOnDestroy() {
         clearInterval(this.timer);
     }
+
+    addEmoji(event) {
+        const message = (document.getElementById("usermsg") as HTMLInputElement).value;
+        const text = `${message}${event.emoji.native}`;
+       (document.getElementById("usermsg") as HTMLInputElement).value = text;
+
+  }
 
 }
