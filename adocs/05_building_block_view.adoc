@@ -6,7 +6,9 @@ image:05_building_block_view.JPG[]
 
 Red: Components of the chat
 
-Light Blue: Coverage Tests and different Utilities
+Light Blue: Different Utilities
+
+Turquoise: Coverage Tests
 
 Orange: Services.
 
