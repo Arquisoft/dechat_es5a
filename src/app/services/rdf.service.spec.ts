@@ -2,9 +2,6 @@ import { RdfService } from './../services/rdf.service';
 import { Friend } from 'src/app/models/friend.model';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ToastrService, ToastrModule } from "ngx-toastr";
-import { from } from 'rxjs';
-import { defer } from 'q';
-import { Profile } from 'selenium-webdriver/firefox';
 import { SolidProfile } from '../models/solid-profile.model';
 
 describe('RDF Service', () => {

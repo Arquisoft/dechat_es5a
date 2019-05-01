@@ -1,14 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Friend } from "src/app/models/friend.model";
 import { Message } from "src/app/models/message.model";
-import { TXTPrinter } from "../printers/txtprinter.service";
 import { TTLWriterService } from '../printers/ttlwriter.service';
 import { SparqlService } from '../query/sparql.service';
 import { messagesSorter } from "../sorters/messagesSorter";
 import { PushNotificationsService } from '../push.notifications.service';
 import * as $ from 'jquery';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
