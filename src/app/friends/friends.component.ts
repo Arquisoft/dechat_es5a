@@ -150,7 +150,7 @@ export class FriendsComponent implements OnInit {
       try{
         const profile = await this.rdf.getProfile();
         if(profile) {
-          this.imageProfile= profile.image;
+          this.imageProfile= profile.image? profile.image: '/assets/images/profile.png';
         }
       } catch (error){
         console.log(`Error: ${error}`);
