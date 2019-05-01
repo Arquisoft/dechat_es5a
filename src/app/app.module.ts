@@ -27,6 +27,11 @@ import { TTLWriterService } from './services/printers/ttlwriter.service';
 import {SparqlService} from './services/query/sparql.service';
 import { RdfService } from './services/rdf.service';
 
+
+import { IconsModule } from './icons/icons.module';
+  import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +52,8 @@ import { RdfService } from './services/rdf.service';
     RouterModule,
     NgSelectModule,
     ToastrModule.forRoot(),
+    IconsModule,
+    PickerModule, 
     BrowserAnimationsModule // required for toastr
   ],
   providers: [

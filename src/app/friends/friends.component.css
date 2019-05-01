@@ -51,6 +51,19 @@ body {
     }
 }
 
+
+    .emoji-mart {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+    }
+
+    .toggle-emoji svg {
+  width: 28px;
+  height: 28px;
+}
+
+
 #frame #sidepanel #profile {
     width: 80%;
     margin: 25px auto;

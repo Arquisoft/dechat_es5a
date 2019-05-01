@@ -17,6 +17,8 @@ import { Observable, from } from 'rxjs';
 })
 export class FriendsComponent implements OnInit {
 
+  showEmojiPicker = false;
+
     timer: NodeJS.Timer;
     fileClient: any;
     ruta_seleccionada: string;
@@ -43,6 +45,10 @@ export class FriendsComponent implements OnInit {
         this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
         this.myUser = this.getUserByUrl(this.fC.sessionWebId);
 
+    }
+
+    toggleEmojiPicker() {
+      this.showEmojiPicker = !this.showEmojiPicker;
     }
 
     async addChat(ruta: string){
@@ -135,5 +141,12 @@ export class FriendsComponent implements OnInit {
     ngOnDestroy() {
         clearInterval(this.timer);
     }
+
+    addEmoji(event) {
+        const message = (document.getElementById("usermsg") as HTMLInputElement).value;
+        const text = `${message}${event.emoji.native}`;
+       (document.getElementById("usermsg") as HTMLInputElement).value = text;
+
+  }
 
 }
