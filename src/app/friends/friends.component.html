@@ -39,7 +39,7 @@
         <div class="messages" id="scroll">
             <ul id="lista" *ngFor="let message of messages">
                 <li [ngClass]="message.recipient == emisor ? 'sent': 'replies' ">
-                    <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
+                    <img [src]=imageProfile alt=""/>
                     <p class="mscontent">
                         {{message.content}} <br/>
                         {{getDate(message.date)}}
