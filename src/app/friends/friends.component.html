@@ -27,8 +27,7 @@
         </div>
 
         <div id="bottom-bar">
-            <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span>
-            </button>
+            <button routerLink="/card" id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
         </div>
     </div>
 
@@ -50,14 +49,13 @@
 
         </div>
         <emoji-mart class="emoji-mart" set="emojione" (emojiSelect)="addEmoji($event)" *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
-        <div class="message-input">
-          <button  type="button" class="toggle-emoji" (click)="toggleEmojiPicker()" >
-          <i-feather name="smile"></i-feather></button>
+        <div class="message-input" style="margin-right: 0%; width: 98%">
             <div class="wrap" id="writemessage">
-                <input name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
+                <input style=" width: 89%; height: 90%; padding-right: 0%" name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
                        placeholder="Write your message..."/>
-                <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                <button (click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
+                <button id="emoji" type="button" class="toggle-emoji" (click)="toggleEmojiPicker()" >
+                    <i-feather name="smile"></i-feather></button>
+                <button  id="emoji"(click)="callFilesCreatorMessage()" id="submitmsg" class="submit"><i class="fa fa-paper-plane"
                                                                                              aria-hidden="true"></i>
                 </button>
             </div>
