@@ -57,11 +57,11 @@ export class RdfService {
    * Fetches the session from Solid, and store results in localStorage
    */
   getSession = async () => {
-    /*if (typeof solid.auth === "undefined") {
+    if (typeof solid.auth === "undefined") {
     }
-    else{*/
+    else{
       this.session = await solid.auth.currentSession(localStorage);
-    //}
+    }
   }
 
   /**

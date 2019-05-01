@@ -3,15 +3,17 @@ import { FriendsComponent } from './friends.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, async } from '@angular/core/testing';
+import { IconsModule } from '../icons/icons.module';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 describe('Friends Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, ToastrModule.forRoot()],
+      imports: [RouterTestingModule, ToastrModule.forRoot(), IconsModule, PickerModule],
       declarations: [
         FriendsComponent
       ],
-      providers: [ToastrService]
+      providers: [ToastrService, IconsModule, PickerModule]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
