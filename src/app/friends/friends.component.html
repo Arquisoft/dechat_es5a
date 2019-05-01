@@ -49,7 +49,10 @@
             </ul>
 
         </div>
+        <emoji-mart class="emoji-mart" set="emojione" (emojiSelect)="addEmoji($event)" *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
         <div class="message-input">
+          <button  type="button" class="toggle-emoji" (click)="toggleEmojiPicker()" >
+          <i-feather name="smile"></i-feather></button>
             <div class="wrap" id="writemessage">
                 <input name="usermsg" type="text" id="usermsg" (keyup.enter)="callFilesCreatorMessage()"
                        placeholder="Write your message..."/>
