@@ -7,7 +7,7 @@ import { FilesCreatorService } from '../services/creators/files-creator.service'
 import { Message } from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
-import { async } from 'q';
+import { async, delay } from 'q';
 import { Observable, from } from 'rxjs';
 import { IComunicator } from '../models/IComunicator.model';
 import { Group } from '../models/group.model';
@@ -76,7 +76,7 @@ export class FriendsComponent implements OnInit {
         else{
             let stringToDelete= 'https://'
             let stringToDelete2= '/profile/card#me'
-            
+
             let thisWEBID= this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
             let array= ruta.split("@@@")
             console.log("------------------------" + ruta + "--------------");
@@ -93,13 +93,15 @@ export class FriendsComponent implements OnInit {
                 this.fileClient = require('solid-file-client');
                 this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
                 this.emisor = this.rdf.session.webId;
+                console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--DUEÑO");
                 this.fC.syncGroupMessages(ruta);
                 this.messages = this.fC.messages;
                 this.timer = setInterval(() => {
+                    console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--DUEÑO--INTERVAL!");
                     this.fC.syncGroupMessages(ruta);
                     this.messages = this.fC.messages;
                 }, 1000);
-    
+
                 this.names = this.getUserByUrl(ruta)
             }
             else{
@@ -115,13 +117,15 @@ export class FriendsComponent implements OnInit {
                 this.fileClient = require('solid-file-client');
                 this.fC.init(this.rdf.session.webId, this.ruta_seleccionada, this.fileClient, this.messages);
                 this.emisor = this.rdf.session.webId;
-                this.fC.syncGroupMessages(profileOwnerUrl);
+                console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--cliente--INTERVAL!");
+                this.fC.syncGroupMessages(ruta);
                 this.messages = this.fC.messages;
                 this.timer = setInterval(() => {
-                    this.fC.syncGroupMessages(profileOwnerUrl);
+                  console.log("ESTO ES FRIENDSCOMPONENT---ADDCHAT--cliente--INTERVAL!");
+                    this.fC.syncGroupMessages(ruta);
                     this.messages = this.fC.messages;
                 }, 1000);
-    
+
                 this.names = this.getUserByUrl(ruta)
             }
         }
@@ -144,7 +148,10 @@ export class FriendsComponent implements OnInit {
         if (!groupName.includes("@@@")){
             groupName= groupName + '@@@' + rand + '@@@' + this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
         }
-        this.fC.createNewFolder(groupName, '/public/dechat5a/');
+        await this.fC.createNewFolder(groupName, '/public/dechat5a/');
+        delay(200);
+        console.log("Ruta ACL: " + groupName);
+        this.fC.groupACL('https://'+ groupName.split("@@@")[2] + '/public/dechat5a/' + groupName);
         this.groupNames.push(groupName);
         this.loadFriends();
     }

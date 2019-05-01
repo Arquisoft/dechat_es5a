@@ -44,7 +44,7 @@
     "rdflib": "^0.19.1",
     "rxjs": "^6.0.0",
     "save": "^2.3.3",
-    "solid-auth-client": "^2.2.3",
+    "solid-auth-client": "^2.2.14",
     "solid-file-client": "^0.4.9",
     "stdio": "^0.2.7",
     "text-encoding": "^0.6.4",

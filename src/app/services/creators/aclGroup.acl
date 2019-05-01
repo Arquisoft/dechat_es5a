@@ -1,0 +1,18 @@
+@prefix  : <#>.  
+@prefix  n0: <http://www.w3.org/ns/auth/acl#>.
+@prefix Prueb: <./>.
+@prefix c: </profile/card#>.
+@prefix n1: <http://xmlns.com/foaf/0.1/>.
+
+:ControlReadWrite
+    a n0:Authorization; 
+    n0:accessTo Prueb:;
+    n0:agent c:me;
+    n0:agentClass n1:Agent;
+    n0:defaultForNew Prueb:;
+    n0:mode n0:Control, n0:Read, n0:Write.
+:ReadWrite
+    a n0:Authorization;
+    n0:accessTo Prueb:;
+    n0:defaultForNew Prueb:;
+    n0:mode n0:Read, n0:Write.
