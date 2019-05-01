@@ -134,7 +134,7 @@ export class FriendsComponent implements OnInit {
 
 
         } catch (error) {
-            console.log(`Error: ${error}`);
+            console.log('Error loading friends');
         }
     }
 

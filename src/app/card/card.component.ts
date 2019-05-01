@@ -44,7 +44,7 @@ export class CardComponent implements OnInit  {
       this.loadingProfile = false;
       this.setupProfileData();
     } catch (error) {
-      console.log(`Error: ${error}`);
+      console.log('Error loading profile')
     }
 
   }
@@ -56,7 +56,7 @@ export class CardComponent implements OnInit  {
         await this.rdf.updateProfile(this.cardForm);
         localStorage.setItem('oldProfileData', JSON.stringify(this.profile));
       } catch (err) {
-        console.log(`Error: ${err}`);
+        console.log('Error trying to modify profile')
       }
     }
   }

@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       try {
         this.auth.solidLogin(idp);
       } catch (err) {
-        console.log('An error has occurred logging in: ' + err);
+        console.log('Error loggin in');
       }
     }
   }

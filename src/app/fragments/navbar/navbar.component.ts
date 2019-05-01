@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    console.log("logout");
     this.auth.solidSignOut();
   }
 
