@@ -29,7 +29,7 @@ As you can see, the chat page is divided in three layers:
 
 * Conversation layer: Here it will show the different conversations. Your own messages will appear in white colour, and your friends´ will be black.
 
-* Message layer: There you can send a message to your friend. Once you write you can press the button or simply the Enter key to send it. This message will appear as yours in the conversation layer and will be sended to your partner.
+* Message layer: There you can send a message to your friend. Once you write you can press the button or simply the Enter key to send it. This message will appear as yours in the conversation layer and will be sended to your partner. Now you can choose to send emojis.
 
 
 *Lets see a couple runtimes scenarios*
@@ -43,3 +43,6 @@ image:06_runtime_view_scenario1.JPG[]
 Actor 1 wants to send a message to Actor 2, Actor 2 sends a message to Actor 3 and Actor 3 sends a message to Actor 1:
 
 image:06_runtime_view_scenario2.JPG[]
+
+*Scenario 3* 
+Actor 1 log in the app and modify its profile. Pod info will be upload.
