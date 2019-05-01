@@ -53,6 +53,8 @@ export class FilesCreatorService {
         }, err => {
             //Le paso la URL de la carpeta y se crea en el pod. SI ya esta creada no se si la sustituye o no hace nada
             this.fileClient.createFolder(solidId).then(success => {
+                this.groupACL(solidId);
+
                 console.log("Se acaba de crear")
             }, err1 => console.log(err1));
         });
@@ -115,6 +117,8 @@ export class FilesCreatorService {
         }, err => console.log(err));
     }
 
+
+
     /*
      * Creates a .acl for the file in the path.
      * This file made for the owner and many readers
@@ -170,6 +174,35 @@ export class FilesCreatorService {
         return list;
     }
 
+
+    public groupACL(path:string,  ){
+        let file = path;
+        let contenido = 
+            `@prefix  : <#>.
+             @prefix  n0: <http://www.w3.org/ns/auth/acl#>.
+             @prefix Prueb: <./>.
+             @prefix c: </profile/card#>.
+             @prefix n1: <http://xmlns.com/foaf/0.1/>.
+            
+             :ControlReadWrite
+             \t a n0:Authorization; 
+             \t n0:accessTo Prueb:;
+             \t n0:agent c:me;
+             \t n0:agentClass n1:Agent;
+             \t n0:defaultForNew Prueb:;
+             \t n0:mode n0:Control, n0:Read, n0:Write.
+             :ReadWrite
+             \t a n0:Authorization;
+             \t n0:accessTo Prueb:;
+             \t n0:defaultForNew Prueb:;
+             \t n0:mode n0:Read, n0:Write.`    
+            
+            console.log("Ruta acl" + file + "/.acl");
+        this.fileClient.createFile(file + "/.acl", contenido).then(success => {
+           console.log(` ESTA MIERDA FUNCIONA ()Created acl one reader ${file}.`)
+        }, err => console.log("JODER, ALGO CASCO"+err));
+    }
+
     /*
  * Create a new folder. The specific route would be /public/dechat5a/ + the name of the partner
  */
@@ -187,6 +220,7 @@ export class FilesCreatorService {
         //crear la carpeta. Como ya estoy en sesion no abre nada pero si se abre la consola se ve
         // que se ejecuta correctamente.
         this.buildFolder(solidId);
+
     }
 
     /*

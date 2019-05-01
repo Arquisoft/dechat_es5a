@@ -7,7 +7,7 @@ import { FilesCreatorService } from '../services/creators/files-creator.service'
 import { Message } from '../models/message.model';
 // Declaramos las variables para jQuery
 import * as $ from 'jquery';
-import { async } from 'q';
+import { async, delay } from 'q';
 import { Observable, from } from 'rxjs';
 import { IComunicator } from '../models/IComunicator.model';
 import { Group } from '../models/group.model';
@@ -144,7 +144,10 @@ export class FriendsComponent implements OnInit {
         if (!groupName.includes("@@@")){
             groupName= groupName + '@@@' + rand + '@@@' + this.rdf.session.webId.replace(stringToDelete,'').replace(stringToDelete2,'');
         }
-        this.fC.createNewFolder(groupName, '/public/dechat5a/');
+        await this.fC.createNewFolder(groupName, '/public/dechat5a/');
+        delay(200);
+        console.log("Ruta ACL: " + groupName);
+        this.fC.groupACL('https://'+ groupName.split("@@@")[2] + '/public/dechat5a/' + groupName);
         this.groupNames.push(groupName);
         this.loadFriends();
     }
