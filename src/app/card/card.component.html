@@ -1,5 +1,5 @@
 <div class="profile-container">
-  <h1>Profile</h1>
+  <h1 style="margin-top: 0.5%">Profile</h1>
 
   <!-- LOADING IMAGE -->
   <div class="loading-image" *ngIf="loadingProfile">
@@ -8,7 +8,7 @@
 
   <!-- MAIN PROFILE -->
   <div class="profile-fields-container" *ngIf="!loadingProfile">
-    <div class="profile-image-container">
+    <div class="profile-image-container" style="background-color: #C786A6">
       <img [src]="profileImage" />
     </div>
     <form style="padding-top: 26px;" #f="ngForm" (submit)="onSubmit()">

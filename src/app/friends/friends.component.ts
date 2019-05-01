@@ -43,6 +43,14 @@ export class FriendsComponent implements OnInit {
 
     }
 
+    isLogged(){
+        if(localStorage.getItem('solid-auth-client')){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     async addChat(ruta: string){
         clearInterval(this.timer);
 

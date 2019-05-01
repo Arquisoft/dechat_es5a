@@ -4,7 +4,7 @@
 <div id="frame">
     <div id="sidepanel">
         <div id="profile">
-            <div class="wrap">
+            <div class="wrap" routerLink="/card">
                 <img id="profile-img" src="https://image.flaticon.com/icons/svg/206/206887.svg" class="online" alt=""/>
                 <p>{{myUser}}</p>
             </div>
@@ -17,8 +17,8 @@
             <ul *ngFor="let item of friends"  id="friend">
                 <li class="contact" id="listaFriends" style="list-style:none; margin-left: -15%;" (click)="addChat(item.webid.toString())">
                     <div class="wrap" >
-                        <img src=" https://image.flaticon.com/icons/svg/206/206861.svg" alt=""/>
-                        <div class="meta" style="margin-left: 20%;"  >
+                        <img src=" https://image.flaticon.com/icons/svg/206/206861.svg"   alt=""/>
+                        <div class="meta" style="margin-left: 20%;"   >
                             <p class="name">  {{getUserByUrl(item.webid.toString())}} </p>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="content" style="background-color: #C786A6">
         <div class="contact-profile" id="chat">
             <img src="https://pngimage.net/wp-content/uploads/2018/05/avatar-profile-png-2.png" alt=""/>
             <p>{{names}}</p>

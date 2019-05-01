@@ -26,6 +26,7 @@ import { AuthGuard } from './services/auth.guard.service';
 import { TTLWriterService } from './services/printers/ttlwriter.service';
 import {SparqlService} from './services/query/sparql.service';
 import { RdfService } from './services/rdf.service';
+import {AboutComponent} from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RdfService } from './services/rdf.service';
     FooterComponent,
     HeaderComponent,
     FriendsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
